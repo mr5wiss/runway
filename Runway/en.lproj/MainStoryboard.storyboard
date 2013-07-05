@@ -74,7 +74,7 @@
                                     <action selector="controlButtonTapped:" destination="2" eventType="touchUpInside" id="but-jp-qAA"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="AXy-fA-je0">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXy-fA-je0">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="196" id="FAZ-B0-w33"/>
                                 </constraints>
