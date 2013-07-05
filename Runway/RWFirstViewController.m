@@ -9,16 +9,17 @@
 #import "RWFirstViewController.h"
 
 @interface RWFirstViewController ()
-
+@property (nonatomic, strong) SRWebSocket *wSocket;
 @end
 
 @implementation RWFirstViewController {
     NSInputStream *inputStream;
     NSOutputStream *outputStream;
 }
-@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, panGS, tapGS, topToolbar, topImage, bottomImage;
+@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, panGS, tapGS, topToolbar, topImage, bottomImage, wSocket;
 
 - (void)initNetworkCommunication {
+#if 0
     // remove when active
     //return;
     
@@ -38,6 +39,12 @@
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [inputStream open];
     [outputStream open];
+#else
+    self.wSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://192.168.1.165:8000"]];
+    self.wSocket.delegate = self;
+    [self.wSocket open];
+#endif
+    
 }
 
 - (void)viewDidLoad
@@ -55,21 +62,24 @@
 
 - (void)controlButtonTapped:(id)sender {
     // coopting this for the moment for testing of socket server
-    NSString *dataString  = @"Hello World!";
-    NSData *data = [[NSData alloc] initWithData:[dataString dataUsingEncoding:NSASCIIStringEncoding]];
-    [outputStream write:[data bytes] maxLength:[data length]];
-    return;
+//    NSString *dataString  = @"Hello World!";
+//    NSData *data = [[NSData alloc] initWithData:[dataString dataUsingEncoding:NSASCIIStringEncoding]];
+//    [outputStream write:[data bytes] maxLength:[data length]];
+//    return;
     
     // change images based on which controls are active
     if ((UIButton *)sender == fireButton) {
+        [self.wSocket send:@"fire"];
         self.topImage.image = [UIImage imageNamed:@"runwayFire.png"];
         self.bottomImage.image = [UIImage imageNamed:@"runwayFire.png"];
     }
     else if ((UIButton *)sender == lightsButton) {
+        [self.wSocket send:@"lights"];
         self.topImage.image = [UIImage imageNamed:@"runwayLights.png"];
         self.bottomImage.image = [UIImage imageNamed:@"runwayLights.png"];
     }
     else {
+        [self.wSocket send:@"other"];
         self.topImage.image = [UIImage imageNamed:@"runwayLightsFire.png"];
         self.bottomImage.image = [UIImage imageNamed:@"runwayLightsFire.png"];
     }
@@ -127,6 +137,24 @@
         default:
             NSLog(@"Unknown event %i", streamEvent);
     }
+    
+}
+
+#pragma mark SRWebSocketDelegate
+- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
+    NSLog(@"webSocket did receive message: %@", message);
+}
+
+- (void)webSocketDidOpen:(SRWebSocket *)webSocket {
+    NSLog(@"webSocket did open");
+}
+
+- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
+    NSLog(@"webSocket did fail %@", error);
+}
+
+- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
+    NSLog(@"webSocket did close %d (%@)", code, reason);
     
 }
 

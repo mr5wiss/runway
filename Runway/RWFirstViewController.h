@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SRWebSocket.h"
 
-@interface RWFirstViewController : UIViewController<UIPickerViewDelegate, NSStreamDelegate>
+@interface RWFirstViewController : UIViewController<UIPickerViewDelegate, NSStreamDelegate, SRWebSocketDelegate>
 @property (nonatomic, strong) IBOutlet UIPickerView *patternPicker;
 @property (nonatomic, strong) IBOutlet UIButton *allControlsButton;
 @property (nonatomic, strong) IBOutlet UIButton *lightsButton;
