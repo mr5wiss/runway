@@ -13,6 +13,7 @@
 @end
 
 @implementation RWFirstViewController
+@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, panGS, tapGS;
 
 - (void)viewDidLoad
 {
@@ -24,6 +25,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)controlButtonTapped:(id)sender {
+    // change images based on which controls are active
+}
+
+#pragma mark - UIPickerViewDelegate
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    // respond to pattern choice
 }
 
 @end
