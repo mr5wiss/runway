@@ -133,6 +133,7 @@
                         <outlet property="lightsButton" destination="Pwn-go-eZi" id="ydk-rU-8r2"/>
                         <outlet property="patternPicker" destination="rwr-zC-WTG" id="IHz-sO-l7K"/>
                         <outlet property="tempoSlider" destination="AXy-fA-je0" id="nQw-vZ-M9Z"/>
+                        <outlet property="topToolbar" destination="20" id="twC-Pg-I1h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
@@ -230,6 +231,7 @@
                 <relationship kind="outlet" name="patternPicker" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="tapGS" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="outlet" name="tempoSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
             </relationships>
         </class>
         <class className="RWSecondViewController" superclassName="UIViewController">
