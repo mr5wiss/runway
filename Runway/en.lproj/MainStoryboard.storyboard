@@ -31,9 +31,17 @@
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="runwayLightsFire.png" translatesAutoresizingMaskIntoConstraints="NO" id="DEE-8h-eHk">
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="APd-hf-SG7" appends="YES" id="6z2-Gg-184"/>
+                                    <outletCollection property="gestureRecognizers" destination="nxu-WZ-0k0" appends="YES" id="15E-Te-PTO"/>
+                                </connections>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="runwayLightsFire.png" translatesAutoresizingMaskIntoConstraints="NO" id="fNi-Ab-cdS">
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="APd-hf-SG7" appends="YES" id="GIa-7y-R7o"/>
+                                    <outletCollection property="gestureRecognizers" destination="nxu-WZ-0k0" appends="YES" id="FZl-Jd-c5i"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9D-Bv-frt">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -128,10 +136,6 @@
                             <constraint firstItem="PhA-9d-Twb" firstAttribute="centerY" secondItem="17" secondAttribute="centerY" type="default" id="sUW-oC-M9Q"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="nxu-WZ-0k0" appends="YES" id="WPa-ri-TRb"/>
-                            <outletCollection property="gestureRecognizers" destination="APd-hf-SG7" appends="YES" id="F1C-Wu-dIu"/>
-                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Play" image="first" id="7"/>
                     <connections>
@@ -146,8 +150,17 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="nxu-WZ-0k0"/>
-                <tapGestureRecognizer id="APd-hf-SG7"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="nxu-WZ-0k0">
+                    <connections>
+                        <action selector="imagePanned:" destination="2" id="vUB-od-GrW"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer delaysTouchesBegan="YES" delaysTouchesEnded="NO" id="APd-hf-SG7">
+                    <connections>
+                        <action selector="imageTapped:" destination="2" id="MH8-GY-Nfx"/>
+                        <outlet property="delegate" destination="2" id="Kle-0o-coY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3041" y="150"/>
         </scene>
@@ -233,6 +246,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
             <relationships>
                 <relationship kind="action" name="controlButtonTapped:"/>
+                <relationship kind="action" name="imagePanned:" candidateClass="UIGestureRecognizer"/>
+                <relationship kind="action" name="imageTapped:" candidateClass="UIGestureRecognizer"/>
                 <relationship kind="action" name="sliderChanged:"/>
                 <relationship kind="outlet" name="allControlsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bottomImage" candidateClass="UIImageView"/>

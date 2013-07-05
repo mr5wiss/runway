@@ -24,6 +24,8 @@
 
 - (IBAction)controlButtonTapped:(id)sender;
 - (IBAction)sliderChanged:(id)sender;
+- (IBAction)imageTapped:(UIGestureRecognizer *)sender;
+- (IBAction)imagePanned:(UIGestureRecognizer *)sender;
 
 
 @end

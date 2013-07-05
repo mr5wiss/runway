@@ -27,6 +27,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self initNetworkCommunication];
     self.patterns = [[NSArray alloc] initWithObjects:@"fade", @"pan", @"chase", nil];
+    self.topImage.userInteractionEnabled = YES;
+    self.bottomImage.userInteractionEnabled = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +61,18 @@
         self.topImage.image = [UIImage imageNamed:@"runwayLightsFire.png"];
         self.bottomImage.image = [UIImage imageNamed:@"runwayLightsFire.png"];
     }
+}
+
+- (void)imageTapped:(UIGestureRecognizer *)sender {
+    UIView *view = sender.view;
+    CGPoint location = [sender locationInView:view];
+    NSLog(@"%f%f", location.x, location.y);
+}
+
+- (void)imagePanned:(UIGestureRecognizer *)sender {
+    UIView *view = sender.view;
+    CGPoint location = [sender locationInView:view];
+    NSLog(@"%f%f", location.x, location.y);
 }
 
 #pragma mark - UIPickerViewDelegate
