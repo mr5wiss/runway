@@ -78,6 +78,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="196" id="FAZ-B0-w33"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="2" eventType="valueChanged" id="ewU-u0-VFw"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tempo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkV-71-2IA">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -88,6 +91,10 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="1aq-9a-msC"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="2" id="iVm-F8-vO6"/>
+                                    <outlet property="delegate" destination="2" id="y0M-gT-061"/>
+                                </connections>
                             </pickerView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pattern" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIs-02-Evy">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -225,8 +232,8 @@
         <class className="RWFirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
             <relationships>
-                <relationship kind="action" name="barButtonTapped:"/>
                 <relationship kind="action" name="controlButtonTapped:"/>
+                <relationship kind="action" name="sliderChanged:"/>
                 <relationship kind="outlet" name="allControlsButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bottomImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="fireButton" candidateClass="UIButton"/>

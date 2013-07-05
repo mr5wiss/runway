@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SRWebSocket.h"
 
-@interface RWFirstViewController : UIViewController<UIPickerViewDelegate, NSStreamDelegate, SRWebSocketDelegate>
+@interface RWFirstViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, SRWebSocketDelegate>
 @property (nonatomic, strong) IBOutlet UIPickerView *patternPicker;
 @property (nonatomic, strong) IBOutlet UIButton *allControlsButton;
 @property (nonatomic, strong) IBOutlet UIButton *lightsButton;
@@ -20,8 +20,10 @@
 @property (nonatomic, strong) IBOutlet UIToolbar *topToolbar;
 @property (nonatomic, strong) IBOutlet UIImageView *topImage;
 @property (nonatomic, strong) IBOutlet UIImageView *bottomImage;
+@property (nonatomic, strong) NSArray *patterns;
 
 - (IBAction)controlButtonTapped:(id)sender;
+- (IBAction)sliderChanged:(id)sender;
 
 
 @end
