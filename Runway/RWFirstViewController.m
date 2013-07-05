@@ -16,18 +16,18 @@
     NSInputStream *inputStream;
     NSOutputStream *outputStream;
 }
-@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, panGS, tapGS, topToolbar;
+@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, panGS, tapGS, topToolbar, topImage, bottomImage;
 
 - (void)initNetworkCommunication {
     // remove when active
-    return;
+    //return;
     
     // use pi server port here
-    uint portNo = 5555;
+    uint portNo = 8000;
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
     // use pi server ip here
-    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"227.3.4.56", portNo, &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"192.168.1.165", portNo, &readStream, &writeStream);
     inputStream = (__bridge NSInputStream *)readStream;
     outputStream = (__bridge NSOutputStream *)writeStream;
     
@@ -54,12 +54,25 @@
 }
 
 - (void)controlButtonTapped:(id)sender {
-    // change images based on which controls are active
-   
     // coopting this for the moment for testing of socket server
     NSString *dataString  = @"Hello World!";
     NSData *data = [[NSData alloc] initWithData:[dataString dataUsingEncoding:NSASCIIStringEncoding]];
     [outputStream write:[data bytes] maxLength:[data length]];
+    return;
+    
+    // change images based on which controls are active
+    if ((UIButton *)sender == fireButton) {
+        self.topImage.image = [UIImage imageNamed:@"runwayFire.png"];
+        self.bottomImage.image = [UIImage imageNamed:@"runwayFire.png"];
+    }
+    else if ((UIButton *)sender == lightsButton) {
+        self.topImage.image = [UIImage imageNamed:@"runwayLights.png"];
+        self.bottomImage.image = [UIImage imageNamed:@"runwayLights.png"];
+    }
+    else {
+        self.topImage.image = [UIImage imageNamed:@"runwayLightsFire.png"];
+        self.bottomImage.image = [UIImage imageNamed:@"runwayLightsFire.png"];
+    }
 }
 
 #pragma mark - UIPickerViewDelegate

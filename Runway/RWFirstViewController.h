@@ -17,6 +17,8 @@
 @property (nonatomic, strong) IBOutlet UIPanGestureRecognizer *panGS;
 @property (nonatomic, strong) IBOutlet UIPanGestureRecognizer *tapGS;
 @property (nonatomic, strong) IBOutlet UIToolbar *topToolbar;
+@property (nonatomic, strong) IBOutlet UIImageView *topImage;
+@property (nonatomic, strong) IBOutlet UIImageView *bottomImage;
 
 - (IBAction)controlButtonTapped:(id)sender;
 
