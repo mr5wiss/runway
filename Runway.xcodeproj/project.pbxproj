@@ -26,12 +26,12 @@
 		5B6B2F1C177FCD6600FF98D5 /* RWSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B2F1B177FCD6600FF98D5 /* RWSecondViewController.m */; };
 		5B6B2F1E177FCD6600FF98D5 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6B2F1D177FCD6600FF98D5 /* second.png */; };
 		5B6B2F20177FCD6600FF98D5 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6B2F1F177FCD6600FF98D5 /* second@2x.png */; };
-		EF48F01D1787722E00912CD3 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = EF48F0161787722E00912CD3 /* base64.c */; };
-		EF48F01E1787722E00912CD3 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF48F0191787722E00912CD3 /* NSData+SRB64Additions.m */; };
-		EF48F01F1787722E00912CD3 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EF48F01C1787722E00912CD3 /* SRWebSocket.m */; };
 		EF48F0231787725200912CD3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0201787725200912CD3 /* libicucore.dylib */; };
 		EF48F0241787725200912CD3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0211787725200912CD3 /* CFNetwork.framework */; };
 		EF48F0251787725200912CD3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0221787725200912CD3 /* Security.framework */; };
+		EF48F02F1787760F00912CD3 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = EF48F0281787760F00912CD3 /* base64.c */; };
+		EF48F0301787760F00912CD3 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF48F02B1787760F00912CD3 /* NSData+SRB64Additions.m */; };
+		EF48F0311787760F00912CD3 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EF48F02E1787760F00912CD3 /* SRWebSocket.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,16 +60,16 @@
 		5B6B2F1B177FCD6600FF98D5 /* RWSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWSecondViewController.m; sourceTree = "<group>"; };
 		5B6B2F1D177FCD6600FF98D5 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		5B6B2F1F177FCD6600FF98D5 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		EF48F0161787722E00912CD3 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
-		EF48F0171787722E00912CD3 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
-		EF48F0181787722E00912CD3 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
-		EF48F0191787722E00912CD3 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
-		EF48F01A1787722E00912CD3 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
-		EF48F01B1787722E00912CD3 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
-		EF48F01C1787722E00912CD3 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 		EF48F0201787725200912CD3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		EF48F0211787725200912CD3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		EF48F0221787725200912CD3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EF48F0281787760F00912CD3 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		EF48F0291787760F00912CD3 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		EF48F02A1787760F00912CD3 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		EF48F02B1787760F00912CD3 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
+		EF48F02C1787760F00912CD3 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		EF48F02D1787760F00912CD3 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		EF48F02E1787760F00912CD3 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +122,7 @@
 		5B6B2EFE177FCD6500FF98D5 /* Runway */ = {
 			isa = PBXGroup;
 			children = (
-				EF48F0151787722E00912CD3 /* SocketRocket */,
+				EF48F0261787760300912CD3 /* Third Party */,
 				5B6B2F07177FCD6500FF98D5 /* RWAppDelegate.h */,
 				5B6B2F08177FCD6500FF98D5 /* RWAppDelegate.m */,
 				5B6B2F10177FCD6600FF98D5 /* MainStoryboard.storyboard */,
@@ -156,19 +156,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EF48F0151787722E00912CD3 /* SocketRocket */ = {
+		EF48F0261787760300912CD3 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
-				EF48F0161787722E00912CD3 /* base64.c */,
-				EF48F0171787722E00912CD3 /* base64.h */,
-				EF48F0181787722E00912CD3 /* NSData+SRB64Additions.h */,
-				EF48F0191787722E00912CD3 /* NSData+SRB64Additions.m */,
-				EF48F01A1787722E00912CD3 /* SocketRocket-Prefix.pch */,
-				EF48F01B1787722E00912CD3 /* SRWebSocket.h */,
-				EF48F01C1787722E00912CD3 /* SRWebSocket.m */,
+				EF48F0271787760F00912CD3 /* SocketRocket */,
+			);
+			name = "Third Party";
+			sourceTree = "<group>";
+		};
+		EF48F0271787760F00912CD3 /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				EF48F0281787760F00912CD3 /* base64.c */,
+				EF48F0291787760F00912CD3 /* base64.h */,
+				EF48F02A1787760F00912CD3 /* NSData+SRB64Additions.h */,
+				EF48F02B1787760F00912CD3 /* NSData+SRB64Additions.m */,
+				EF48F02C1787760F00912CD3 /* SocketRocket-Prefix.pch */,
+				EF48F02D1787760F00912CD3 /* SRWebSocket.h */,
+				EF48F02E1787760F00912CD3 /* SRWebSocket.m */,
 			);
 			name = SocketRocket;
-			path = SocketRocket/SocketRocket;
+			path = "Third Party/SocketRocket/SocketRocket";
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -249,9 +257,9 @@
 				5B6B2F09177FCD6500FF98D5 /* RWAppDelegate.m in Sources */,
 				5B6B2F15177FCD6600FF98D5 /* RWFirstViewController.m in Sources */,
 				5B6B2F1C177FCD6600FF98D5 /* RWSecondViewController.m in Sources */,
-				EF48F01D1787722E00912CD3 /* base64.c in Sources */,
-				EF48F01E1787722E00912CD3 /* NSData+SRB64Additions.m in Sources */,
-				EF48F01F1787722E00912CD3 /* SRWebSocket.m in Sources */,
+				EF48F02F1787760F00912CD3 /* base64.c in Sources */,
+				EF48F0301787760F00912CD3 /* NSData+SRB64Additions.m in Sources */,
+				EF48F0311787760F00912CD3 /* SRWebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
