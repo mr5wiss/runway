@@ -31,11 +31,14 @@
     BOOL _touchingLight;
     NSInteger _numTapped;
     NSDate * _firstTappedTime;
+    BOOL _playaMode;
+    BOOL _running;
 }
 @synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, panGS, tapGS, topToolbar, topImage, bottomImage, wSocket, tapLabel, tapSwitch, patterns;
 
 - (void)initNetworkCommunication {
-    self.wSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://raspberrypi.local:8000"]];
+    NSString *urlString = _playaMode ? @"ws://10.0.0.1:8000" : @"ws://raspberrypi.local:8000";
+    self.wSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:urlString]];
     //self.wSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://10.0.0.1:8000"]];
     self.wSocket.delegate = self;
     [self.wSocket open];
@@ -45,7 +48,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self initNetworkCommunication];
     self.patterns = [[NSArray alloc] initWithObjects:@"--NO PATTERN--", @"pattern 1", @"pattern 2", @"pattern 3", @"pattern 4", @"pattern 5", @"pattern 6", @"pattern 7", @"pattern 8", @"pattern 9", nil];
     self.topImage.userInteractionEnabled = YES;
     self.bottomImage.userInteractionEnabled = YES;
@@ -55,9 +57,11 @@
     
     // label tap recognizer to enable tapping for tempo
     tapLabel.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tempoTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(temoTapped:)];
+    UITapGestureRecognizer *tempoTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tempoTapped:)];
     [tapLabel addGestureRecognizer:tempoTapRecognizer];
     
+    _playaMode = NO;
+    _running = NO;
     _numTapped = 0;
     
     [tapSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
@@ -94,7 +98,7 @@
     [self send:[NSString stringWithFormat:@"tick=%f", 1.0 - value]];
 }
 
-- (void)temoTapped:(id)sender {
+- (void)tempoTapped:(id)sender {
     if (!tapSwitch.on) {
         return;
     }
@@ -106,12 +110,20 @@
         NSDate *currentTapTime = [NSDate date];
         NSTimeInterval interval = [currentTapTime timeIntervalSinceDate:_firstTappedTime];
         CGFloat rate = interval / _numTapped;
-        // determine tempo - not a good formula now :)
-        //CGFloat tempo = rate > 1 ? 0 : 1.0 - rate;
-        if (_numTapped > 5) {
+        // only send tick after 5 taps
+        if (_numTapped >= 5) {
             NSLog(@"tick=%f", rate);
             [self send:[NSString stringWithFormat:@"tick=%f", rate]];
         }
+    }
+}
+
+- (void)connectButtonTapped:(id)sender {
+    if ([[[(UIButton *)sender titleLabel] text] isEqualToString:@"Connect Playa"]) {
+        _playaMode = YES;
+    }
+    if (!_running) {
+        [self initNetworkCommunication];
     }
 }
 
@@ -301,6 +313,7 @@
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
     NSLog(@"webSocket did open");
+    _running = YES;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
@@ -309,7 +322,10 @@
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     NSLog(@"webSocket did close %d (%@)", code, reason);
-    
+    _running = NO;
+    self.tempoSlider.value = 0.5;
+    [self.patternPicker selectedRowInComponent:0];
+    self.tapSwitch.on = NO;
 }
 
 @end

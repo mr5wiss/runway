@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSArray *patterns;
 
 - (IBAction)controlButtonTapped:(id)sender;
+- (IBAction)connectButtonTapped:(id)sender;
 - (IBAction)sliderChanged:(id)sender;
 - (IBAction)imageTapped:(UIGestureRecognizer *)sender;
 - (IBAction)imagePanned:(UIGestureRecognizer *)sender;
