@@ -29,11 +29,14 @@
     BOOL _controllingFire;
     BOOL _touchingFire;
     BOOL _touchingLight;
+    NSInteger _numTapped;
+    NSDate * _firstTappedTime;
 }
-@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, panGS, tapGS, topToolbar, topImage, bottomImage, wSocket, patterns;
+@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, panGS, tapGS, topToolbar, topImage, bottomImage, wSocket, tapLabel, tapSwitch, patterns;
 
 - (void)initNetworkCommunication {
     self.wSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://raspberrypi.local:8000"]];
+    //self.wSocket = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://10.0.0.1:8000"]];
     self.wSocket.delegate = self;
     [self.wSocket open];
 }
@@ -43,12 +46,21 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self initNetworkCommunication];
-    self.patterns = [[NSArray alloc] initWithObjects:@"pattern 1", @"pattern 2", @"pattern 3", @"pattern 4", @"pattern 5", @"pattern 6", @"pattern 7", @"pattern 8", @"pattern 9", nil];
+    self.patterns = [[NSArray alloc] initWithObjects:@"--NO PATTERN--", @"pattern 1", @"pattern 2", @"pattern 3", @"pattern 4", @"pattern 5", @"pattern 6", @"pattern 7", @"pattern 8", @"pattern 9", nil];
     self.topImage.userInteractionEnabled = YES;
     self.bottomImage.userInteractionEnabled = YES;
     
     // for now, turn it "on" here (sending nil simulates both lights and fire)
     [self controlButtonTapped:nil];
+    
+    // label tap recognizer to enable tapping for tempo
+    tapLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tempoTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(temoTapped:)];
+    [tapLabel addGestureRecognizer:tempoTapRecognizer];
+    
+    _numTapped = 0;
+    
+    [tapSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,11 +80,39 @@
     }
 }
 
+- (void)switchChanged:(id)sender {
+    _numTapped = 0;
+}
+
 - (void)sliderChanged:(id)sender {
+    if (tapSwitch.on) {
+        return;
+    }
     UISlider *slider = (UISlider *)sender;
     CGFloat value = slider.value;
-    NSLog(@"tick=%f", value);
-    [self send:[NSString stringWithFormat:@"tick=%f", value]];
+    NSLog(@"tick=%f", 1.0 - value);
+    [self send:[NSString stringWithFormat:@"tick=%f", 1.0 - value]];
+}
+
+- (void)temoTapped:(id)sender {
+    if (!tapSwitch.on) {
+        return;
+    }
+    _numTapped++;
+    if (_numTapped == 1) {
+        _firstTappedTime = [NSDate date];
+    }
+    else {
+        NSDate *currentTapTime = [NSDate date];
+        NSTimeInterval interval = [currentTapTime timeIntervalSinceDate:_firstTappedTime];
+        CGFloat rate = interval / _numTapped;
+        // determine tempo - not a good formula now :)
+        //CGFloat tempo = rate > 1 ? 0 : 1.0 - rate;
+        if (_numTapped > 5) {
+            NSLog(@"tick=%f", rate);
+            [self send:[NSString stringWithFormat:@"tick=%f", rate]];
+        }
+    }
 }
 
 - (void)controlButtonTapped:(id)sender {

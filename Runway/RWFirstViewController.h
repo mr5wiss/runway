@@ -20,6 +20,8 @@
 @property (nonatomic, strong) IBOutlet UIToolbar *topToolbar;
 @property (nonatomic, strong) IBOutlet UIImageView *topImage;
 @property (nonatomic, strong) IBOutlet UIImageView *bottomImage;
+@property (nonatomic, strong) IBOutlet UILabel *tapLabel;
+@property (nonatomic, strong) IBOutlet UISwitch *tapSwitch;
 @property (nonatomic, strong) NSArray *patterns;
 
 - (IBAction)controlButtonTapped:(id)sender;

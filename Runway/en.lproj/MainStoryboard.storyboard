@@ -83,6 +83,9 @@
                                 </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXy-fA-je0">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="MyK-iw-eOJ"/>
+                                </constraints>
                                 <connections>
                                     <action selector="sliderChanged:" destination="2" eventType="valueChanged" id="ewU-u0-VFw"/>
                                 </connections>
@@ -126,27 +129,26 @@
                             <constraint firstItem="TIs-02-Evy" firstAttribute="top" secondItem="17" secondAttribute="top" constant="250" id="5jQ-PB-pcu"/>
                             <constraint firstItem="fNi-Ab-cdS" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="7hj-sP-VzI"/>
                             <constraint firstItem="20" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="82v-FK-dPD"/>
-                            <constraint firstAttribute="trailing" secondItem="1ik-wk-bmK" secondAttribute="trailing" constant="73" id="Emp-wm-9bQ"/>
                             <constraint firstItem="eAc-LA-To9" firstAttribute="top" secondItem="1ik-wk-bmK" secondAttribute="top" type="default" id="Ffr-xz-TiN"/>
                             <constraint firstItem="rwr-zC-WTG" firstAttribute="top" secondItem="17" secondAttribute="top" constant="286" id="IKM-4v-ZEk"/>
                             <constraint firstItem="PhA-9d-Twb" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="310" id="JfW-xl-hxn"/>
                             <constraint firstItem="Pwn-go-eZi" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="180" id="N9V-9i-8t2"/>
                             <constraint firstItem="cEw-A4-fDg" firstAttribute="centerX" secondItem="AXy-fA-je0" secondAttribute="centerX" type="default" id="TOm-uU-3Td"/>
+                            <constraint firstItem="AXy-fA-je0" firstAttribute="top" secondItem="17" secondAttribute="top" constant="285" id="VK2-js-6gL"/>
                             <constraint firstItem="DEE-8h-eHk" firstAttribute="top" secondItem="20" secondAttribute="bottom" type="default" id="W8j-JI-Rad"/>
                             <constraint firstItem="eAc-LA-To9" firstAttribute="top" secondItem="PhA-9d-Twb" secondAttribute="top" type="default" id="WkW-1Q-Yde"/>
                             <constraint firstAttribute="bottom" secondItem="cEw-A4-fDg" secondAttribute="bottom" constant="272" id="fC4-Vv-sQS"/>
-                            <constraint firstAttribute="trailing" secondItem="cEw-A4-fDg" secondAttribute="trailing" constant="135" id="fNV-D5-mPm"/>
                             <constraint firstItem="PhA-9d-Twb" firstAttribute="baseline" secondItem="Pwn-go-eZi" secondAttribute="baseline" type="default" id="gNq-PT-vsA"/>
                             <constraint firstItem="Pwn-go-eZi" firstAttribute="baseline" secondItem="c9D-Bv-frt" secondAttribute="baseline" type="default" id="geB-Hs-Oxg"/>
                             <constraint firstItem="rwr-zC-WTG" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="436" id="i00-rj-MOi"/>
                             <constraint firstItem="20" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" type="default" id="i7B-V8-9lR"/>
                             <constraint firstItem="DEE-8h-eHk" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="lIl-d7-ijt"/>
                             <constraint firstItem="TIs-02-Evy" firstAttribute="centerX" secondItem="rwr-zC-WTG" secondAttribute="centerX" type="default" id="mCc-Fc-jLs"/>
+                            <constraint firstAttribute="trailing" secondItem="AXy-fA-je0" secondAttribute="trailing" constant="73" id="mah-a6-gXe"/>
                             <constraint firstItem="fNi-Ab-cdS" firstAttribute="bottom" secondItem="17" secondAttribute="bottom" type="default" id="nTS-dy-REe"/>
                             <constraint firstItem="eAc-LA-To9" firstAttribute="leading" secondItem="AXy-fA-je0" secondAttribute="leading" type="default" id="nnt-KF-CIF"/>
                             <constraint firstItem="AkV-71-2IA" firstAttribute="baseline" secondItem="TIs-02-Evy" secondAttribute="baseline" type="default" id="oYn-WS-KTN"/>
                             <constraint firstItem="1ik-wk-bmK" firstAttribute="trailing" secondItem="AXy-fA-je0" secondAttribute="trailing" type="default" id="qWM-YU-HHu"/>
-                            <constraint firstItem="AXy-fA-je0" firstAttribute="top" secondItem="rwr-zC-WTG" secondAttribute="top" type="default" id="uMH-2U-omj"/>
                             <constraint firstItem="c9D-Bv-frt" firstAttribute="centerY" secondItem="17" secondAttribute="centerY" type="default" id="vhY-BI-5Dz"/>
                             <constraint firstItem="AXy-fA-je0" firstAttribute="centerX" secondItem="AkV-71-2IA" secondAttribute="centerX" type="default" id="x7d-QL-IdA"/>
                         </constraints>
@@ -159,6 +161,8 @@
                         <outlet property="fireButton" destination="PhA-9d-Twb" id="wKw-5B-9xY"/>
                         <outlet property="lightsButton" destination="Pwn-go-eZi" id="ydk-rU-8r2"/>
                         <outlet property="patternPicker" destination="rwr-zC-WTG" id="IHz-sO-l7K"/>
+                        <outlet property="tapLabel" destination="cEw-A4-fDg" id="ZEI-KW-48u"/>
+                        <outlet property="tapSwitch" destination="1ik-wk-bmK" id="850-5Q-1m6"/>
                         <outlet property="tempoSlider" destination="AXy-fA-je0" id="nQw-vZ-M9Z"/>
                         <outlet property="topImage" destination="DEE-8h-eHk" id="hvy-se-991"/>
                         <outlet property="topToolbar" destination="20" id="twC-Pg-I1h"/>
@@ -271,6 +275,8 @@
                 <relationship kind="outlet" name="panGS" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="outlet" name="patternPicker" candidateClass="UIPickerView"/>
                 <relationship kind="outlet" name="tapGS" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="outlet" name="tapLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tapSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="tempoSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="topImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
