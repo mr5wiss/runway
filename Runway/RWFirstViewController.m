@@ -152,6 +152,8 @@
 }
 
 - (void)recordOffTapped {
+    // record final state
+    [self record:nil];
     _recordOn = NO;
     recordBarButton.tintColor = nil;
     // save it?
@@ -161,8 +163,11 @@
     NSDate *previousTime = nil;
     NSTimeInterval cumulative = 0;
     for (NSDictionary *tuple in _recordHistory) {
+        // skip end marker
+        if (tuple == [_recordHistory lastObject]) {
+            break;
+        }
         NSString *msg = [tuple objectForKey:@"message"];
-        //if (msg == nil) continue;
         if (!previousTime) {
             [self send:msg];
             previousTime = [tuple objectForKey:@"timestamp"];
@@ -171,6 +176,7 @@
             NSTimeInterval timeSincePrevious = [(NSDate *)[tuple objectForKey:@"timestamp"] timeIntervalSinceDate:previousTime];
             previousTime = [tuple objectForKey:@"timestamp"];
             cumulative += timeSincePrevious;
+            //NSLog(@"sending msg: %@ with delay: %f", msg, cumulative);
             [self performSelector:@selector(send:) withObject:msg afterDelay:cumulative];
         }
     }
@@ -179,19 +185,19 @@
 - (void)setLoopTimer {
     NSDate *first = [[_recordHistory objectAtIndex:0] objectForKey:@"timestamp"];
     // what should this be?
-    //NSDate *last = [[_recordHistory lastObject] objectForKey:@"timestamp"];
-    NSDate *last = [NSDate date];
+    NSDate *last = [[_recordHistory lastObject] objectForKey:@"timestamp"];
     NSTimeInterval length = [last timeIntervalSinceDate:first];
     // at least one second
     if (length == 0) {
         length = 1;
     }
+    //NSLog(@"loop interval: %f", length);
     _loopTimer = [NSTimer scheduledTimerWithTimeInterval:length target:self selector:@selector(playRecordHistory:) userInfo:nil repeats:YES];
 }
 
 - (void)loopTapped {
     // record final state
-    //[self record:nil];
+    [self record:nil];
     _recordOn = NO;
     recordBarButton.tintColor = nil;
     if (!_looping && [_recordHistory count] > 0) {
@@ -230,11 +236,11 @@
     // double chaser
     else if ([buttonTitle isEqualToString:@"Pattern 2"]) {
         delay = 0.2;
-        for (NSInteger i=0; i<LIGHTS_PER_SIDE; i++) {
+        for (NSInteger i=0; i<LIGHTS_FOR_TEST/2; i++) {
             NSTimeInterval fullDelay = delay*(i+1);
             [self performSelector:@selector(send:) withObject:[NSString stringWithFormat:@"light=%d", i+1] afterDelay:fullDelay];
         }
-        for (NSInteger i=LIGHTS_PER_SIDE; i<LIGHTS_FOR_TEST; i++) {
+        for (NSInteger i=LIGHTS_FOR_TEST/2; i<LIGHTS_FOR_TEST; i++) {
             NSTimeInterval fullDelay = delay*(i-LIGHTS_PER_SIDE+1);
             [self performSelector:@selector(send:) withObject:[NSString stringWithFormat:@"light=%d", i+1] afterDelay:fullDelay];
         }
@@ -337,6 +343,9 @@
         return;
     }
     NSDate *timeStamp = [NSDate date];
+    if (!message) {
+        message = @"XXX";
+    }
     NSDictionary *nodeTuple = [NSDictionary dictionaryWithObjectsAndKeys:message, @"message", timeStamp, @"timestamp", nil];
     [_recordHistory addObject:nodeTuple];
 }
