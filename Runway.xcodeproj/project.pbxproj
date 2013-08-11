@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B52E1CE17B8374800B53BB3 /* RWTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52E1CD17B8374800B53BB3 /* RWTabBarController.m */; };
 		5B6B2EF9177FCD6500FF98D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6B2EF8177FCD6500FF98D5 /* UIKit.framework */; };
 		5B6B2EFB177FCD6500FF98D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6B2EFA177FCD6500FF98D5 /* Foundation.framework */; };
 		5B6B2EFD177FCD6500FF98D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6B2EFC177FCD6500FF98D5 /* CoreGraphics.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B52E1CC17B8374800B53BB3 /* RWTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWTabBarController.h; sourceTree = "<group>"; };
+		5B52E1CD17B8374800B53BB3 /* RWTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWTabBarController.m; sourceTree = "<group>"; };
 		5B6B2EF5177FCD6500FF98D5 /* Runway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B6B2EF8177FCD6500FF98D5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5B6B2EFA177FCD6500FF98D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -135,6 +138,8 @@
 				5B6B2F1D177FCD6600FF98D5 /* second.png */,
 				5B6B2F1F177FCD6600FF98D5 /* second@2x.png */,
 				5B6B2EFF177FCD6500FF98D5 /* Supporting Files */,
+				5B52E1CC17B8374800B53BB3 /* RWTabBarController.h */,
+				5B52E1CD17B8374800B53BB3 /* RWTabBarController.m */,
 			);
 			path = Runway;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				EF48F02F1787760F00912CD3 /* base64.c in Sources */,
 				EF48F0301787760F00912CD3 /* NSData+SRB64Additions.m in Sources */,
 				EF48F0311787760F00912CD3 /* SRWebSocket.m in Sources */,
+				5B52E1CE17B8374800B53BB3 /* RWTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,9 +316,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.1;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -335,9 +341,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.1;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};

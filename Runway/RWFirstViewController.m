@@ -64,6 +64,12 @@
     }
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    BOOL res = (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft) || (toInterfaceOrientation == UIInterfaceOrientationLandscapeRight);
+    //NSLog(@"Should: %d : %d", toInterfaceOrientation, res);
+    return res;
+}
+
 #pragma mark view lifecycle
 - (void)viewDidLoad
 {
@@ -109,8 +115,8 @@
     _panTouchingStatus = [[NSMutableArray alloc] initWithCapacity:2];
     NSMutableDictionary *view1TouchDict = [[NSMutableDictionary alloc] initWithCapacity:2];
     NSMutableDictionary *view2TouchDict = [[NSMutableDictionary alloc] initWithCapacity:2];
-    [view1TouchDict setObject:@NO forKey:@"fire"];
-    [view1TouchDict setObject:@NO forKey:@"light"];
+    [view1TouchDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
+    [view1TouchDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
     [_panTouchingStatus addObject:view1TouchDict];
     [_panTouchingStatus addObject:view2TouchDict];
     
@@ -412,8 +418,8 @@
                 }
                 // if not, send the command
                 else {
-                    [touchingDict setObject:@YES forKey:@"fire"];
-                    [touchingDict setObject:@NO forKey:@"light"];
+                    [touchingDict setObject:[NSNumber numberWithBool:YES] forKey:@"fire"];
+                    [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
                     NSString *sendString = [NSString stringWithFormat:@"fire=%d", startingFireNum + (divX-1)/2];
                     [self record:sendString];
                     [self send:sendString];
@@ -422,8 +428,8 @@
             }
             // we're touching nothing, set both to NO
             else if (modX > LIGHT_WIDTH) {
-                [touchingDict setObject:@NO forKey:@"light"];
-                [touchingDict setObject:@NO forKey:@"fire"];
+                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
+                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
                 return;
             }
             // we're touching a light area
@@ -433,10 +439,10 @@
             }
             // newly touching a light area
             else {
-                [touchingDict setObject:@NO forKey:@"fire"];
+                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
                 // send command if we're controlling lights
                 if (_controllingLights) {
-                    [touchingDict setObject:@YES forKey:@"light"];
+                    [touchingDict setObject:[NSNumber numberWithBool:YES] forKey:@"light"];
                     NSString *sendString = [NSString stringWithFormat:@"light=%d", startingLightNum + divX];
                     [self record:sendString];
                     [self send:sendString];
@@ -446,13 +452,13 @@
         }
         // we're out of fire's range
         else if ([[touchingDict objectForKey:@"fire"] boolValue]) {
-            [touchingDict setObject:@NO forKey:@"fire"];
+            [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
         }
     }
     if (_controllingLights) {
         // TO DO: fix these numbers
         if (adjustedY < LIGHT_TOP_Y || adjustedY > LIGHT_BOTTOM_Y || location.x < LIGHT_INITIAL_GAP) {
-            [touchingDict setObject:@NO forKey:@"light"];
+            [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
         }
         else {
             NSInteger adjustedX = location.x - LIGHT_INITIAL_GAP;
@@ -466,8 +472,8 @@
                 }
                 // newly touching, send command
                 else {
-                    [touchingDict setObject:@YES forKey:@"light"];
-                    [touchingDict setObject:@NO forKey:@"fire"];
+                    [touchingDict setObject:[NSNumber numberWithBool:YES] forKey:@"light"];
+                    [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
                     NSString *sendString = [NSString stringWithFormat:@"light=%d", startingLightNum + divX];
                     [self record:sendString];
                     [self send:sendString];
@@ -476,8 +482,8 @@
             }
             // not touching anything
             else {
-                [touchingDict setObject:@NO forKey:@"fire"];
-                [touchingDict setObject:@NO forKey:@"light"];
+                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
+                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
             }
         }
     }
@@ -565,8 +571,8 @@
     }
     NSInteger viewNum = touch.view.frame.origin.y < 200 ? 0 : 1;
     NSMutableDictionary *touchDict = [_panTouchingStatus objectAtIndex:viewNum];
-    [touchDict setObject:@NO forKey:@"fire"];
-    [touchDict setObject:@NO forKey:@"light"];
+    [touchDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
+    [touchDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
 }
 
 @end
