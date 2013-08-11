@@ -123,6 +123,7 @@
 }
 
 #pragma mark actions
+// send heartbeat
 - (void)timerFire:(NSTimer *)timer {
     [self send:@"alive=1"];
 }
@@ -131,6 +132,7 @@
     [self.wSocket close];
 }
 
+// SHUT EVERYTHING OFF!!!
 - (void)panic {
     [self send:@"panic=1"];
 }
@@ -182,17 +184,20 @@
     }
 }
 
-- (void)switchChanged:(id)sender {
-    _numTapped = 0;
-}
-
+// tempo
 - (void)sliderChanged:(id)sender {
     if (tapSwitch.on) {
         return;
     }
     UISlider *slider = (UISlider *)sender;
     CGFloat value = slider.value;
+    // send time between pattern updates
     [self send:[NSString stringWithFormat:@"tick=%f", 1.1 - value]];
+}
+
+// bpm tapping
+- (void)switchChanged:(id)sender {
+    _numTapped = 0;
 }
 
 - (void)tempoTapped:(id)sender {
@@ -214,18 +219,15 @@
     }
 }
 
+// when not in playa mode
 - (void)connectButtonTapped:(id)sender {
-    if ([[[(UIButton *)sender titleLabel] text] isEqualToString:@"Connect Playa"]) {
-        _playaMode = YES;
-    }
-    else {
-        _playaMode = NO;
-    }
+    _playaMode = NO;
     if (!_running) {
         [self initNetworkCommunication];
     }
 }
 
+// what nodes are you controlling?
 - (void)controlButtonTapped:(id)sender {
     // change images based on which controls are active
     if ((UIButton *)sender == fireButton) {
