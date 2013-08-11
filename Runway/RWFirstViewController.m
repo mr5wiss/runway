@@ -20,7 +20,7 @@
 #define LIGHT_INITIAL_GAP 15
 
 // change as we hook up lights
-#define LIGHTS_FOR_TEST 19
+#define LIGHTS_FOR_TEST 84
 
 @interface RWFirstViewController ()
 @property (nonatomic, strong) SRWebSocket *wSocket;
@@ -108,9 +108,6 @@
     
     //self.view.multipleTouchEnabled = YES;
     
-    // timer to allow pi to shut off
-    _timer = [NSTimer timerWithTimeInterval:15 target:self selector:@selector(timerFire:) userInfo:nil repeats:YES];
-    
 #ifndef DEBUG
     debugConnectButton.hidden = YES;
 #endif
@@ -145,7 +142,8 @@
 - (void)runPattern:(id)sender {
     NSString *buttonTitle = [(UIBarButtonItem *)sender title];
     NSTimeInterval delay;
-    // crossover pattern
+    // single run patterns
+    // crossover pattern (up chaser and down chaser simultaneously)
     if ([buttonTitle isEqualToString:@"Pattern 1"]) {
         delay = 0.3;
         for (NSInteger i=0; i<LIGHTS_FOR_TEST; i++) {
@@ -158,10 +156,20 @@
         }
         return;
     }
-    // slowish
+    // double chaser
     else if ([buttonTitle isEqualToString:@"Pattern 2"]) {
         delay = 0.2;
+        for (NSInteger i=0; i<LIGHTS_PER_SIDE; i++) {
+            NSTimeInterval fullDelay = delay*(i+1);
+            [self performSelector:@selector(send:) withObject:[NSString stringWithFormat:@"light=%d", i+1] afterDelay:fullDelay];
+        }
+        for (NSInteger i=LIGHTS_PER_SIDE; i<LIGHTS_FOR_TEST; i++) {
+            NSTimeInterval fullDelay = delay*(i-LIGHTS_PER_SIDE+1);
+            [self performSelector:@selector(send:) withObject:[NSString stringWithFormat:@"light=%d", i+1] afterDelay:fullDelay];
+        }
+        return;
     }
+    // repeating single chasers
     // fastish
     else if ([buttonTitle isEqualToString:@"Pattern 3"]) {
         delay = 0.1;
@@ -211,6 +219,7 @@
     else {
         NSDate *currentTapTime = [NSDate date];
         NSTimeInterval interval = [currentTapTime timeIntervalSinceDate:_firstTappedTime];
+        // calculate average tick length
         CGFloat rate = interval / _numTapped;
         // only send tick after 5 taps
         if (_numTapped >= 5) {
@@ -401,6 +410,7 @@
     _running = YES;
     self.offBarButton.tintColor = nil;
     self.onBarButton.tintColor = [UIColor blueColor];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(timerFire:) userInfo:nil repeats:YES];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
@@ -418,6 +428,7 @@
     self.tempoSlider.value = 0.5;
     [self.patternPicker selectedRowInComponent:0];
     self.tapSwitch.on = NO;
+    [_timer invalidate];
 }
 
 #pragma mark touches functions
