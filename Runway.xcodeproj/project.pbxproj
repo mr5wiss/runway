@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B0B0FD91787144F002D40E9 /* runwayLights.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0B0FD61787144F002D40E9 /* runwayLights.png */; };
-		5B0B0FDA1787144F002D40E9 /* runwayLightsFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0B0FD71787144F002D40E9 /* runwayLightsFire.png */; };
-		5B0B0FDC178767AB002D40E9 /* runwayFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0B0FDB178767AB002D40E9 /* runwayFire.png */; };
 		5B6B2EF9177FCD6500FF98D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6B2EF8177FCD6500FF98D5 /* UIKit.framework */; };
 		5B6B2EFB177FCD6500FF98D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6B2EFA177FCD6500FF98D5 /* Foundation.framework */; };
 		5B6B2EFD177FCD6500FF98D5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6B2EFC177FCD6500FF98D5 /* CoreGraphics.framework */; };
@@ -26,6 +23,9 @@
 		5B6B2F1C177FCD6600FF98D5 /* RWSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6B2F1B177FCD6600FF98D5 /* RWSecondViewController.m */; };
 		5B6B2F1E177FCD6600FF98D5 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6B2F1D177FCD6600FF98D5 /* second.png */; };
 		5B6B2F20177FCD6600FF98D5 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B6B2F1F177FCD6600FF98D5 /* second@2x.png */; };
+		5BF98D1417B7E7CD00E1A88A /* runwayFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1117B7E7CD00E1A88A /* runwayFire.png */; };
+		5BF98D1517B7E7CD00E1A88A /* runwayLights.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1217B7E7CD00E1A88A /* runwayLights.png */; };
+		5BF98D1617B7E7CD00E1A88A /* runwayLightsFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1317B7E7CD00E1A88A /* runwayLightsFire.png */; };
 		EF48F0231787725200912CD3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0201787725200912CD3 /* libicucore.dylib */; };
 		EF48F0241787725200912CD3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0211787725200912CD3 /* CFNetwork.framework */; };
 		EF48F0251787725200912CD3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0221787725200912CD3 /* Security.framework */; };
@@ -35,9 +35,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B0B0FD61787144F002D40E9 /* runwayLights.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayLights.png; sourceTree = "<group>"; };
-		5B0B0FD71787144F002D40E9 /* runwayLightsFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayLightsFire.png; sourceTree = "<group>"; };
-		5B0B0FDB178767AB002D40E9 /* runwayFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayFire.png; sourceTree = "<group>"; };
 		5B6B2EF5177FCD6500FF98D5 /* Runway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B6B2EF8177FCD6500FF98D5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5B6B2EFA177FCD6500FF98D5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,6 +57,9 @@
 		5B6B2F1B177FCD6600FF98D5 /* RWSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWSecondViewController.m; sourceTree = "<group>"; };
 		5B6B2F1D177FCD6600FF98D5 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		5B6B2F1F177FCD6600FF98D5 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		5BF98D1117B7E7CD00E1A88A /* runwayFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayFire.png; sourceTree = "<group>"; };
+		5BF98D1217B7E7CD00E1A88A /* runwayLights.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayLights.png; sourceTree = "<group>"; };
+		5BF98D1317B7E7CD00E1A88A /* runwayLightsFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayLightsFire.png; sourceTree = "<group>"; };
 		EF48F0201787725200912CD3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		EF48F0211787725200912CD3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		EF48F0221787725200912CD3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -142,9 +142,9 @@
 		5B6B2EFF177FCD6500FF98D5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5B0B0FDB178767AB002D40E9 /* runwayFire.png */,
-				5B0B0FD61787144F002D40E9 /* runwayLights.png */,
-				5B0B0FD71787144F002D40E9 /* runwayLightsFire.png */,
+				5BF98D1117B7E7CD00E1A88A /* runwayFire.png */,
+				5BF98D1217B7E7CD00E1A88A /* runwayLights.png */,
+				5BF98D1317B7E7CD00E1A88A /* runwayLightsFire.png */,
 				5B6B2F00177FCD6500FF98D5 /* Runway-Info.plist */,
 				5B6B2F01177FCD6500FF98D5 /* InfoPlist.strings */,
 				5B6B2F04177FCD6500FF98D5 /* main.m */,
@@ -240,9 +240,9 @@
 				5B6B2F19177FCD6600FF98D5 /* first@2x.png in Resources */,
 				5B6B2F1E177FCD6600FF98D5 /* second.png in Resources */,
 				5B6B2F20177FCD6600FF98D5 /* second@2x.png in Resources */,
-				5B0B0FD91787144F002D40E9 /* runwayLights.png in Resources */,
-				5B0B0FDA1787144F002D40E9 /* runwayLightsFire.png in Resources */,
-				5B0B0FDC178767AB002D40E9 /* runwayFire.png in Resources */,
+				5BF98D1417B7E7CD00E1A88A /* runwayFire.png in Resources */,
+				5BF98D1517B7E7CD00E1A88A /* runwayLights.png in Resources */,
+				5BF98D1617B7E7CD00E1A88A /* runwayLightsFire.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
