@@ -20,6 +20,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *bottomImage;
 @property (nonatomic, strong) IBOutlet UILabel *tapLabel;
 @property (nonatomic, strong) IBOutlet UISwitch *tapSwitch;
+@property (nonatomic, strong) IBOutlet UIButton *debugConnectButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *onBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *offBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *panicBarButton;

@@ -165,6 +165,7 @@
                     <connections>
                         <outlet property="allControlsButton" destination="c9D-Bv-frt" id="WHR-ac-3KC"/>
                         <outlet property="bottomImage" destination="fNi-Ab-cdS" id="fXy-8K-wV7"/>
+                        <outlet property="debugConnectButton" destination="6Je-yG-fuf" id="qSp-tD-krx"/>
                         <outlet property="fireButton" destination="PhA-9d-Twb" id="wKw-5B-9xY"/>
                         <outlet property="lightsButton" destination="Pwn-go-eZi" id="ydk-rU-8r2"/>
                         <outlet property="loopBarButton" destination="Jsj-NJ-ise" id="Wuo-VP-6I0"/>

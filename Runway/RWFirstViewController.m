@@ -37,7 +37,7 @@
     NSTimer *_timer;
     NSMutableArray *_panTouchingStatus;
 }
-@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, topToolbar, topImage, bottomImage, wSocket, tapLabel, tapSwitch, onBarButton, offBarButton, panicBarButton, pattern1BarButton, pattern2BarButton, pattern3BarButton, pattern4BarButton, pattern5BarButton, recordBarButton, stopRecordBarButton, loopBarButton, stopLoopBarButton, patterns;
+@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, topToolbar, topImage, bottomImage, wSocket, tapLabel, tapSwitch, onBarButton, offBarButton, panicBarButton, pattern1BarButton, pattern2BarButton, pattern3BarButton, pattern4BarButton, pattern5BarButton, recordBarButton, stopRecordBarButton, loopBarButton, stopLoopBarButton, patterns, debugConnectButton;
 
 #pragma mark socket functions
 - (void)initNetworkCommunication {
@@ -110,7 +110,11 @@
     
     // timer to allow pi to shut off
     _timer = [NSTimer timerWithTimeInterval:15 target:self selector:@selector(timerFire:) userInfo:nil repeats:YES];
-}   
+    
+#ifndef DEBUG
+    debugConnectButton.hidden = YES;
+#endif
+}
 
 - (void)didReceiveMemoryWarning
 {
