@@ -76,7 +76,7 @@
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXy-fA-je0">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="195" id="MyK-iw-eOJ"/>
+                                    <constraint firstAttribute="width" constant="195" id="02g-o4-XBD"/>
                                 </constraints>
                                 <connections>
                                     <action selector="sliderChanged:" destination="2" eventType="valueChanged" id="ewU-u0-VFw"/>
@@ -89,7 +89,7 @@
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwr-zC-WTG">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="1aq-9a-msC"/>
+                                    <constraint firstAttribute="width" constant="250" id="0Hw-Qb-YRm"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="2" id="iVm-F8-vO6"/>
@@ -129,35 +129,38 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="20" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="21X-Fc-h5m"/>
-                            <constraint firstItem="c9D-Bv-frt" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="48" id="2Ch-ET-20r"/>
-                            <constraint firstItem="TIs-02-Evy" firstAttribute="top" secondItem="17" secondAttribute="top" constant="250" id="5jQ-PB-pcu"/>
-                            <constraint firstItem="fNi-Ab-cdS" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="7hj-sP-VzI"/>
-                            <constraint firstItem="20" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="82v-FK-dPD"/>
-                            <constraint firstItem="eAc-LA-To9" firstAttribute="top" secondItem="1ik-wk-bmK" secondAttribute="top" type="default" id="Ffr-xz-TiN"/>
-                            <constraint firstItem="rwr-zC-WTG" firstAttribute="top" secondItem="17" secondAttribute="top" constant="286" id="IKM-4v-ZEk"/>
-                            <constraint firstItem="Pwn-go-eZi" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="180" id="N9V-9i-8t2"/>
-                            <constraint firstItem="cEw-A4-fDg" firstAttribute="centerX" secondItem="AXy-fA-je0" secondAttribute="centerX" type="default" id="TOm-uU-3Td"/>
-                            <constraint firstItem="AXy-fA-je0" firstAttribute="top" secondItem="17" secondAttribute="top" constant="285" id="VK2-js-6gL"/>
-                            <constraint firstItem="DEE-8h-eHk" firstAttribute="top" secondItem="20" secondAttribute="bottom" type="default" id="W8j-JI-Rad"/>
-                            <constraint firstItem="eAc-LA-To9" firstAttribute="top" secondItem="PhA-9d-Twb" secondAttribute="top" type="default" id="WkW-1Q-Yde"/>
-                            <constraint firstItem="6Je-yG-fuf" firstAttribute="trailing" secondItem="PhA-9d-Twb" secondAttribute="trailing" type="default" id="a77-rl-PWG"/>
-                            <constraint firstAttribute="bottom" secondItem="6Je-yG-fuf" secondAttribute="bottom" constant="261" id="f58-Gu-E5S"/>
-                            <constraint firstItem="PhA-9d-Twb" firstAttribute="baseline" secondItem="Pwn-go-eZi" secondAttribute="baseline" type="default" id="gNq-PT-vsA"/>
-                            <constraint firstItem="Pwn-go-eZi" firstAttribute="baseline" secondItem="c9D-Bv-frt" secondAttribute="baseline" type="default" id="geB-Hs-Oxg"/>
-                            <constraint firstItem="rwr-zC-WTG" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="436" id="i00-rj-MOi"/>
-                            <constraint firstItem="20" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" type="default" id="i7B-V8-9lR"/>
-                            <constraint firstItem="DEE-8h-eHk" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="lIl-d7-ijt"/>
-                            <constraint firstItem="TIs-02-Evy" firstAttribute="centerX" secondItem="rwr-zC-WTG" secondAttribute="centerX" type="default" id="mCc-Fc-jLs"/>
-                            <constraint firstItem="6Je-yG-fuf" firstAttribute="centerY" secondItem="cEw-A4-fDg" secondAttribute="centerY" type="default" id="mKc-8x-0pQ"/>
-                            <constraint firstAttribute="trailing" secondItem="AXy-fA-je0" secondAttribute="trailing" constant="73" id="mah-a6-gXe"/>
-                            <constraint firstItem="fNi-Ab-cdS" firstAttribute="bottom" secondItem="17" secondAttribute="bottom" type="default" id="nTS-dy-REe"/>
-                            <constraint firstItem="eAc-LA-To9" firstAttribute="leading" secondItem="AXy-fA-je0" secondAttribute="leading" type="default" id="nnt-KF-CIF"/>
-                            <constraint firstItem="AkV-71-2IA" firstAttribute="baseline" secondItem="TIs-02-Evy" secondAttribute="baseline" type="default" id="oYn-WS-KTN"/>
-                            <constraint firstItem="1ik-wk-bmK" firstAttribute="trailing" secondItem="AXy-fA-je0" secondAttribute="trailing" type="default" id="qWM-YU-HHu"/>
-                            <constraint firstItem="c9D-Bv-frt" firstAttribute="centerY" secondItem="17" secondAttribute="centerY" type="default" id="vhY-BI-5Dz"/>
-                            <constraint firstItem="AXy-fA-je0" firstAttribute="centerX" secondItem="AkV-71-2IA" secondAttribute="centerX" type="default" id="x7d-QL-IdA"/>
-                            <constraint firstItem="6Je-yG-fuf" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="265" id="ywj-Uh-q0Z"/>
+                            <constraint firstItem="cEw-A4-fDg" firstAttribute="centerY" secondItem="6Je-yG-fuf" secondAttribute="centerY" type="default" id="2A8-jt-zdN"/>
+                            <constraint firstItem="fNi-Ab-cdS" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="43M-hO-Sfb"/>
+                            <constraint firstItem="c9D-Bv-frt" firstAttribute="baseline" secondItem="PhA-9d-Twb" secondAttribute="baseline" type="default" id="52I-tT-Jiy"/>
+                            <constraint firstItem="Pwn-go-eZi" firstAttribute="top" secondItem="c9D-Bv-frt" secondAttribute="top" type="default" id="56x-wk-NMy"/>
+                            <constraint firstItem="eAc-LA-To9" firstAttribute="leading" secondItem="AXy-fA-je0" secondAttribute="leading" type="default" id="5A6-4w-Uwi"/>
+                            <constraint firstItem="Pwn-go-eZi" firstAttribute="baseline" secondItem="PhA-9d-Twb" secondAttribute="baseline" type="default" id="7xp-Ra-4oX"/>
+                            <constraint firstItem="DEE-8h-eHk" firstAttribute="top" secondItem="20" secondAttribute="bottom" type="default" id="85p-8L-OZq"/>
+                            <constraint firstItem="Pwn-go-eZi" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="180" id="9Cl-Ih-puH"/>
+                            <constraint firstItem="cEw-A4-fDg" firstAttribute="centerX" secondItem="AXy-fA-je0" secondAttribute="centerX" type="default" id="CCT-Zc-fQ7"/>
+                            <constraint firstItem="AkV-71-2IA" firstAttribute="baseline" secondItem="TIs-02-Evy" secondAttribute="baseline" type="default" id="DfK-k7-J45"/>
+                            <constraint firstItem="c9D-Bv-frt" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="48" id="E73-ge-5N9"/>
+                            <constraint firstItem="AXy-fA-je0" firstAttribute="trailing" secondItem="1ik-wk-bmK" secondAttribute="trailing" type="default" id="EbH-Lu-YlS"/>
+                            <constraint firstItem="20" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" type="default" id="L0m-AK-DE9"/>
+                            <constraint firstItem="c9D-Bv-frt" firstAttribute="baseline" secondItem="Pwn-go-eZi" secondAttribute="baseline" type="default" id="LML-uK-qPY"/>
+                            <constraint firstItem="rwr-zC-WTG" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="436" id="O68-uh-I0r"/>
+                            <constraint firstItem="6Je-yG-fuf" firstAttribute="trailing" secondItem="PhA-9d-Twb" secondAttribute="trailing" type="default" id="SQC-qC-gfR"/>
+                            <constraint firstItem="rwr-zC-WTG" firstAttribute="top" secondItem="17" secondAttribute="top" constant="286" id="Wfc-1R-2vC"/>
+                            <constraint firstItem="6Je-yG-fuf" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="265" id="X91-Qb-dWX"/>
+                            <constraint firstAttribute="trailing" secondItem="AXy-fA-je0" secondAttribute="trailing" constant="73" id="ZPB-5i-kSA"/>
+                            <constraint firstItem="20" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="aqK-zW-VHF"/>
+                            <constraint firstItem="PhA-9d-Twb" firstAttribute="top" secondItem="eAc-LA-To9" secondAttribute="top" type="default" id="k7G-2i-gbD"/>
+                            <constraint firstItem="eAc-LA-To9" firstAttribute="top" secondItem="1ik-wk-bmK" secondAttribute="top" type="default" id="kMo-BB-71U"/>
+                            <constraint firstItem="rwr-zC-WTG" firstAttribute="centerX" secondItem="TIs-02-Evy" secondAttribute="centerX" type="default" id="knf-QV-GjC"/>
+                            <constraint firstItem="PhA-9d-Twb" firstAttribute="centerY" secondItem="17" secondAttribute="centerY" type="default" id="kxI-8C-cA0"/>
+                            <constraint firstItem="TIs-02-Evy" firstAttribute="top" secondItem="17" secondAttribute="top" constant="250" id="nlJ-cF-RLM"/>
+                            <constraint firstAttribute="bottom" secondItem="6Je-yG-fuf" secondAttribute="bottom" constant="261" id="rQW-cV-uEd"/>
+                            <constraint firstItem="AXy-fA-je0" firstAttribute="centerX" secondItem="AkV-71-2IA" secondAttribute="centerX" type="default" id="u0z-Q8-qCe"/>
+                            <constraint firstItem="fNi-Ab-cdS" firstAttribute="bottom" secondItem="17" secondAttribute="bottom" type="default" id="um3-fb-zxa"/>
+                            <constraint firstItem="PhA-9d-Twb" firstAttribute="top" secondItem="Pwn-go-eZi" secondAttribute="top" type="default" id="w5P-KR-hmf"/>
+                            <constraint firstItem="DEE-8h-eHk" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="yLf-z4-ztQ"/>
+                            <constraint firstItem="AXy-fA-je0" firstAttribute="top" secondItem="17" secondAttribute="top" constant="285" id="yd4-tz-5t5"/>
+                            <constraint firstItem="20" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="zt7-Vn-wI9"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -207,8 +210,8 @@
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" editable="NO" text="Loaded by the Second View Controller — an instance of RWSecondViewController — specified in the app delegate." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="22">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="39I-E8-1dg"/>
-                                    <constraint firstAttribute="width" constant="297" id="F6J-XU-KBh"/>
+                                    <constraint firstAttribute="width" constant="297" id="GsF-68-gZo"/>
+                                    <constraint firstAttribute="height" constant="70" id="Ngp-Gq-T0n"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" size="system"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -221,14 +224,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="21" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="7D6-ef-UU9"/>
-                            <constraint firstItem="22" firstAttribute="top" secondItem="16" secondAttribute="top" constant="350" id="Gbp-Dd-WCJ"/>
-                            <constraint firstItem="22" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="235" id="Xcq-Zb-R4f"/>
-                            <constraint firstItem="23" firstAttribute="top" secondItem="16" secondAttribute="top" type="default" id="YQd-P8-ET5"/>
-                            <constraint firstItem="23" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="eH6-Me-VTD"/>
-                            <constraint firstItem="23" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="kTD-uS-vbp"/>
-                            <constraint firstItem="21" firstAttribute="top" secondItem="16" secondAttribute="top" constant="250" id="mE7-QV-f5n"/>
-                            <constraint firstAttribute="trailing" secondItem="21" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="v87-JO-j7C"/>
+                            <constraint firstAttribute="bottom" secondItem="22" secondAttribute="bottom" constant="279" id="5dP-XV-dKb"/>
+                            <constraint firstItem="23" firstAttribute="top" secondItem="16" secondAttribute="top" type="default" id="RQA-V9-VoR"/>
+                            <constraint firstItem="22" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="235" id="afZ-ze-tfq"/>
+                            <constraint firstItem="23" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="anv-xd-JE6"/>
+                            <constraint firstItem="23" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="biA-av-m21"/>
+                            <constraint firstItem="21" firstAttribute="top" secondItem="16" secondAttribute="top" constant="250" id="cBV-eu-fkd"/>
+                            <constraint firstAttribute="trailing" secondItem="21" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="dv6-ar-KZi"/>
+                            <constraint firstItem="21" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="wxq-Ze-ILZ"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -264,6 +267,45 @@
         <image name="runwayLightsFire.png" width="1024" height="172"/>
         <image name="second" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RWFirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="connectButtonTapped:"/>
+                <relationship kind="action" name="controlButtonTapped:"/>
+                <relationship kind="action" name="sliderChanged:"/>
+                <relationship kind="outlet" name="allControlsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bottomImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="debugConnectButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fireButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="lightsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loopBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="offBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="onBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="panicBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern1BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern2BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern3BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern4BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern5BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="patternPicker" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="recordBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="stopLoopBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="stopRecordBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tapLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tapSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tempoSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="topImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="RWSecondViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWSecondViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

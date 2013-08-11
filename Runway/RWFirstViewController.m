@@ -20,7 +20,7 @@
 #define LIGHT_INITIAL_GAP 15
 
 // change as we hook up lights
-#define LIGHTS_FOR_TEST 84
+#define LIGHTS_FOR_TEST 42
 
 @interface RWFirstViewController ()
 @property (nonatomic, strong) SRWebSocket *wSocket;
@@ -34,8 +34,11 @@
     BOOL _playaMode;
     BOOL _running;
     BOOL _recordOn;
+    BOOL _looping;
     NSTimer *_timer;
+    NSTimer *_loopTimer;
     NSMutableArray *_panTouchingStatus;
+    NSMutableArray *_recordHistory;
 }
 @synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, topToolbar, topImage, bottomImage, wSocket, tapLabel, tapSwitch, onBarButton, offBarButton, panicBarButton, pattern1BarButton, pattern2BarButton, pattern3BarButton, pattern4BarButton, pattern5BarButton, recordBarButton, stopRecordBarButton, loopBarButton, stopLoopBarButton, patterns, debugConnectButton;
 
@@ -54,7 +57,9 @@
         return YES;
     }
     else {
-        NSLog(@"socket not open: nothing sent");
+        if (!_recordOn) {
+            NSLog(@"socket not open: nothing sent");
+        }
         return NO;
     }
 }
@@ -80,6 +85,7 @@
     _playaMode = YES;
     _running = NO;
     _recordOn = NO;
+    _looping = NO;
     _numTapped = 0;
     
     //actions
@@ -96,6 +102,8 @@
     pattern4BarButton.action = @selector(runPattern:);
     pattern5BarButton.action = @selector(runPattern:);
     recordBarButton.action = @selector(recordButtonTapped);
+    stopRecordBarButton.action = @selector(recordOffTapped);
+    loopBarButton.action = @selector(loopTapped);
     
     // set up array for panning view
     _panTouchingStatus = [[NSMutableArray alloc] initWithCapacity:2];
@@ -105,6 +113,8 @@
     [view1TouchDict setObject:@NO forKey:@"light"];
     [_panTouchingStatus addObject:view1TouchDict];
     [_panTouchingStatus addObject:view2TouchDict];
+    
+    _recordHistory = [[NSMutableArray alloc] init];
     
     //self.view.multipleTouchEnabled = YES;
     
@@ -136,6 +146,67 @@
 
 - (void)recordButtonTapped {
     _recordOn = YES;
+    recordBarButton.tintColor = [UIColor blueColor];
+    // clear out any current recording
+    [_recordHistory removeAllObjects];
+}
+
+- (void)recordOffTapped {
+    _recordOn = NO;
+    recordBarButton.tintColor = nil;
+    // save it?
+}
+
+- (void)playRecordHistory:(NSTimer *)timer {
+    NSDate *previousTime = nil;
+    NSTimeInterval cumulative = 0;
+    for (NSDictionary *tuple in _recordHistory) {
+        NSString *msg = [tuple objectForKey:@"message"];
+        //if (msg == nil) continue;
+        if (!previousTime) {
+            [self send:msg];
+            previousTime = [tuple objectForKey:@"timestamp"];
+        }
+        else {
+            NSTimeInterval timeSincePrevious = [(NSDate *)[tuple objectForKey:@"timestamp"] timeIntervalSinceDate:previousTime];
+            previousTime = [tuple objectForKey:@"timestamp"];
+            cumulative += timeSincePrevious;
+            [self performSelector:@selector(send:) withObject:msg afterDelay:cumulative];
+        }
+    }
+}
+
+- (void)setLoopTimer {
+    NSDate *first = [[_recordHistory objectAtIndex:0] objectForKey:@"timestamp"];
+    // what should this be?
+    //NSDate *last = [[_recordHistory lastObject] objectForKey:@"timestamp"];
+    NSDate *last = [NSDate date];
+    NSTimeInterval length = [last timeIntervalSinceDate:first];
+    // at least one second
+    if (length == 0) {
+        length = 1;
+    }
+    _loopTimer = [NSTimer scheduledTimerWithTimeInterval:length target:self selector:@selector(playRecordHistory:) userInfo:nil repeats:YES];
+}
+
+- (void)loopTapped {
+    // record final state
+    //[self record:nil];
+    _recordOn = NO;
+    recordBarButton.tintColor = nil;
+    if (!_looping && [_recordHistory count] > 0) {
+        _looping = YES;
+        loopBarButton.tintColor = [UIColor blueColor];
+        // play it once and set timer to repeat
+        [self playRecordHistory:nil];
+        [self setLoopTimer];
+    }
+    // turning off
+    else {
+        _looping = NO;
+        loopBarButton.tintColor = nil;
+        [_loopTimer invalidate];
+    }
 }
 
 // tests
@@ -259,6 +330,17 @@
     }
 }
 
+#pragma mark recording
+
+- (void)record:(NSString *)message {
+    if (!_recordOn) {
+        return;
+    }
+    NSDate *timeStamp = [NSDate date];
+    NSDictionary *nodeTuple = [NSDictionary dictionaryWithObjectsAndKeys:message, @"message", timeStamp, @"timestamp", nil];
+    [_recordHistory addObject:nodeTuple];
+}
+
 #pragma mark node calculations
 - (void)sendNodeDataBasedOnTap:(CGPoint)location view:(NSInteger)viewNum {
     NSInteger startingLightNum = viewNum == 0 ? 1 : LIGHTS_PER_SIDE+1;
@@ -277,7 +359,9 @@
         NSInteger divX = adjustedX / lightCycle;
         if (modX > LIGHT_WIDTH && divX % 2 == 1) {
             hitFire = YES;
-            [self send:[NSString stringWithFormat:@"fire=%d", startingFireNum + (divX-1)/2]];
+            NSString *sendString = [NSString stringWithFormat:@"fire=%d", startingFireNum + (divX-1)/2];
+            [self record:sendString];
+            [self send:sendString];
         }
     }
     // if fire wasn't hit, turn on closest light to touch, even if it missed the actual target
@@ -287,7 +371,9 @@
         if (adjustedX < 0) adjustedX = 0;
         NSInteger highX = 1023 - 2*xAdjustemnt;
         if (adjustedX > highX) adjustedX = highX;
-        [self send:[NSString stringWithFormat:@"light=%d", startingLightNum + adjustedX/lightCycle]];
+        NSString *sendString = [NSString stringWithFormat:@"light=%d", startingLightNum + adjustedX/lightCycle];
+        [self record:sendString];
+        [self send:sendString];
     }
 }
 
@@ -319,7 +405,9 @@
                 else {
                     [touchingDict setObject:@YES forKey:@"fire"];
                     [touchingDict setObject:@NO forKey:@"light"];
-                    [self send:[NSString stringWithFormat:@"fire=%d", startingFireNum + (divX-1)/2]];
+                    NSString *sendString = [NSString stringWithFormat:@"fire=%d", startingFireNum + (divX-1)/2];
+                    [self record:sendString];
+                    [self send:sendString];
                     return;
                 }
             }
@@ -340,7 +428,9 @@
                 // send command if we're controlling lights
                 if (_controllingLights) {
                     [touchingDict setObject:@YES forKey:@"light"];
-                    [self send:[NSString stringWithFormat:@"light=%d", startingLightNum + divX]];
+                    NSString *sendString = [NSString stringWithFormat:@"light=%d", startingLightNum + divX];
+                    [self record:sendString];
+                    [self send:sendString];
                     return;
                 }
             }
@@ -369,7 +459,9 @@
                 else {
                     [touchingDict setObject:@YES forKey:@"light"];
                     [touchingDict setObject:@NO forKey:@"fire"];
-                    [self send:[NSString stringWithFormat:@"light=%d", startingLightNum + divX]];
+                    NSString *sendString = [NSString stringWithFormat:@"light=%d", startingLightNum + divX];
+                    [self record:sendString];
+                    [self send:sendString];
                     return;
                 }
             }
@@ -408,13 +500,15 @@
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
     NSLog(@"webSocket did open");
     _running = YES;
+    // indicate connection status
     self.offBarButton.tintColor = nil;
     self.onBarButton.tintColor = [UIColor blueColor];
+    // turn on heartbeat timer to tell pi we're connected
     _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(timerFire:) userInfo:nil repeats:YES];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-    // this doesn't seem to get called if we call open and can't connect
+    // this doesn't seem to get called if we call open and can't connect (or maybe it just takes forever)
     NSLog(@"webSocket did fail %@", error);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Failure" message:@"The app could not connect to the pi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
@@ -423,11 +517,14 @@
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     NSLog(@"webSocket did close %d (%@)", code, reason);
     _running = NO;
+    // indicate connection status
     self.onBarButton.tintColor = nil;
     self.offBarButton.tintColor = [UIColor blueColor];
+    // views to defaults
     self.tempoSlider.value = 0.5;
     [self.patternPicker selectedRowInComponent:0];
     self.tapSwitch.on = NO;
+    // disconnected, so no more heartbeat
     [_timer invalidate];
 }
 
@@ -438,7 +535,7 @@
         return;
     }
     CGPoint location = [touch locationInView:touch.view];
-    NSInteger viewNum = touch.view.frame.origin.y < 200 ? 0 : 1;
+    NSInteger viewNum = touch.view.frame.origin.y < 50 ? 0 : 1;
     [self sendNodeDataBasedOnTap:location view:viewNum];
 }
 
@@ -448,7 +545,7 @@
         return;
     }
     CGPoint location = [touch locationInView:touch.view];
-    NSInteger viewNum = touch.view.frame.origin.y < 200 ? 0 : 1;
+    NSInteger viewNum = touch.view.frame.origin.y < 50 ? 0 : 1;
     [self sendNodeDataBasedOnPan:location view:viewNum];
 }
 
