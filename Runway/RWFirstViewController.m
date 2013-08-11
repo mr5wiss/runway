@@ -35,12 +35,13 @@
     BOOL _running;
     BOOL _recordOn;
     BOOL _looping;
+    BOOL _sidesLocked;
     NSTimer *_timer;
     NSTimer *_loopTimer;
     NSMutableArray *_panTouchingStatus;
     NSMutableArray *_recordHistory;
 }
-@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, topToolbar, topImage, bottomImage, wSocket, tapLabel, tapSwitch, onBarButton, offBarButton, panicBarButton, pattern1BarButton, pattern2BarButton, pattern3BarButton, pattern4BarButton, pattern5BarButton, recordBarButton, stopRecordBarButton, loopBarButton, stopLoopBarButton, patterns, debugConnectButton;
+@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, topToolbar, topImage, bottomImage, wSocket, tapLabel, tapSwitch, onBarButton, offBarButton, panicBarButton, pattern1BarButton, pattern2BarButton, pattern3BarButton, pattern4BarButton, pattern5BarButton, recordBarButton, stopRecordBarButton, loopBarButton, stopLoopBarButton, patterns, debugConnectButton, lockSidesButton;
 
 #pragma mark socket functions
 - (void)initNetworkCommunication {
@@ -93,6 +94,7 @@
     _recordOn = NO;
     _looping = NO;
     _numTapped = 0;
+    _sidesLocked = NO;
     
     //actions
     [tapSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
@@ -342,6 +344,18 @@
     }
 }
 
+- (void)lockSidesTapped:(id)sender {
+    // make sides go in lockstep (and unlock)
+    if (!_sidesLocked) {
+        [self.lockSidesButton setTitle:@"Unlock" forState:UIControlStateNormal];
+        _sidesLocked = YES;
+    }
+    else {
+        [self.lockSidesButton setTitle:@"Lock Sides" forState:UIControlStateNormal];
+        _sidesLocked = NO;
+    }
+}
+
 #pragma mark recording
 
 - (void)record:(NSString *)message {
@@ -374,7 +388,11 @@
         NSInteger divX = adjustedX / lightCycle;
         if (modX > LIGHT_WIDTH && divX % 2 == 1) {
             hitFire = YES;
-            NSString *sendString = [NSString stringWithFormat:@"fire=%d", startingFireNum + (divX-1)/2];
+            NSInteger fireNum = startingFireNum + (divX-1)/2;
+            NSString *sendString = [NSString stringWithFormat:@"fire=%d", fireNum];
+            if (_sidesLocked) {
+                sendString = [sendString stringByAppendingFormat:@",fire=%d", fireNum + FIRE_PER_SIDE];
+            }
             [self record:sendString];
             [self send:sendString];
         }
@@ -386,7 +404,11 @@
         if (adjustedX < 0) adjustedX = 0;
         NSInteger highX = 1023 - 2*xAdjustemnt;
         if (adjustedX > highX) adjustedX = highX;
-        NSString *sendString = [NSString stringWithFormat:@"light=%d", startingLightNum + adjustedX/lightCycle];
+        NSInteger lightNum = startingLightNum + adjustedX/lightCycle;
+        NSString *sendString = [NSString stringWithFormat:@"light=%d", lightNum];
+        if (_sidesLocked) {
+            sendString = [sendString stringByAppendingFormat:@",light=%d", lightNum + LIGHTS_PER_SIDE];
+        }
         [self record:sendString];
         [self send:sendString];
     }
@@ -420,7 +442,11 @@
                 else {
                     [touchingDict setObject:[NSNumber numberWithBool:YES] forKey:@"fire"];
                     [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
-                    NSString *sendString = [NSString stringWithFormat:@"fire=%d", startingFireNum + (divX-1)/2];
+                    NSInteger fireNum = startingFireNum + (divX-1)/2;
+                    NSString *sendString = [NSString stringWithFormat:@"fire=%d", fireNum];
+                    if (_sidesLocked) {
+                        sendString = [sendString stringByAppendingFormat:@",fire=%d", fireNum + FIRE_PER_SIDE];
+                    }
                     [self record:sendString];
                     [self send:sendString];
                     return;
@@ -443,7 +469,11 @@
                 // send command if we're controlling lights
                 if (_controllingLights) {
                     [touchingDict setObject:[NSNumber numberWithBool:YES] forKey:@"light"];
-                    NSString *sendString = [NSString stringWithFormat:@"light=%d", startingLightNum + divX];
+                    NSInteger lightNum = startingLightNum + divX;
+                    NSString *sendString = [NSString stringWithFormat:@"light=%d", lightNum];
+                    if (_sidesLocked) {
+                        sendString = [sendString stringByAppendingFormat:@",light=%d", lightNum + LIGHTS_PER_SIDE];
+                    }
                     [self record:sendString];
                     [self send:sendString];
                     return;
@@ -474,7 +504,11 @@
                 else {
                     [touchingDict setObject:[NSNumber numberWithBool:YES] forKey:@"light"];
                     [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
-                    NSString *sendString = [NSString stringWithFormat:@"light=%d", startingLightNum + divX];
+                    NSInteger lightNum = startingLightNum + divX;
+                    NSString *sendString = [NSString stringWithFormat:@"light=%d", lightNum];
+                    if (_sidesLocked) {
+                        sendString = [sendString stringByAppendingFormat:@",light=%d", lightNum + LIGHTS_PER_SIDE];
+                    }
                     [self record:sendString];
                     [self send:sendString];
                     return;
@@ -551,6 +585,10 @@
     }
     CGPoint location = [touch locationInView:touch.view];
     NSInteger viewNum = touch.view.frame.origin.y < 50 ? 0 : 1;
+    // view 2 is off in locked mode
+    if (_sidesLocked && viewNum == 1) {
+        return;
+    }
     [self sendNodeDataBasedOnTap:location view:viewNum];
 }
 
@@ -561,6 +599,10 @@
     }
     CGPoint location = [touch locationInView:touch.view];
     NSInteger viewNum = touch.view.frame.origin.y < 50 ? 0 : 1;
+    // view 2 is off in locked mode
+    if (_sidesLocked && viewNum == 1) {
+        return;
+    }
     [self sendNodeDataBasedOnPan:location view:viewNum];
 }
 

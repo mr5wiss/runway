@@ -21,6 +21,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *tapLabel;
 @property (nonatomic, strong) IBOutlet UISwitch *tapSwitch;
 @property (nonatomic, strong) IBOutlet UIButton *debugConnectButton;
+@property (nonatomic, strong) IBOutlet UIButton *lockSidesButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *onBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *offBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *panicBarButton;
@@ -37,6 +38,7 @@
 
 - (IBAction)controlButtonTapped:(id)sender;
 - (IBAction)connectButtonTapped:(id)sender;
+- (IBAction)lockSidesTapped:(id)sender;
 - (IBAction)sliderChanged:(id)sender;
 
 
