@@ -88,6 +88,7 @@ static RWFirstViewController *s_sharedInstance;
     _topNodes.nodeManager = _nodeManager;
     _topNodes.userInteractionEnabled = YES;
     _topNodes.controlMode = kRWControlModeBoth;
+    _topNodes.startNum = LIGHTS_PER_SIDE;
     if (![_topNodes addNodes]) {
         NSLog(@"couldn't add nodes to top node view");
     }
@@ -95,7 +96,6 @@ static RWFirstViewController *s_sharedInstance;
     _bottomNodes.nodeManager = _nodeManager;
     _bottomNodes.userInteractionEnabled = YES;
     _bottomNodes.controlMode = kRWControlModeBoth;
-    _bottomNodes.startNum = LIGHTS_PER_SIDE;
     if (![_bottomNodes addNodes]) {
         NSLog(@"couldn't add nodes to top node view");
     }

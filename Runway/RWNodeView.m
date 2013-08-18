@@ -58,14 +58,14 @@
     if (!_nodeManager) {
         return NO;
     }
-    // create nodes, add them as subviews, and them to the manager
+    // numbers ascend right to left
     for (NSInteger i=0; i<LIGHTS_PER_SIDE; i++) {
         CGRect buttonFrame = CGRectMake(i*NODE_WIDTH, 0, NODE_WIDTH, self.frame.size.height);
         // light node or both (pure fire nodes don't exist on initialization)
         nodeType type = i >= FIRST_FIRE && (i-FIRST_FIRE) / FIRE_GAP < FIRE_PER_SIDE && (i-FIRST_FIRE) % FIRE_GAP == 0 ? kRWnodeTypeBoth : kRWnodeTypeLight;
-        RWNodeButton *node = [[RWNodeButton alloc] initWithNum:_startNum+i type:type frame:buttonFrame];
+        RWNodeButton *node = [[RWNodeButton alloc] initWithNum:_startNum+LIGHTS_PER_SIDE-i-1 type:type frame:buttonFrame];
         [self addSubview:node];
-        [_nodeManager addNode:node number:_startNum+i];
+        [_nodeManager addNode:node number:_startNum+LIGHTS_PER_SIDE-i-1];
         node.delegate = _nodeManager;
     }
     return YES;
@@ -107,7 +107,7 @@
     _controlMode = controlMode;
 }
 
-- (NSInteger)locationToNodeNum:(CGPoint)location {
+- (NSInteger)locationToNodePosition:(CGPoint)location {
     NSInteger nodeNum = location.x / NODE_WIDTH;
     if (nodeNum > self.startNum + LIGHTS_PER_SIDE - 1) {
         nodeNum = self.startNum + LIGHTS_PER_SIDE - 1;
@@ -121,7 +121,7 @@
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self];
     //NSLog(@"touch moved at location: %f,%f", location.x, location.y);
-    RWNodeButton *node = [self.subviews objectAtIndex:[self locationToNodeNum:location]];
+    RWNodeButton *node = [self.subviews objectAtIndex:[self locationToNodePosition:location]];
     if (node.hidden) {
         return;
     }
