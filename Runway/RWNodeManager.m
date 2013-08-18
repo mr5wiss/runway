@@ -27,13 +27,28 @@
     [_nodes setObject:node forKey:[NSNumber numberWithInt:num]];
 }
 
+- (void)clearTop {
+    for (NSInteger i=LIGHTS_PER_SIDE+1; i<=2*LIGHTS_PER_SIDE; i++) {
+        RWNodeButton *node = [_nodes objectForKey:[NSNumber numberWithInt:i]];
+        if (node.lightStatus) {
+            [node changeTapStateForType:kRWnodeTypeLight duration:0];
+        }
+    }
+}
+
+- (void)clearBottom {
+    for (NSInteger i=1; i<=LIGHTS_PER_SIDE; i++) {
+        RWNodeButton *node = [_nodes objectForKey:[NSNumber numberWithInt:i]];
+        if (node.lightStatus) {
+            [node changeTapStateForType:kRWnodeTypeLight duration:0];
+        }
+    }
+}
+
 - (void)clearNodes {
     for (NSString *key in [_nodes allKeys]) {
         RWNodeButton *node = [_nodes objectForKey:key];
-        if (node.fireStatus) {
-            [node changeTapStateForType:kRWnodeTypeFire duration:0];
-        }
-        else if (node.lightStatus) {
+        if (node.lightStatus) {
             [node changeTapStateForType:kRWnodeTypeLight duration:0];
         }
     }
