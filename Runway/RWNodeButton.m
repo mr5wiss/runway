@@ -39,11 +39,12 @@
     if (self.type != kRWnodeTypeBoth) {
         typeChanged = self.type;
     }
+    // this node has both fire and light, so we have to determine where the user tapped
     else {
-        // choose based on location of touch
         RWNodeButton *node = (RWNodeButton *)sender;
         UITouch *touch = [[event touchesForView:node] anyObject];
         CGPoint location = [touch locationInView:self];
+        // correct values?
         if (location.x > 9 && location.y < 90) {
             typeChanged = kRWnodeTypeFire;
         }
@@ -51,13 +52,27 @@
             typeChanged = kRWnodeTypeLight;
         }
     }
-    [self.delegate stateWasChangedTo:YES forNode:self type:typeChanged];
-    [self changeTapStateForType:typeChanged duration:[self.delegate lightDuration]];
+    // this should cause the correct action to be sent
+    nodeTypeStatus status = typeChanged == kRWnodeTypeLight ? self.lightStatus : self.fireStatus;
+    [self.delegate stateWasChangedTo:status forNode:self type:typeChanged];
+    // this shows what's happening on the display
+    NSTimeInterval duration = typeChanged == kRWnodeTypeLight ? [self.delegate lightDuration] : [self.delegate fireDuration];
+    [self changeTapStateForType:typeChanged duration:duration];
+    // if we're setting it to on only for a certain duration, maker sure the display shows that
+    if (status && duration) {
+        _tapStateTimer = [NSTimer scheduledTimerWithTimeInterval:duration target:self selector:@selector(revertTapState:) userInfo:[NSNumber numberWithInt:typeChanged] repeats:NO];
+    }
+}
+
+- (void)revertTapState:(NSTimer *)sender {
+    // TO DO: deal with represses before reversion - probably have to keep state
+    NSNumber *typeNum = sender.userInfo;
+    // TO DO: make sure this isn't turning anything on
+    [self changeTapStateForType:[typeNum intValue] duration:0];
 }
 
 - (void)changeTapStateForType:(nodeType)type duration:(NSTimeInterval)duration {
     // change only the display, don't send any information
-    // use the timer to do it for a certain duration
     if (type == kRWnodeTypeFire) {
         self.fireStatus = !self.fireStatus;
     }
@@ -65,6 +80,13 @@
         self.lightStatus = !self.lightStatus;
     }
     [self setBackgroundImageBasedOnStatus];
+    // use the timer to do it only for a certain duration by scheduling a revert if necessary
+    if (duration) {
+        nodeTypeStatus status = type == kRWnodeTypeLight ? self.lightStatus : self.fireStatus;
+        if (status && duration) {
+            _tapStateTimer = [NSTimer scheduledTimerWithTimeInterval:duration target:self selector:@selector(revertTapState:) userInfo:[NSNumber numberWithInt:type] repeats:NO];
+        }
+    }
 }
 
 - (void)setBackgroundImageBasedOnStatus {

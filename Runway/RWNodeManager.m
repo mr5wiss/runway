@@ -7,6 +7,7 @@
 //
 
 #import "RWNodeManager.h"
+#import "RWFirstViewController.h"
 
 
 @implementation RWNodeManager
@@ -23,11 +24,13 @@
 }
 
 - (NSTimeInterval)lightDuration {
-    return 0;
+    // TO DO: make this fully work based on node
+    return (NSTimeInterval)[[[RWFirstViewController sharedInstance] lightDurationSlider] value];
 }
 
 - (NSTimeInterval)fireDuration {
-    return 0;
+    // TO DO: make this fully work based on node
+    return (NSTimeInterval)[[[RWFirstViewController sharedInstance] fireDurationSlider] value];
 }
 
 @end
