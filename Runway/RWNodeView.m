@@ -107,7 +107,11 @@
 }
 
 - (NSInteger)locationToNodeNum:(CGPoint)location {
-    return location.x / NODE_WIDTH;
+    NSInteger nodeNum = location.x / NODE_WIDTH;
+    if (nodeNum > self.startNum + LIGHTS_PER_SIDE - 1) {
+        nodeNum = self.startNum + LIGHTS_PER_SIDE - 1;
+    }
+    return nodeNum;
 }
 
 #pragma mark touches functions
