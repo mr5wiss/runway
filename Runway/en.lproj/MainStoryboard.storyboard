@@ -133,8 +133,36 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="patternButtonTapped:" destination="2" eventType="touchUpInside" id="oOP-Qu-tAP"/>
+                                </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="e4j-4o-oMH">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="CjG-cY-K5D">
+                                <rect key="frame" x="540" y="335" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="send"/>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="qE6-Pp-GWY">
+                                <rect key="frame" x="485" y="412" width="161" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Blue"/>
+                                    <segment title="Green"/>
+                                    <segment title="Red"/>
+                                </segments>
+                                <connections>
+                                    <action selector="colorChosen:" destination="2" eventType="valueChanged" id="qQh-Ay-wsz"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jIy-80-BB3">
+                                <rect key="frame" x="545" y="380" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view hidden="YES" contentMode="scaleToFill" id="e4j-4o-oMH">
                                 <rect key="frame" x="502" y="328" width="127" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
@@ -223,7 +251,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0 - No Pattern" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ib4-hO-cE7">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0 - No Pattern" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ib4-hO-cE7">
                                 <rect key="frame" x="512" y="479" width="106" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -255,6 +283,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="panic:" destination="2" eventType="touchUpInside" id="B0e-Ab-yqj"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.3s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9rV-3V-pbm">
                                 <rect key="frame" x="94" y="423" width="33" height="21"/>
@@ -285,6 +316,7 @@
                     <tabBarItem key="tabBarItem" title="Play" image="first" id="7"/>
                     <connections>
                         <outlet property="bottomNodes" destination="yMf-Pj-OxS" id="aYD-Nk-ala"/>
+                        <outlet property="colorControl" destination="qE6-Pp-GWY" id="jOO-SI-Pzx"/>
                         <outlet property="fireDurationLabel" destination="2nA-fk-9nT" id="XRY-8f-wCW"/>
                         <outlet property="fireDurationSlider" destination="uVk-ev-hLl" id="d4T-E3-jWu"/>
                         <outlet property="lightDurationSlider" destination="6hJ-G9-xcT" id="jmu-zN-neJ"/>
@@ -293,11 +325,15 @@
                         <outlet property="nodeControl" destination="d3t-tY-mG5" id="eo6-Db-zLu"/>
                         <outlet property="offBarButton" destination="BLJ-d8-Des" id="kD8-dx-aKI"/>
                         <outlet property="onBarButton" destination="Ifd-bw-E0K" id="HC1-Ts-8dk"/>
+                        <outlet property="panicBarButton" destination="AsM-DX-ct6" id="gRc-1W-ytt"/>
+                        <outlet property="panicButton" destination="wfe-dy-eno" id="SEH-4U-QNJ"/>
                         <outlet property="pattern1BarButton" destination="Wc0-Wi-WTh" id="Z3l-ai-QkD"/>
                         <outlet property="pattern2BarButton" destination="iRk-lQ-ohe" id="2ay-YF-Io5"/>
                         <outlet property="pattern3BarButton" destination="1vX-ME-1xI" id="qtg-Zy-c4I"/>
                         <outlet property="pattern4BarButton" destination="27c-LO-qPY" id="r9d-09-o7F"/>
                         <outlet property="pattern5BarButton" destination="0gW-AS-Rh7" id="QKg-tW-Ncn"/>
+                        <outlet property="patternChooseButton" destination="uEH-wv-j1Y" id="TPY-NI-lfx"/>
+                        <outlet property="patternField" destination="CjG-cY-K5D" id="8Px-rp-OrS"/>
                         <outlet property="permanenceControl" destination="hj6-H6-K9k" id="QGS-Ix-36n"/>
                         <outlet property="recordBarButton" destination="dTc-pp-3tD" id="QGX-F4-6Of"/>
                         <outlet property="stopRecordBarButton" destination="mhZ-z7-GUV" id="aXc-Yr-Cce"/>
@@ -380,10 +416,12 @@
         <class className="RWFirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
             <relationships>
+                <relationship kind="action" name="colorChosen:"/>
                 <relationship kind="action" name="durationChanged:"/>
                 <relationship kind="action" name="lockSidesTapped:"/>
                 <relationship kind="action" name="nodeButtonTapped:"/>
                 <relationship kind="action" name="nodesChosen:"/>
+                <relationship kind="action" name="panic:"/>
                 <relationship kind="action" name="patternButtonTapped:"/>
                 <relationship kind="action" name="permanenceChosen:"/>
                 <relationship kind="action" name="tempoChanged:"/>
@@ -393,6 +431,7 @@
                 <relationship kind="outlet" name="bottomNodes" candidateClass="RWNodeView"/>
                 <relationship kind="outlet" name="clear1Button" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="clear2Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="colorControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="debugBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="debugConnectButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="exec1Button" candidateClass="UIButton"/>
@@ -414,6 +453,7 @@
                 <relationship kind="outlet" name="pattern4BarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="pattern5BarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="patternChooseButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="patternField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="patternKeyPad" candidateClass="UIView"/>
                 <relationship kind="outlet" name="patternLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="permanenceControl" candidateClass="UISegmentedControl"/>

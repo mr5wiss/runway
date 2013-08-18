@@ -60,6 +60,10 @@ typedef enum {
 @property (readonly) BOOL permanence;
 @property (readonly) eOutputMode outputMode;
 
+// temp
+@property (nonatomic, strong) IBOutlet UITextField *patternField;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *colorControl;
+
 + (RWFirstViewController *)sharedInstance;
 
 // buttons controlling string nodes
@@ -77,6 +81,9 @@ typedef enum {
 - (IBAction)nodesChosen:(id)sender;
 - (IBAction)permanenceChosen:(id)sender;
 - (IBAction)timeChosen:(id)sender;
+
+- (IBAction)colorChosen:(id)sender;
+- (IBAction)panic:(id)sender;
 
 
 @end

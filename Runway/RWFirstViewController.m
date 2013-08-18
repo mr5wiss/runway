@@ -128,7 +128,7 @@ static RWFirstViewController *s_sharedInstance;
     _offBarButton.tintColor = [UIColor blueColor];
     _onBarButton.action = @selector(initNetworkCommunication);
     _offBarButton.action = @selector(disconnect);
-    _panicBarButton.action = @selector(panic);
+    _panicBarButton.action = @selector(panic:);
     _pattern1BarButton.action = @selector(runPattern:);
     _pattern2BarButton.action = @selector(runPattern:);
     _pattern3BarButton.action = @selector(runPattern:);
@@ -171,8 +171,10 @@ static RWFirstViewController *s_sharedInstance;
 }
 
 // SHUT EVERYTHING OFF!!!
-- (void)panic {
+- (void)panic:(id)sender {
     [self send:@"panic=1"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Panic!" message:@"Everything has been turned off.  Please press OK to exit panic mode" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)recordButtonTapped {
@@ -443,6 +445,24 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+- (void)colorChosen:(id)sender {
+    UISegmentedControl *sc = (UISegmentedControl *)sender;
+    // do different stuff based on what was tapped
+    switch (sc.selectedSegmentIndex) {
+        case 0:
+            [self send:[NSString stringWithFormat:@"color=blue"]];
+            break;
+        case 1:
+            [self send:[NSString stringWithFormat:@"color=green"]];
+            break;
+        case 2:
+            [self send:[NSString stringWithFormat:@"color=red"]];
+            break;
+        default:
+            break;
+    }
+}
+
 // what nodes are you controlling?
 /*- (void)controlButtonTapped:(id)sender {
     // change images based on which controls are active
@@ -479,7 +499,11 @@ static RWFirstViewController *s_sharedInstance;
 }
 
 - (IBAction)patternButtonTapped:(id)sender {
-    // slide in list to choose from
+    // later, slide in list to choose from
+    [self.patternField resignFirstResponder];
+    NSInteger patternNum = [self.patternField.text integerValue];
+    [self send:[NSString stringWithFormat:@"pattern=%d", patternNum]];
+    // change label text
 }
 
 #pragma mark recording
