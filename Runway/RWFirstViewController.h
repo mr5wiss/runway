@@ -14,44 +14,39 @@
 #define LIGHTS_PER_SIDE 42
 #define FIRE_PER_SIDE 20
 
-typedef enum {
-    kRWOutputModeNow = 0,
-    kRWOutputModeRelease,
-    kRWOutputModeExec
-} eOutputMode;
-
 @interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate, UITextFieldDelegate>
-@property (nonatomic, strong) IBOutlet RWNodeView *topNodes;        // custom view
-@property (nonatomic, strong) IBOutlet RWNodeView *bottomNodes;     // custom view
-@property (nonatomic, strong) IBOutlet UIView *patternKeyPad;   // custom view
+// the main input views
+@property (nonatomic, strong) IBOutlet RWNodeView *topNodes;
+@property (nonatomic, strong) IBOutlet RWNodeView *bottomNodes;
+
+// mode controls
 @property (nonatomic, strong) IBOutlet UISegmentedControl *nodeControl;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *permanenceControl;
-@property (nonatomic, strong) IBOutlet UISegmentedControl *timeControl;
+// sliders
 @property (nonatomic, strong) IBOutlet UISlider *tempoSlider;
 @property (nonatomic, strong) IBOutlet UISlider *lightDurationSlider;
 @property (nonatomic, strong) IBOutlet UISlider *fireDurationSlider;
 @property (nonatomic, strong) IBOutlet UISlider *flightFadeSlider;
+
 @property (nonatomic, strong) IBOutlet UIToolbar *topToolbar;
+
+// labels
 @property (nonatomic, strong) IBOutlet UILabel *tapLabel;
 @property (nonatomic, strong) IBOutlet UILabel *tickLabel;
 @property (nonatomic, strong) IBOutlet UILabel *patternLabel;
 @property (nonatomic, strong) IBOutlet UILabel *fireDurationLabel;
 @property (nonatomic, strong) IBOutlet UILabel *lightDurationsLabel;
 @property (nonatomic, strong) IBOutlet UILabel *lightFadeLabel;
-@property (nonatomic, strong) IBOutlet UISwitch *tapSwitch;
-@property (nonatomic, strong) IBOutlet UIButton *debugConnectButton;
-@property (nonatomic, strong) IBOutlet UIButton *clear1Button;
-@property (nonatomic, strong) IBOutlet UIButton *all1Button;
-@property (nonatomic, strong) IBOutlet UIButton *exec1Button;
-@property (nonatomic, strong) IBOutlet UIButton *all2Button;
-@property (nonatomic, strong) IBOutlet UIButton *clear2Button;
-@property (nonatomic, strong) IBOutlet UIButton *exec2Button;
-@property (nonatomic, strong) IBOutlet UIButton *patternChooseButton;
-@property (nonatomic, strong) IBOutlet UIButton *panicButton;
+
+// buttons controlling nodes
+@property (nonatomic, strong) IBOutlet UIButton *clearButton;
 @property (nonatomic, strong) IBOutlet UIButton *lockSidesButton;
+@property (nonatomic, strong) IBOutlet UIButton *allTopButton;
+@property (nonatomic, strong) IBOutlet UIButton *allBottomButton;
+
+// bar buttons
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *onBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *offBarButton;
-@property (nonatomic, strong) IBOutlet UIBarButtonItem *debugBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *panicBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *pattern1BarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *pattern2BarButton;
@@ -61,20 +56,28 @@ typedef enum {
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *recordBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *stopRecordBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *loopBarButton;
-@property (nonatomic, strong) IBOutlet UIBarButtonItem *stopLoopBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *connectButton;
-@property (readonly) BOOL permanence;
-@property (readonly) eOutputMode outputMode;
 
-// temp stuff
+// other
+@property (nonatomic, strong) IBOutlet UISwitch *tapSwitch;
+@property (nonatomic, strong) IBOutlet UIButton *panicButton;
+
+// pattern stuff - needs work
+@property (nonatomic, strong) IBOutlet UIButton *patternChooseButton;
 @property (nonatomic, strong) IBOutlet UITextField *patternField;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *colorControl;
+@property (nonatomic, strong) IBOutlet UIView *patternKeyPad; //  not implemented
+
+// are lights staying on until turned off, or only for duration
+@property (readonly) BOOL permanence;
 
 + (RWFirstViewController *)sharedInstance;
 
 // buttons controlling string nodes
-- (IBAction)nodeButtonTapped:(id)sender;
+- (IBAction)clearButtonTapped:(id)sender;
 - (IBAction)lockSidesTapped:(id)sender;
+- (IBAction)allTapped:(id)sender;
+- (IBAction)allReleased:(id)sender;
 
 // for choosing a pattern
 - (IBAction)patternButtonTapped:(id)sender;

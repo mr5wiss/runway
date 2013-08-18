@@ -27,6 +27,18 @@
     [_nodes setObject:node forKey:[NSNumber numberWithInt:num]];
 }
 
+- (void)clearNodes {
+    for (NSString *key in [_nodes allKeys]) {
+        RWNodeButton *node = [_nodes objectForKey:key];
+        if (node.fireStatus) {
+            [node changeTapStateForType:kRWnodeTypeFire duration:0];
+        }
+        else if (node.lightStatus) {
+            [node changeTapStateForType:kRWnodeTypeLight duration:0];
+        }
+    }
+}
+
 - (RWNodeButton *)mirroredNode:(RWNodeButton *)node {
     if (node.num < LIGHTS_PER_SIDE) {
         return [_nodes objectForKey:[NSNumber numberWithInt:node.num + LIGHTS_PER_SIDE]];

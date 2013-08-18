@@ -21,5 +21,6 @@
 @property id<RWNodeManagerDelegate>delegate;
 @property (readwrite)BOOL sidesLocked;
 - (void)addNode:(RWNodeButton *)node number:(NSInteger)num;
+- (void)clearNodes;
 
 @end

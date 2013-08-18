@@ -285,26 +285,22 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+// clear everything
+- (IBAction)clearButtonTapped:(id)sender {
+    [self send:@"clear=1"];
+    // clear the node feedback
+    [_nodeManager clearNodes];
+}
+
+
 // TO DO
-- (IBAction)nodeButtonTapped:(id)sender {
-    if (sender == self.clear1Button){
-        // send clear message for string 1
-    }
-    else if (sender == self.clear2Button) {
-        // send clear message for string 2
-    }
-    else if (sender == self.all1Button) {
-        
-    }
-    else if (sender == self.all2Button) {
-        
-    }
-    else if (sender == self.exec1Button) {
-        
-    }
-    else if (sender == self.exec2Button) {
-        
-    }
+- (IBAction)allTapped:(id)sender {
+    
+}
+
+// TO DO
+- (IBAction)allReleased:(id)sender {
+    
 }
 
 // tempo

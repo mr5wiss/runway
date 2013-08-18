@@ -75,7 +75,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l1M-DI-aeK">
-                                <rect key="frame" x="947" y="56" width="62" height="44"/>
+                                <rect key="frame" x="942" y="267" width="62" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Clear">
@@ -85,6 +85,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="clearButtonTapped:" destination="2" eventType="touchUpInside" id="gLU-wt-Dz2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vcx-cF-KdC">
                                 <rect key="frame" x="946" y="109" width="66" height="44"/>
@@ -97,21 +100,13 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eQb-aW-NH4">
-                                <rect key="frame" x="949" y="160" width="60" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Exec">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <connections>
+                                    <action selector="allReleased:" destination="2" eventType="touchUpInside" id="0aT-tu-C9W"/>
+                                    <action selector="allTapped:" destination="2" eventType="touchDown" id="b99-eT-XQD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sdo-r8-5iA">
-                                <rect key="frame" x="943" y="372" width="60" height="44"/>
+                                <rect key="frame" x="943" y="428" width="60" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Lock">
@@ -181,18 +176,6 @@
                                     <action selector="nodesChosen:" destination="2" eventType="valueChanged" id="tx1-jw-WdU"/>
                                 </connections>
                             </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="ri3-HJ-RvJ">
-                                <rect key="frame" x="141" y="298" width="180" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Now"/>
-                                    <segment title="Later"/>
-                                    <segment title="Input"/>
-                                </segments>
-                                <connections>
-                                    <action selector="timeChosen:" destination="2" eventType="valueChanged" id="Eu1-cP-aXJ"/>
-                                </connections>
-                            </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="hj6-H6-K9k">
                                 <rect key="frame" x="276" y="234" width="161" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -218,18 +201,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0an-a9-jZZ">
-                                <rect key="frame" x="941" y="539" width="62" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Clear">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OxK-OL-GAH">
                                 <rect key="frame" x="940" y="591" width="66" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -241,18 +212,10 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B5E-14-1Pe">
-                                <rect key="frame" x="942" y="642" width="60" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Exec">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <connections>
+                                    <action selector="allReleased:" destination="2" eventType="touchUpInside" id="amf-EX-IwN"/>
+                                    <action selector="allTapped:" destination="2" eventType="touchDown" id="Gjd-cs-aYL"/>
+                                </connections>
                             </button>
                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0 - No Pattern" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ib4-hO-cE7">
                                 <rect key="frame" x="512" y="479" width="106" height="21"/>
@@ -275,7 +238,7 @@
                                     <action selector="durationChanged:" destination="2" eventType="valueChanged" id="orh-S3-j34"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wfe-dy-eno">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wfe-dy-eno">
                                 <rect key="frame" x="181" y="457" width="100" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
@@ -339,7 +302,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Play" image="first" id="7"/>
                     <connections>
+                        <outlet property="allBottomButton" destination="OxK-OL-GAH" id="hkb-S8-Pxv"/>
+                        <outlet property="allTopButton" destination="vcx-cF-KdC" id="EKT-ez-LAI"/>
                         <outlet property="bottomNodes" destination="yMf-Pj-OxS" id="aYD-Nk-ala"/>
+                        <outlet property="clearButton" destination="l1M-DI-aeK" id="AhL-cg-TnI"/>
                         <outlet property="colorControl" destination="qE6-Pp-GWY" id="jOO-SI-Pzx"/>
                         <outlet property="connectButton" destination="NHh-ZN-Ncb" id="FbN-pu-fLS"/>
                         <outlet property="fireDurationLabel" destination="2nA-fk-9nT" id="XRY-8f-wCW"/>
@@ -369,7 +335,6 @@
                         <outlet property="tapSwitch" destination="1ik-wk-bmK" id="850-5Q-1m6"/>
                         <outlet property="tempoSlider" destination="AXy-fA-je0" id="nQw-vZ-M9Z"/>
                         <outlet property="tickLabel" destination="4f8-fI-daH" id="Gxg-K0-ess"/>
-                        <outlet property="timeControl" destination="ri3-HJ-RvJ" id="3Ek-sf-1IH"/>
                         <outlet property="topNodes" destination="ZWy-am-geR" id="w4N-Ql-cRc"/>
                         <outlet property="topToolbar" destination="20" id="twC-Pg-I1h"/>
                     </connections>
@@ -444,28 +409,25 @@
         <class className="RWFirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
             <relationships>
+                <relationship kind="action" name="allReleased:"/>
+                <relationship kind="action" name="allTapped:"/>
+                <relationship kind="action" name="clearButtonTapped:"/>
                 <relationship kind="action" name="colorChosen:"/>
                 <relationship kind="action" name="durationChanged:"/>
                 <relationship kind="action" name="fadeChanged:"/>
                 <relationship kind="action" name="lockSidesTapped:"/>
-                <relationship kind="action" name="nodeButtonTapped:"/>
                 <relationship kind="action" name="nodesChosen:"/>
                 <relationship kind="action" name="panic:"/>
                 <relationship kind="action" name="patternButtonTapped:"/>
                 <relationship kind="action" name="permanenceChosen:"/>
                 <relationship kind="action" name="tempoChanged:"/>
                 <relationship kind="action" name="timeChosen:"/>
-                <relationship kind="outlet" name="all1Button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="all2Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="allBottomButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="allTopButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bottomNodes" candidateClass="RWNodeView"/>
-                <relationship kind="outlet" name="clear1Button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="clear2Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="clearButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="colorControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="connectButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="debugBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="debugConnectButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="exec1Button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="exec2Button" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="fireDurationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="fireDurationSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="flightFadeSlider" candidateClass="UISlider"/>
@@ -490,13 +452,11 @@
                 <relationship kind="outlet" name="patternLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="permanenceControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="recordBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="stopLoopBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="stopRecordBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tapLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tapSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="tempoSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="tickLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="topNodes" candidateClass="RWNodeView"/>
                 <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
             </relationships>
