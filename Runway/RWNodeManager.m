@@ -28,7 +28,7 @@
 }
 
 - (void)clearTop {
-    for (NSInteger i=LIGHTS_PER_SIDE+1; i<=2*LIGHTS_PER_SIDE; i++) {
+    for (NSInteger i=LIGHTS_PER_SIDE; i<2*LIGHTS_PER_SIDE; i++) {
         RWNodeButton *node = [_nodes objectForKey:[NSNumber numberWithInt:i]];
         if (node.lightStatus) {
             [node changeTapStateForType:kRWnodeTypeLight duration:0];
@@ -37,7 +37,7 @@
 }
 
 - (void)clearBottom {
-    for (NSInteger i=1; i<=LIGHTS_PER_SIDE; i++) {
+    for (NSInteger i=0; i<LIGHTS_PER_SIDE; i++) {
         RWNodeButton *node = [_nodes objectForKey:[NSNumber numberWithInt:i]];
         if (node.lightStatus) {
             [node changeTapStateForType:kRWnodeTypeLight duration:0];
@@ -52,6 +52,35 @@
             [node changeTapStateForType:kRWnodeTypeLight duration:0];
         }
     }
+}
+
+// just turning on lights for now
+- (void)turnOnTop {
+    NSMutableArray *changedNodes = [[NSMutableArray alloc] initWithCapacity:LIGHTS_PER_SIDE];
+    for (NSInteger i=LIGHTS_PER_SIDE; i<2*LIGHTS_PER_SIDE; i++) {
+        RWNodeButton *node = [_nodes objectForKey:[NSNumber numberWithInt:i]];
+        NSMutableDictionary *lightDict = [[NSMutableDictionary alloc] initWithCapacity:3];
+        [lightDict setObject:@"on" forKey:@"command"];
+        [lightDict setObject:@"light" forKey:@"type"];
+        [lightDict setObject:[NSNumber numberWithInt:i] forKey:@"number"];
+        [changedNodes addObject:lightDict];
+        [node changeTapStateForType:kRWnodeTypeLight duration:0];
+    }
+    [self.delegate nodesChanged:changedNodes];
+}
+
+- (void)turnOnBottom {
+    NSMutableArray *changedNodes = [[NSMutableArray alloc] initWithCapacity:LIGHTS_PER_SIDE];
+    for (NSInteger i=0; i<LIGHTS_PER_SIDE; i++) {
+        RWNodeButton *node = [_nodes objectForKey:[NSNumber numberWithInt:i]];
+        NSMutableDictionary *lightDict = [[NSMutableDictionary alloc] initWithCapacity:3];
+        [lightDict setObject:@"on" forKey:@"command"];
+        [lightDict setObject:@"light" forKey:@"type"];
+        [lightDict setObject:[NSNumber numberWithInt:i] forKey:@"number"];
+        [changedNodes addObject:lightDict];
+        [node changeTapStateForType:kRWnodeTypeLight duration:0];
+    }
+    [self.delegate nodesChanged:changedNodes];
 }
 
 - (RWNodeButton *)mirroredNode:(RWNodeButton *)node {

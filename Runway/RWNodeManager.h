@@ -22,5 +22,9 @@
 @property (readwrite)BOOL sidesLocked;
 - (void)addNode:(RWNodeButton *)node number:(NSInteger)num;
 - (void)clearNodes;
+- (void)clearTop;
+- (void)clearBottom;
+- (void)turnOnTop;
+- (void)turnOnBottom;
 
 @end

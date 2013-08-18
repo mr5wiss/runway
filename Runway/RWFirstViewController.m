@@ -295,12 +295,22 @@ static RWFirstViewController *s_sharedInstance;
 
 // TO DO
 - (IBAction)allTapped:(id)sender {
-    
+    if (sender == _allBottomButton) {
+        [_nodeManager turnOnBottom];
+    }
+    else {
+        [_nodeManager turnOnTop];
+    }
 }
 
-// TO DO
+// clear top or bottom
 - (IBAction)allReleased:(id)sender {
-    
+    if (sender == _allBottomButton) {
+        [_nodeManager clearBottom];
+    }
+    else {
+        [_nodeManager clearTop];
+    }
 }
 
 // tempo
