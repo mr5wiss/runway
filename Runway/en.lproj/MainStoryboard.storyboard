@@ -317,6 +317,7 @@
                     <connections>
                         <outlet property="bottomNodes" destination="yMf-Pj-OxS" id="aYD-Nk-ala"/>
                         <outlet property="colorControl" destination="qE6-Pp-GWY" id="jOO-SI-Pzx"/>
+                        <outlet property="connectButton" destination="NHh-ZN-Ncb" id="FbN-pu-fLS"/>
                         <outlet property="fireDurationLabel" destination="2nA-fk-9nT" id="XRY-8f-wCW"/>
                         <outlet property="fireDurationSlider" destination="uVk-ev-hLl" id="d4T-E3-jWu"/>
                         <outlet property="lightDurationSlider" destination="6hJ-G9-xcT" id="jmu-zN-neJ"/>
@@ -432,6 +433,7 @@
                 <relationship kind="outlet" name="clear1Button" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="clear2Button" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="colorControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="connectButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="debugBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="debugConnectButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="exec1Button" candidateClass="UIButton"/>

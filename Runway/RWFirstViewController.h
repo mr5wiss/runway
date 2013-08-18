@@ -17,7 +17,7 @@ typedef enum {
     kRWOutputModeExec
 } eOutputMode;
 
-@interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate>
+@interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) IBOutlet RWNodeView *topNodes;        // custom view
 @property (nonatomic, strong) IBOutlet RWNodeView *bottomNodes;     // custom view
 @property (nonatomic, strong) IBOutlet UIView *patternKeyPad;   // custom view
@@ -57,10 +57,11 @@ typedef enum {
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *stopRecordBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *loopBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *stopLoopBarButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *connectButton;
 @property (readonly) BOOL permanence;
 @property (readonly) eOutputMode outputMode;
 
-// temp
+// temp stuff
 @property (nonatomic, strong) IBOutlet UITextField *patternField;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *colorControl;
 

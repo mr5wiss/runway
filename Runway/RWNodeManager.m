@@ -31,7 +31,13 @@
 
 - (NSTimeInterval)lightDuration {
     // TO DO: make this fully work based on mode
-    return (NSTimeInterval)[[[RWFirstViewController sharedInstance] lightDurationSlider] value];
+    RWFirstViewController *mainController = [RWFirstViewController sharedInstance];
+    NSTimeInterval duration = 0;
+    if (!mainController.permanence) {
+        duration = mainController.lightDurationSlider.value;
+    }
+    return duration;
+    //return (NSTimeInterval)[[[RWFirstViewController sharedInstance] lightDurationSlider] value];
 }
 
 - (NSTimeInterval)fireDuration {

@@ -137,6 +137,7 @@ static RWFirstViewController *s_sharedInstance;
     _recordBarButton.action = @selector(recordButtonTapped);
     _stopRecordBarButton.action = @selector(recordOffTapped);
     _loopBarButton.action = @selector(loopTapped);
+    _connectButton.action = @selector(connectButtonTapped:);
     
     // set up array for panning view
     _panTouchingStatus = [[NSMutableArray alloc] initWithCapacity:2];
@@ -149,9 +150,7 @@ static RWFirstViewController *s_sharedInstance;
     
     _recordHistory = [[NSMutableArray alloc] init];
     
-#ifndef DEBUG
-    debugConnectButton.hidden = YES;
-#endif
+    self.patternField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -389,18 +388,15 @@ static RWFirstViewController *s_sharedInstance;
     // do different stuff based on what was tapped
     switch (sc.selectedSegmentIndex) {
         case 0: // both
-            // stuff
             self.topNodes.controlMode = kRWControlModeBoth;
             self.bottomNodes.controlMode = kRWControlModeBoth;
             break;
         case 1: // lights
-            // stuff
             // go through node manager instead?
             self.topNodes.controlMode = kRWControlModeLights;
             self.bottomNodes.controlMode = kRWControlModeLights;
             break;
         case 2: // fire
-            // stuff
             self.topNodes.controlMode = kRWControlModeFire;
             self.bottomNodes.controlMode = kRWControlModeFire;
             break;
@@ -413,20 +409,18 @@ static RWFirstViewController *s_sharedInstance;
     UISegmentedControl *sc = (UISegmentedControl *)sender;
     // do different stuff based on what was tapped
     switch (sc.selectedSegmentIndex) {
-        case 0:
-            // stuff
+        case 0: // on for duration
+            _permanence = NO;
             break;
-        case 1:
-            // stuff
-            break;
-        case 2:
-            // stuff
+        case 1: // on until changed
+            _permanence = YES;
             break;
         default:
             break;
     }
 }
 
+// TO DO: get this to work
 - (void)timeChosen:(id)sender {
     UISegmentedControl *sc = (UISegmentedControl *)sender;
     // do different stuff based on what was tapped
@@ -764,6 +758,14 @@ static RWFirstViewController *s_sharedInstance;
         }
     }
     [self send:sendMessage];
+}
+
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    NSInteger patternNum = [textField.text integerValue];
+    [self send:[NSString stringWithFormat:@"pattern=%d", patternNum]];
+    return YES;
 }
 
 @end
