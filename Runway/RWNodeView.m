@@ -128,10 +128,11 @@
     CGPoint convertedPoint = [self convertPoint:location toView:node];
     BOOL currentDirectionIsForward = location.x > _lastTouchLocation.x;
     nodeType typeChanged = [node typeForLocation:convertedPoint];
-    if (node == _lastTouchedNode && typeChanged == _lastTypeChanged && _lastDirectionWasForward == currentDirectionIsForward) {
+    if (node == _lastTouchedNode && typeChanged == _lastTypeChanged &&
+        (![[RWFirstViewController sharedInstance] permanence] || _lastDirectionWasForward == currentDirectionIsForward)) {
         _lastTouchLocation = location;
         return;
-    }
+    }   
     _lastTouchLocation = location;
     _lastDirectionWasForward = currentDirectionIsForward;
     _lastTouchedNode = node;

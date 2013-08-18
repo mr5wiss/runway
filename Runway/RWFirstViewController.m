@@ -318,9 +318,10 @@ static RWFirstViewController *s_sharedInstance;
     }
     UISlider *slider = (UISlider *)sender;
     CGFloat value = slider.value;
+    CGFloat total = slider.maximumValue - slider.minimumValue;
     // send time between pattern updates
-    [self send:[NSString stringWithFormat:@"tick=%f", 1.1 - value]];
-    self.tickLabel.text = [NSString stringWithFormat:@"Tick: %.1fs", 1.1 - value];
+    [self send:[NSString stringWithFormat:@"tick=%f", total - value]];
+    self.tickLabel.text = [NSString stringWithFormat:@"Tick: %.1fs", total - value];
 }
 
 // duration

@@ -33,7 +33,7 @@
                                     <barButtonItem title="PANIC" id="AsM-DX-ct6"/>
                                 </items>
                             </toolbar>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" id="AXy-fA-je0">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.017000000000000001" maxValue="1" continuous="NO" id="AXy-fA-je0">
                                 <rect key="frame" x="706" y="278" width="199" height="23"/>
                                 <connections>
                                     <action selector="tempoChanged:" destination="2" eventType="valueChanged" id="1UP-As-Dx5"/>
@@ -417,74 +417,6 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="RWFirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="colorChosen:"/>
-                <relationship kind="action" name="durationChanged:"/>
-                <relationship kind="action" name="lockSidesTapped:"/>
-                <relationship kind="action" name="nodeButtonTapped:"/>
-                <relationship kind="action" name="nodesChosen:"/>
-                <relationship kind="action" name="panic:"/>
-                <relationship kind="action" name="patternButtonTapped:"/>
-                <relationship kind="action" name="permanenceChosen:"/>
-                <relationship kind="action" name="tempoChanged:"/>
-                <relationship kind="action" name="timeChosen:"/>
-                <relationship kind="outlet" name="all1Button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="all2Button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="bottomNodes" candidateClass="RWNodeView"/>
-                <relationship kind="outlet" name="clear1Button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="clear2Button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="colorControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="connectButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="debugBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="debugConnectButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="exec1Button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="exec2Button" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="fireDurationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fireDurationSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="lightDurationSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="lightDurationsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lockSidesButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loopBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="nodeControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="offBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="onBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="panicBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="panicButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="pattern1BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pattern2BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pattern3BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pattern4BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pattern5BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="patternChooseButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="patternField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patternKeyPad" candidateClass="UIView"/>
-                <relationship kind="outlet" name="patternLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="permanenceControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="recordBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="stopLoopBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="stopRecordBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="tapLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tapSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="tempoSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="tickLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="topNodes" candidateClass="RWNodeView"/>
-                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="RWNodeView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWNodeView.h"/>
-        </class>
-        <class className="RWSecondViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWSecondViewController.h"/>
-        </class>
-        <class className="RWTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWTabBarController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
