@@ -8,22 +8,37 @@
 
 #import <UIKit/UIKit.h>
 #import "SRWebSocket.h"
+#import "RWNodeManager.h"
+#import "RWNodeView.h"
 
-@interface RWFirstViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, SRWebSocketDelegate>
-@property (nonatomic, strong) IBOutlet UIPickerView *patternPicker;
-@property (nonatomic, strong) IBOutlet UIButton *allControlsButton;
-@property (nonatomic, strong) IBOutlet UIButton *lightsButton;
-@property (nonatomic, strong) IBOutlet UIButton *fireButton;
+@interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate>
+@property (nonatomic, strong) IBOutlet RWNodeView *topNodes;        // custom view
+@property (nonatomic, strong) IBOutlet RWNodeView *bottomNodes;     // custom view
+@property (nonatomic, strong) IBOutlet UIView *patternKeyPad;   // custom view
+@property (nonatomic, strong) IBOutlet UISegmentedControl *nodeControl;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *permanenceControl;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *timeControl;
 @property (nonatomic, strong) IBOutlet UISlider *tempoSlider;
+@property (nonatomic, strong) IBOutlet UISlider *lightDurationSlider;
+@property (nonatomic, strong) IBOutlet UISlider *fireDurationSlider;
 @property (nonatomic, strong) IBOutlet UIToolbar *topToolbar;
-@property (nonatomic, strong) IBOutlet UIImageView *topImage;
-@property (nonatomic, strong) IBOutlet UIImageView *bottomImage;
 @property (nonatomic, strong) IBOutlet UILabel *tapLabel;
+@property (nonatomic, strong) IBOutlet UILabel *tickLabel;
+@property (nonatomic, strong) IBOutlet UILabel *patternLabel;
 @property (nonatomic, strong) IBOutlet UISwitch *tapSwitch;
 @property (nonatomic, strong) IBOutlet UIButton *debugConnectButton;
+@property (nonatomic, strong) IBOutlet UIButton *clear1Button;
+@property (nonatomic, strong) IBOutlet UIButton *all1Button;
+@property (nonatomic, strong) IBOutlet UIButton *exec1Button;
+@property (nonatomic, strong) IBOutlet UIButton *all2Button;
+@property (nonatomic, strong) IBOutlet UIButton *clear2Button;
+@property (nonatomic, strong) IBOutlet UIButton *exec2Button;
+@property (nonatomic, strong) IBOutlet UIButton *patternChooseButton;
+@property (nonatomic, strong) IBOutlet UIButton *panicButton;
 @property (nonatomic, strong) IBOutlet UIButton *lockSidesButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *onBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *offBarButton;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *debugBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *panicBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *pattern1BarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *pattern2BarButton;
@@ -34,12 +49,23 @@
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *stopRecordBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *loopBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *stopLoopBarButton;
-@property (nonatomic, strong) NSArray *patterns;
+@property (readonly) BOOL permanence;
 
-- (IBAction)controlButtonTapped:(id)sender;
-- (IBAction)connectButtonTapped:(id)sender;
+// buttons controlling string nodes
+- (IBAction)nodeButtonTapped:(id)sender;
 - (IBAction)lockSidesTapped:(id)sender;
-- (IBAction)sliderChanged:(id)sender;
+
+// for choosing a pattern
+- (IBAction)patternButtonTapped:(id)sender;
+
+// sliders
+- (IBAction)tempoChanged:(id)sender;
+- (IBAction)durationChanged:(id)sender;
+
+// segmented controls
+- (IBAction)nodesChosen:(id)sender;
+- (IBAction)permanenceChosen:(id)sender;
+- (IBAction)timeChosen:(id)sender;
 
 
 @end

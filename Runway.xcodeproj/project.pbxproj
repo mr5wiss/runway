@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B47415417BF5E2D005FF4D9 /* RWNodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B47415317BF5E2D005FF4D9 /* RWNodeButton.m */; };
+		5B47415717BF5FDD005FF4D9 /* RWNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B47415617BF5FDD005FF4D9 /* RWNodeView.m */; };
+		5B47415A17BF782A005FF4D9 /* RWNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B47415917BF782A005FF4D9 /* RWNodeManager.m */; };
+		5B47418317C085FE005FF4D9 /* tappedFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B47417B17C085FE005FF4D9 /* tappedFire.png */; };
+		5B47418417C085FE005FF4D9 /* tappedLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B47417C17C085FE005FF4D9 /* tappedLight.png */; };
+		5B47418517C085FE005FF4D9 /* tappedLightTappedFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B47417D17C085FE005FF4D9 /* tappedLightTappedFire.png */; };
+		5B47418617C085FE005FF4D9 /* tappedLightUntappedFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B47417E17C085FE005FF4D9 /* tappedLightUntappedFire.png */; };
+		5B47418717C085FE005FF4D9 /* untappedFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B47417F17C085FE005FF4D9 /* untappedFire.png */; };
+		5B47418817C085FE005FF4D9 /* untappedLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B47418017C085FE005FF4D9 /* untappedLight.png */; };
+		5B47418917C085FE005FF4D9 /* untappedLightTappedFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B47418117C085FE005FF4D9 /* untappedLightTappedFire.png */; };
+		5B47418A17C085FE005FF4D9 /* untappedLightUntappedFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B47418217C085FE005FF4D9 /* untappedLightUntappedFire.png */; };
 		5B52E1CE17B8374800B53BB3 /* RWTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B52E1CD17B8374800B53BB3 /* RWTabBarController.m */; };
 		5B6B2EF9177FCD6500FF98D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6B2EF8177FCD6500FF98D5 /* UIKit.framework */; };
 		5B6B2EFB177FCD6500FF98D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6B2EFA177FCD6500FF98D5 /* Foundation.framework */; };
@@ -36,6 +47,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B47415217BF5E2D005FF4D9 /* RWNodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWNodeButton.h; sourceTree = "<group>"; };
+		5B47415317BF5E2D005FF4D9 /* RWNodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWNodeButton.m; sourceTree = "<group>"; };
+		5B47415517BF5FDD005FF4D9 /* RWNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWNodeView.h; sourceTree = "<group>"; };
+		5B47415617BF5FDD005FF4D9 /* RWNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWNodeView.m; sourceTree = "<group>"; };
+		5B47415817BF782A005FF4D9 /* RWNodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWNodeManager.h; sourceTree = "<group>"; };
+		5B47415917BF782A005FF4D9 /* RWNodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWNodeManager.m; sourceTree = "<group>"; };
+		5B47417B17C085FE005FF4D9 /* tappedFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tappedFire.png; sourceTree = "<group>"; };
+		5B47417C17C085FE005FF4D9 /* tappedLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tappedLight.png; sourceTree = "<group>"; };
+		5B47417D17C085FE005FF4D9 /* tappedLightTappedFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tappedLightTappedFire.png; sourceTree = "<group>"; };
+		5B47417E17C085FE005FF4D9 /* tappedLightUntappedFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tappedLightUntappedFire.png; sourceTree = "<group>"; };
+		5B47417F17C085FE005FF4D9 /* untappedFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = untappedFire.png; sourceTree = "<group>"; };
+		5B47418017C085FE005FF4D9 /* untappedLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = untappedLight.png; sourceTree = "<group>"; };
+		5B47418117C085FE005FF4D9 /* untappedLightTappedFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = untappedLightTappedFire.png; sourceTree = "<group>"; };
+		5B47418217C085FE005FF4D9 /* untappedLightUntappedFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = untappedLightUntappedFire.png; sourceTree = "<group>"; };
 		5B52E1CC17B8374800B53BB3 /* RWTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWTabBarController.h; sourceTree = "<group>"; };
 		5B52E1CD17B8374800B53BB3 /* RWTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWTabBarController.m; sourceTree = "<group>"; };
 		5B6B2EF5177FCD6500FF98D5 /* Runway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runway.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +156,12 @@
 				5B6B2F10177FCD6600FF98D5 /* MainStoryboard.storyboard */,
 				5B6B2F13177FCD6600FF98D5 /* RWFirstViewController.h */,
 				5B6B2F14177FCD6600FF98D5 /* RWFirstViewController.m */,
+				5B47415217BF5E2D005FF4D9 /* RWNodeButton.h */,
+				5B47415317BF5E2D005FF4D9 /* RWNodeButton.m */,
+				5B47415817BF782A005FF4D9 /* RWNodeManager.h */,
+				5B47415917BF782A005FF4D9 /* RWNodeManager.m */,
+				5B47415517BF5FDD005FF4D9 /* RWNodeView.h */,
+				5B47415617BF5FDD005FF4D9 /* RWNodeView.m */,
 				5B6B2F16177FCD6600FF98D5 /* first.png */,
 				5B6B2F18177FCD6600FF98D5 /* first@2x.png */,
 				5B6B2F1A177FCD6600FF98D5 /* RWSecondViewController.h */,
@@ -147,6 +178,14 @@
 		5B6B2EFF177FCD6500FF98D5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5B47417B17C085FE005FF4D9 /* tappedFire.png */,
+				5B47417C17C085FE005FF4D9 /* tappedLight.png */,
+				5B47417D17C085FE005FF4D9 /* tappedLightTappedFire.png */,
+				5B47417E17C085FE005FF4D9 /* tappedLightUntappedFire.png */,
+				5B47417F17C085FE005FF4D9 /* untappedFire.png */,
+				5B47418017C085FE005FF4D9 /* untappedLight.png */,
+				5B47418117C085FE005FF4D9 /* untappedLightTappedFire.png */,
+				5B47418217C085FE005FF4D9 /* untappedLightUntappedFire.png */,
 				5BF98D1117B7E7CD00E1A88A /* runwayFire.png */,
 				5BF98D1217B7E7CD00E1A88A /* runwayLights.png */,
 				5BF98D1317B7E7CD00E1A88A /* runwayLightsFire.png */,
@@ -248,6 +287,14 @@
 				5BF98D1417B7E7CD00E1A88A /* runwayFire.png in Resources */,
 				5BF98D1517B7E7CD00E1A88A /* runwayLights.png in Resources */,
 				5BF98D1617B7E7CD00E1A88A /* runwayLightsFire.png in Resources */,
+				5B47418317C085FE005FF4D9 /* tappedFire.png in Resources */,
+				5B47418417C085FE005FF4D9 /* tappedLight.png in Resources */,
+				5B47418517C085FE005FF4D9 /* tappedLightTappedFire.png in Resources */,
+				5B47418617C085FE005FF4D9 /* tappedLightUntappedFire.png in Resources */,
+				5B47418717C085FE005FF4D9 /* untappedFire.png in Resources */,
+				5B47418817C085FE005FF4D9 /* untappedLight.png in Resources */,
+				5B47418917C085FE005FF4D9 /* untappedLightTappedFire.png in Resources */,
+				5B47418A17C085FE005FF4D9 /* untappedLightUntappedFire.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +313,9 @@
 				EF48F0301787760F00912CD3 /* NSData+SRB64Additions.m in Sources */,
 				EF48F0311787760F00912CD3 /* SRWebSocket.m in Sources */,
 				5B52E1CE17B8374800B53BB3 /* RWTabBarController.m in Sources */,
+				5B47415417BF5E2D005FF4D9 /* RWNodeButton.m in Sources */,
+				5B47415717BF5FDD005FF4D9 /* RWNodeView.m in Sources */,
+				5B47415A17BF782A005FF4D9 /* RWNodeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
