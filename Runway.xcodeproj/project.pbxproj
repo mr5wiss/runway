@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B13C18317C192D80019BCFB /* smallBlueCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C17C17C192D80019BCFB /* smallBlueCircle.png */; };
+		5B13C18417C192D80019BCFB /* smallEQCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C17D17C192D80019BCFB /* smallEQCircle.png */; };
+		5B13C18517C192D80019BCFB /* smallGreenCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C17E17C192D80019BCFB /* smallGreenCircle.png */; };
+		5B13C18617C192D80019BCFB /* smallPinkCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C17F17C192D80019BCFB /* smallPinkCircle.png */; };
+		5B13C18717C192D80019BCFB /* smallRedCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C18017C192D80019BCFB /* smallRedCircle.png */; };
+		5B13C18817C192D80019BCFB /* smallWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C18117C192D80019BCFB /* smallWhiteCircle.png */; };
+		5B13C18917C192D80019BCFB /* smallYellowCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C18217C192D80019BCFB /* smallYellowCircle.png */; };
 		5B47415417BF5E2D005FF4D9 /* RWNodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B47415317BF5E2D005FF4D9 /* RWNodeButton.m */; };
 		5B47415717BF5FDD005FF4D9 /* RWNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B47415617BF5FDD005FF4D9 /* RWNodeView.m */; };
 		5B47415A17BF782A005FF4D9 /* RWNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B47415917BF782A005FF4D9 /* RWNodeManager.m */; };
@@ -47,6 +54,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B13C17C17C192D80019BCFB /* smallBlueCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallBlueCircle.png; sourceTree = "<group>"; };
+		5B13C17D17C192D80019BCFB /* smallEQCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallEQCircle.png; sourceTree = "<group>"; };
+		5B13C17E17C192D80019BCFB /* smallGreenCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallGreenCircle.png; sourceTree = "<group>"; };
+		5B13C17F17C192D80019BCFB /* smallPinkCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallPinkCircle.png; sourceTree = "<group>"; };
+		5B13C18017C192D80019BCFB /* smallRedCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallRedCircle.png; sourceTree = "<group>"; };
+		5B13C18117C192D80019BCFB /* smallWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallWhiteCircle.png; sourceTree = "<group>"; };
+		5B13C18217C192D80019BCFB /* smallYellowCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallYellowCircle.png; sourceTree = "<group>"; };
 		5B47415217BF5E2D005FF4D9 /* RWNodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWNodeButton.h; sourceTree = "<group>"; };
 		5B47415317BF5E2D005FF4D9 /* RWNodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWNodeButton.m; sourceTree = "<group>"; };
 		5B47415517BF5FDD005FF4D9 /* RWNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWNodeView.h; sourceTree = "<group>"; };
@@ -178,6 +192,13 @@
 		5B6B2EFF177FCD6500FF98D5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5B13C17C17C192D80019BCFB /* smallBlueCircle.png */,
+				5B13C17D17C192D80019BCFB /* smallEQCircle.png */,
+				5B13C17E17C192D80019BCFB /* smallGreenCircle.png */,
+				5B13C17F17C192D80019BCFB /* smallPinkCircle.png */,
+				5B13C18017C192D80019BCFB /* smallRedCircle.png */,
+				5B13C18117C192D80019BCFB /* smallWhiteCircle.png */,
+				5B13C18217C192D80019BCFB /* smallYellowCircle.png */,
 				5B47417B17C085FE005FF4D9 /* tappedFire.png */,
 				5B47417C17C085FE005FF4D9 /* tappedLight.png */,
 				5B47417D17C085FE005FF4D9 /* tappedLightTappedFire.png */,
@@ -295,6 +316,13 @@
 				5B47418817C085FE005FF4D9 /* untappedLight.png in Resources */,
 				5B47418917C085FE005FF4D9 /* untappedLightTappedFire.png in Resources */,
 				5B47418A17C085FE005FF4D9 /* untappedLightUntappedFire.png in Resources */,
+				5B13C18317C192D80019BCFB /* smallBlueCircle.png in Resources */,
+				5B13C18417C192D80019BCFB /* smallEQCircle.png in Resources */,
+				5B13C18517C192D80019BCFB /* smallGreenCircle.png in Resources */,
+				5B13C18617C192D80019BCFB /* smallPinkCircle.png in Resources */,
+				5B13C18717C192D80019BCFB /* smallRedCircle.png in Resources */,
+				5B13C18817C192D80019BCFB /* smallWhiteCircle.png in Resources */,
+				5B13C18917C192D80019BCFB /* smallYellowCircle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
