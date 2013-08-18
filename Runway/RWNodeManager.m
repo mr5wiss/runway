@@ -30,13 +30,17 @@
 }
 
 - (NSTimeInterval)lightDuration {
-    // TO DO: make this fully work based on node
+    // TO DO: make this fully work based on mode
     return (NSTimeInterval)[[[RWFirstViewController sharedInstance] lightDurationSlider] value];
 }
 
 - (NSTimeInterval)fireDuration {
-    // TO DO: make this fully work based on node
+    // TO DO: make this fully work based on mode
     return (NSTimeInterval)[[[RWFirstViewController sharedInstance] fireDurationSlider] value];
+}
+
+- (void)touchesHaveEnded {
+    // do the right thing based on mode
 }
 
 @end

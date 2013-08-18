@@ -22,6 +22,7 @@ typedef enum {
 @property (nonatomic) NSInteger startNum;
 @property (nonatomic, strong) RWNodeManager *nodeManager;
 @property (nonatomic, readwrite) eControlMode controlMode;
+//@property (nonatomic, strong) id<RWNodeButtonDelegate>delegate;
 - (id)initWithStartNum:(NSInteger)startNum manager:(RWNodeManager *)manager frame:(CGRect)frame;
 - (BOOL)addNodes;
 

@@ -16,7 +16,10 @@
 #define FIRST_FIRE 1
 #define FIRE_GAP 2
 
-@implementation RWNodeView
+@implementation RWNodeView {
+    RWNodeButton *_lastTouchedNode;
+    nodeType _lastTypeChanged;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -100,6 +103,39 @@
         }
     }
     _controlMode = controlMode;
+}
+
+- (NSInteger)locationToNodeNum:(CGPoint)location {
+    return location.x / NODE_WIDTH;
+}
+
+#pragma mark touches functions
+// catch touches here, so that we can determine what node we dragged into
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    //NSLog(@"touch moved at location: %f,%f", location.x, location.y);
+    RWNodeButton *node = [self.subviews objectAtIndex:[self locationToNodeNum:location]];
+    CGPoint convertedPoint = [self convertPoint:location toView:node];
+    nodeType typeChanged = [node typeForLocation:convertedPoint];
+    if (node == _lastTouchedNode && typeChanged == _lastTypeChanged) {
+        return;
+    }
+    _lastTouchedNode = node;
+    _lastTypeChanged = typeChanged;
+    nodeTypeStatus status = typeChanged == kRWnodeTypeLight ? !node.lightStatus : !node.fireStatus;
+    [_nodeManager stateWasChangedTo:status forNode:node type:typeChanged];
+    // this shows what's happening on the display
+    NSTimeInterval duration = typeChanged == kRWnodeTypeLight ? [_nodeManager lightDuration] : [_nodeManager fireDuration];
+    [node changeTapStateForType:typeChanged duration:duration];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    NSLog(@"touch ended at location: %f,%f", location.x, location.y);
+    _lastTouchedNode = nil;
+    [_nodeManager touchesHaveEnded];
 }
 
 @end

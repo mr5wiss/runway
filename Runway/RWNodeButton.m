@@ -10,6 +10,7 @@
 
 @implementation RWNodeButton {
     NSTimer *_tapStateTimer;
+    BOOL _touchBeganNotYetMoved;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -26,12 +27,24 @@
     if (self) {
         self.type = type;
         self.num = num;
-        [self addTarget:self action:@selector(nodeTapped:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+        //[self addTarget:self action:@selector(nodeTapped:forEvent:) forControlEvents:UIControlEventTouchUpInside];
         self.fireStatus = kRWnodeTypeStatusOff;
         self.lightStatus = kRWnodeTypeStatusOff;
         self.adjustsImageWhenHighlighted = NO;
     }
     return self;
+}
+
+- (nodeType)typeForLocation:(CGPoint)location {
+    if (self.type != kRWnodeTypeBoth) {
+        return self.type;
+    }
+    if (location.x > 9 && location.y < 90) {
+        return kRWnodeTypeFire;
+    }
+    else {
+        return kRWnodeTypeLight;
+    }
 }
 
 - (IBAction)nodeTapped:(id)sender forEvent:(UIEvent *)event {
@@ -45,12 +58,7 @@
         UITouch *touch = [[event touchesForView:node] anyObject];
         CGPoint location = [touch locationInView:self];
         // correct values?
-        if (location.x > 9 && location.y < 90) {
-            typeChanged = kRWnodeTypeFire;
-        }
-        else {
-            typeChanged = kRWnodeTypeLight;
-        }
+        typeChanged = [self typeForLocation:location];
     }
     // this should cause the correct action to be sent
     // status reversed because it has not been changed yet (might get confusing)
@@ -123,13 +131,26 @@
     // redraw?
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+#pragma mark touches functions
+// right now, we have to capture these here and send them to the container view
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    _touchBeganNotYetMoved = YES;
+ }
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    _touchBeganNotYetMoved = NO;
+    [self.superview touchesMoved:touches withEvent:event];
 }
-*/
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    // node was just tapped
+    if (_touchBeganNotYetMoved) {
+        [self nodeTapped:self forEvent:event];
+        _touchBeganNotYetMoved = NO;
+    }
+    else {
+        [self.superview touchesEnded:touches withEvent:event];
+    }
+}
 
 @end

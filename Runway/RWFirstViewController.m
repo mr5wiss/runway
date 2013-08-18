@@ -94,11 +94,13 @@ static RWFirstViewController *s_sharedInstance;
     
     // add manager to node view and add nodes to node views and manager
     _topNodes.nodeManager = _nodeManager;
+    _topNodes.userInteractionEnabled = YES;
     if (![_topNodes addNodes]) {
         NSLog(@"couldn't add nodes to top node view");
     }
     
     _bottomNodes.nodeManager = _nodeManager;
+    _bottomNodes.userInteractionEnabled = YES;
     _bottomNodes.startNum = LIGHTS_PER_SIDE;
     if (![_bottomNodes addNodes]) {
         NSLog(@"couldn't add nodes to top node view");
@@ -144,8 +146,6 @@ static RWFirstViewController *s_sharedInstance;
     [_panTouchingStatus addObject:view2TouchDict];
     
     _recordHistory = [[NSMutableArray alloc] init];
-    
-    //self.view.multipleTouchEnabled = YES;
     
 #ifndef DEBUG
     debugConnectButton.hidden = YES;
@@ -699,46 +699,6 @@ static RWFirstViewController *s_sharedInstance;
     // disconnected, so no more heartbeat
     [_timer invalidate];
 }
-
-#pragma mark touches functions
-/*- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    if (![touch.view isKindOfClass:[UIImageView class]]) {
-        return;
-    }
-    CGPoint location = [touch locationInView:touch.view];
-    NSInteger viewNum = touch.view.frame.origin.y < 50 ? 0 : 1;
-    // view 2 is off in locked mode
-    if (_sidesLocked && viewNum == 1) {
-        return;
-    }
-    [self sendNodeDataBasedOnTap:location view:viewNum];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    if (![touch.view isKindOfClass:[UIImageView class]]) {
-        return;
-    }
-    CGPoint location = [touch locationInView:touch.view];
-    NSInteger viewNum = touch.view.frame.origin.y < 50 ? 0 : 1;
-    // view 2 is off in locked mode
-    if (_sidesLocked && viewNum == 1) {
-        return;
-    }
-    [self sendNodeDataBasedOnPan:location view:viewNum];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    if (![touch.view isKindOfClass:[UIImageView class]]) {
-        return;
-    }
-    NSInteger viewNum = touch.view.frame.origin.y < 200 ? 0 : 1;
-    NSMutableDictionary *touchDict = [_panTouchingStatus objectAtIndex:viewNum];
-    [touchDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
-    [touchDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
-}*/
 
 #pragma mark
 

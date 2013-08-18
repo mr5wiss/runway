@@ -41,4 +41,5 @@ typedef enum {
 - (RWNodeButton *)initWithNum:(NSInteger)num type:(nodeType)type frame:(CGRect)frame;
 // change tap state without sending anything (just for feedback display)
 - (void)changeTapStateForType:(nodeType)type duration:(NSTimeInterval)duration;
+- (nodeType)typeForLocation:(CGPoint)location;
 @end
