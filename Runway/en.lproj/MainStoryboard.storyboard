@@ -19,6 +19,7 @@
                                 <items>
                                     <barButtonItem title="On" id="Ifd-bw-E0K"/>
                                     <barButtonItem title="Off" id="BLJ-d8-Des"/>
+                                    <barButtonItem title="Debug" id="NHh-ZN-Ncb"/>
                                     <barButtonItem title="Record" id="dTc-pp-3tD"/>
                                     <barButtonItem title="Rec Off" id="mhZ-z7-GUV"/>
                                     <barButtonItem title="Loop" id="Jsj-NJ-ise"/>
@@ -32,115 +33,88 @@
                                     <barButtonItem title="PANIC" id="AsM-DX-ct6"/>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="runwayLightsFire.png" id="DEE-8h-eHk">
-                                <rect key="frame" x="0.0" y="44" width="1024" height="172"/>
-                                <gestureRecognizers/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="runwayLightsFire.png" id="fNi-Ab-cdS">
-                                <rect key="frame" x="0.0" y="527" width="1024" height="172"/>
-                                <gestureRecognizers/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="c9D-Bv-frt">
-                                <rect key="frame" x="48" y="328" width="109" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="All Controls">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.017000000000000001" maxValue="1" continuous="NO" id="AXy-fA-je0">
+                                <rect key="frame" x="706" y="278" width="199" height="23"/>
                                 <connections>
-                                    <action selector="controlButtonTapped:" destination="2" eventType="touchUpInside" id="JYW-3H-eHg"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pwn-go-eZi">
-                                <rect key="frame" x="180" y="328" width="107" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Lights Only">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="controlButtonTapped:" destination="2" eventType="touchUpInside" id="086-vA-q6a"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PhA-9d-Twb">
-                                <rect key="frame" x="310" y="328" width="90" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Fire Only">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="controlButtonTapped:" destination="2" eventType="touchUpInside" id="but-jp-qAA"/>
-                                </connections>
-                            </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" id="AXy-fA-je0">
-                                <rect key="frame" x="754" y="285" width="199" height="23"/>
-                                <connections>
-                                    <action selector="sliderChanged:" destination="2" eventType="valueChanged" id="ewU-u0-VFw"/>
+                                    <action selector="tempoChanged:" destination="2" eventType="valueChanged" id="1UP-As-Dx5"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tempo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AkV-71-2IA">
-                                <rect key="frame" x="827" y="250" width="53" height="21"/>
+                                <rect key="frame" x="779" y="234" width="53" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" id="rwr-zC-WTG">
-                                <rect key="frame" x="436" y="286" width="250" height="216"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="2" id="iVm-F8-vO6"/>
-                                    <outlet property="delegate" destination="2" id="y0M-gT-061"/>
-                                </connections>
-                            </pickerView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Pattern" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TIs-02-Evy">
-                                <rect key="frame" x="534" y="250" width="55" height="21"/>
+                                <rect key="frame" x="538" y="234" width="55" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1ik-wk-bmK">
-                                <rect key="frame" x="874" y="328" width="79" height="27"/>
+                                <rect key="frame" x="826" y="328" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Set by tapping" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eAc-LA-To9">
-                                <rect key="frame" x="756" y="328" width="109" height="21"/>
+                                <rect key="frame" x="708" y="328" width="109" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tap Here" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cEw-A4-fDg">
-                                <rect key="frame" x="818" y="406" width="71" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tap Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cEw-A4-fDg">
+                                <rect key="frame" x="755" y="393" width="100" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.90196078430000004" green="0.89019607840000003" blue="0.85490196080000003" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" white="0.80816605839416056" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Je-yG-fuf">
-                                <rect key="frame" x="265" y="395" width="135" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Connect Debug">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="connectButtonTapped:" destination="2" eventType="touchUpInside" id="ZyP-AT-PNF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4GO-Xq-CTh">
-                                <rect key="frame" x="48" y="396" width="104" height="44"/>
+                            <view contentMode="scaleToFill" id="ZWy-am-geR" customClass="RWNodeView">
+                                <rect key="frame" x="0.0" y="44" width="924" height="173"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="yMf-Pj-OxS" customClass="RWNodeView">
+                                <rect key="frame" x="0.0" y="526" width="924" height="173"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l1M-DI-aeK">
+                                <rect key="frame" x="947" y="56" width="62" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Lock Sides">
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vcx-cF-KdC">
+                                <rect key="frame" x="946" y="109" width="66" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="All on">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eQb-aW-NH4">
+                                <rect key="frame" x="949" y="160" width="60" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Exec">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sdo-r8-5iA">
+                                <rect key="frame" x="943" y="372" width="60" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Lock">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -148,9 +122,216 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="lockSidesTapped:" destination="2" eventType="touchUpInside" id="vSk-np-RQL"/>
+                                    <action selector="lockSidesTapped:" destination="2" eventType="touchUpInside" id="lYd-ox-yJ1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uEH-wv-j1Y">
+                                <rect key="frame" x="525" y="267" width="80" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Choose">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="patternButtonTapped:" destination="2" eventType="touchUpInside" id="oOP-Qu-tAP"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="CjG-cY-K5D">
+                                <rect key="frame" x="540" y="335" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="send"/>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="qE6-Pp-GWY">
+                                <rect key="frame" x="485" y="412" width="161" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Blue"/>
+                                    <segment title="Green"/>
+                                    <segment title="Red"/>
+                                </segments>
+                                <connections>
+                                    <action selector="colorChosen:" destination="2" eventType="valueChanged" id="qQh-Ay-wsz"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jIy-80-BB3">
+                                <rect key="frame" x="545" y="380" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view hidden="YES" contentMode="scaleToFill" id="e4j-4o-oMH">
+                                <rect key="frame" x="502" y="328" width="127" height="143"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="d3t-tY-mG5">
+                                <rect key="frame" x="20" y="234" width="180" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Both"/>
+                                    <segment title="Lights"/>
+                                    <segment title="Fire"/>
+                                </segments>
+                                <connections>
+                                    <action selector="nodesChosen:" destination="2" eventType="valueChanged" id="tx1-jw-WdU"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="ri3-HJ-RvJ">
+                                <rect key="frame" x="141" y="298" width="180" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Now"/>
+                                    <segment title="Later"/>
+                                    <segment title="Input"/>
+                                </segments>
+                                <connections>
+                                    <action selector="timeChosen:" destination="2" eventType="valueChanged" id="Eu1-cP-aXJ"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="hj6-H6-K9k">
+                                <rect key="frame" x="276" y="234" width="161" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Temp"/>
+                                    <segment title="Stay On"/>
+                                </segments>
+                                <connections>
+                                    <action selector="permanenceChosen:" destination="2" eventType="valueChanged" id="Vx0-Rf-dJv"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light Duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NV4-pa-bjS">
+                                <rect key="frame" x="24" y="362" width="106" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fire Duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5VH-Qg-FLD">
+                                <rect key="frame" x="182" y="362" width="99" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0an-a9-jZZ">
+                                <rect key="frame" x="941" y="539" width="62" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OxK-OL-GAH">
+                                <rect key="frame" x="940" y="591" width="66" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="All on">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B5E-14-1Pe">
+                                <rect key="frame" x="942" y="642" width="60" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Exec">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0 - No Pattern" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ib4-hO-cE7">
+                                <rect key="frame" x="512" y="479" width="106" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.02" maxValue="2" id="6hJ-G9-xcT">
+                                <rect key="frame" x="18" y="393" width="118" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="durationChanged:" destination="2" eventType="valueChanged" id="Fhh-3R-UTi"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.02" maxValue="1" id="uVk-ev-hLl">
+                                <rect key="frame" x="172" y="393" width="118" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="durationChanged:" destination="2" eventType="valueChanged" id="orh-S3-j34"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wfe-dy-eno">
+                                <rect key="frame" x="181" y="457" width="100" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="PANIC">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="panic:" destination="2" eventType="touchUpInside" id="B0e-Ab-yqj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.1s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9rV-3V-pbm">
+                                <rect key="frame" x="61" y="423" width="33" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.1s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2nA-fk-9nT">
+                                <rect key="frame" x="210" y="423" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tick: 0.5s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4f8-fI-daH">
+                                <rect key="frame" x="769" y="479" width="73" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="nb9-1W-fh2">
+                                <rect key="frame" x="321" y="393" width="118" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="fadeChanged:" destination="2" eventType="valueChanged" id="Uj1-kb-FSU"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light Fade" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pJL-LP-oLT">
+                                <rect key="frame" x="340" y="362" width="81" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.0s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pBk-1d-eCm">
+                                <rect key="frame" x="364" y="423" width="33" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -158,27 +339,38 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Play" image="first" id="7"/>
                     <connections>
-                        <outlet property="allControlsButton" destination="c9D-Bv-frt" id="WHR-ac-3KC"/>
-                        <outlet property="bottomImage" destination="fNi-Ab-cdS" id="fXy-8K-wV7"/>
-                        <outlet property="debugConnectButton" destination="6Je-yG-fuf" id="qSp-tD-krx"/>
-                        <outlet property="fireButton" destination="PhA-9d-Twb" id="wKw-5B-9xY"/>
-                        <outlet property="lightsButton" destination="Pwn-go-eZi" id="ydk-rU-8r2"/>
-                        <outlet property="lockSidesButton" destination="4GO-Xq-CTh" id="4xh-iT-nBr"/>
+                        <outlet property="bottomNodes" destination="yMf-Pj-OxS" id="aYD-Nk-ala"/>
+                        <outlet property="colorControl" destination="qE6-Pp-GWY" id="jOO-SI-Pzx"/>
+                        <outlet property="connectButton" destination="NHh-ZN-Ncb" id="FbN-pu-fLS"/>
+                        <outlet property="fireDurationLabel" destination="2nA-fk-9nT" id="XRY-8f-wCW"/>
+                        <outlet property="fireDurationSlider" destination="uVk-ev-hLl" id="d4T-E3-jWu"/>
+                        <outlet property="flightFadeSlider" destination="nb9-1W-fh2" id="8nV-qP-CnC"/>
+                        <outlet property="lightDurationSlider" destination="6hJ-G9-xcT" id="jmu-zN-neJ"/>
+                        <outlet property="lightDurationsLabel" destination="9rV-3V-pbm" id="6c4-vD-gZe"/>
+                        <outlet property="lightFadeLabel" destination="pBk-1d-eCm" id="kGN-Y1-Hrj"/>
+                        <outlet property="lockSidesButton" destination="Sdo-r8-5iA" id="KbH-NG-sXe"/>
                         <outlet property="loopBarButton" destination="Jsj-NJ-ise" id="Wuo-VP-6I0"/>
+                        <outlet property="nodeControl" destination="d3t-tY-mG5" id="eo6-Db-zLu"/>
                         <outlet property="offBarButton" destination="BLJ-d8-Des" id="kD8-dx-aKI"/>
                         <outlet property="onBarButton" destination="Ifd-bw-E0K" id="HC1-Ts-8dk"/>
+                        <outlet property="panicBarButton" destination="AsM-DX-ct6" id="gRc-1W-ytt"/>
+                        <outlet property="panicButton" destination="wfe-dy-eno" id="SEH-4U-QNJ"/>
                         <outlet property="pattern1BarButton" destination="Wc0-Wi-WTh" id="Z3l-ai-QkD"/>
                         <outlet property="pattern2BarButton" destination="iRk-lQ-ohe" id="2ay-YF-Io5"/>
                         <outlet property="pattern3BarButton" destination="1vX-ME-1xI" id="qtg-Zy-c4I"/>
                         <outlet property="pattern4BarButton" destination="27c-LO-qPY" id="r9d-09-o7F"/>
                         <outlet property="pattern5BarButton" destination="0gW-AS-Rh7" id="QKg-tW-Ncn"/>
-                        <outlet property="patternPicker" destination="rwr-zC-WTG" id="IHz-sO-l7K"/>
+                        <outlet property="patternChooseButton" destination="uEH-wv-j1Y" id="TPY-NI-lfx"/>
+                        <outlet property="patternField" destination="CjG-cY-K5D" id="8Px-rp-OrS"/>
+                        <outlet property="permanenceControl" destination="hj6-H6-K9k" id="QGS-Ix-36n"/>
                         <outlet property="recordBarButton" destination="dTc-pp-3tD" id="QGX-F4-6Of"/>
                         <outlet property="stopRecordBarButton" destination="mhZ-z7-GUV" id="aXc-Yr-Cce"/>
                         <outlet property="tapLabel" destination="cEw-A4-fDg" id="ZEI-KW-48u"/>
                         <outlet property="tapSwitch" destination="1ik-wk-bmK" id="850-5Q-1m6"/>
                         <outlet property="tempoSlider" destination="AXy-fA-je0" id="nQw-vZ-M9Z"/>
-                        <outlet property="topImage" destination="DEE-8h-eHk" id="hvy-se-991"/>
+                        <outlet property="tickLabel" destination="4f8-fI-daH" id="Gxg-K0-ess"/>
+                        <outlet property="timeControl" destination="ri3-HJ-RvJ" id="3Ek-sf-1IH"/>
+                        <outlet property="topNodes" destination="ZWy-am-geR" id="w4N-Ql-cRc"/>
                         <outlet property="topToolbar" destination="20" id="twC-Pg-I1h"/>
                     </connections>
                 </viewController>
@@ -246,42 +438,71 @@
     </scenes>
     <resources>
         <image name="first" width="16" height="16"/>
-        <image name="runwayLightsFire.png" width="1024" height="172"/>
         <image name="second" width="16" height="16"/>
     </resources>
     <classes>
         <class className="RWFirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
             <relationships>
-                <relationship kind="action" name="connectButtonTapped:"/>
-                <relationship kind="action" name="controlButtonTapped:"/>
+                <relationship kind="action" name="colorChosen:"/>
+                <relationship kind="action" name="durationChanged:"/>
+                <relationship kind="action" name="fadeChanged:"/>
                 <relationship kind="action" name="lockSidesTapped:"/>
-                <relationship kind="action" name="sliderChanged:"/>
-                <relationship kind="outlet" name="allControlsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="bottomImage" candidateClass="UIImageView"/>
+                <relationship kind="action" name="nodeButtonTapped:"/>
+                <relationship kind="action" name="nodesChosen:"/>
+                <relationship kind="action" name="panic:"/>
+                <relationship kind="action" name="patternButtonTapped:"/>
+                <relationship kind="action" name="permanenceChosen:"/>
+                <relationship kind="action" name="tempoChanged:"/>
+                <relationship kind="action" name="timeChosen:"/>
+                <relationship kind="outlet" name="all1Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="all2Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bottomNodes" candidateClass="RWNodeView"/>
+                <relationship kind="outlet" name="clear1Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="clear2Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="colorControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="connectButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="debugBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="debugConnectButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="fireButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="lightsButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="exec1Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="exec2Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fireDurationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fireDurationSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="flightFadeSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="lightDurationSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="lightDurationsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lightFadeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="lockSidesButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="loopBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="nodeControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="offBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="onBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="panicBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="panicButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="pattern1BarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="pattern2BarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="pattern3BarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="pattern4BarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="pattern5BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="patternPicker" candidateClass="UIPickerView"/>
+                <relationship kind="outlet" name="patternChooseButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="patternField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patternKeyPad" candidateClass="UIView"/>
+                <relationship kind="outlet" name="patternLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="permanenceControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="recordBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="stopLoopBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="stopRecordBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tapLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="tapSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="tempoSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="topImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tickLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="topNodes" candidateClass="RWNodeView"/>
                 <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
             </relationships>
+        </class>
+        <class className="RWNodeView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWNodeView.h"/>
         </class>
         <class className="RWSecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RWSecondViewController.h"/>

@@ -7,17 +7,7 @@
 //
 
 #import "RWFirstViewController.h"
-
-// these will be based on the actual images and configuration we use
-#define LIGHTS_PER_SIDE 42
-#define FIRE_PER_SIDE 20
-#define FIRE_TOP_Y 70
-#define FIRE_BOTTOM_Y 102
-#define LIGHT_TOP_Y 32
-#define LIGHT_BOTTOM_Y 142
-#define LIGHT_WIDTH 10
-#define LIGHT_GAP 14
-#define LIGHT_INITIAL_GAP 15
+#import "RWNodeManager.h"
 
 // change as we hook up lights
 #define LIGHTS_FOR_TEST 42
@@ -40,8 +30,15 @@
     NSTimer *_loopTimer;
     NSMutableArray *_panTouchingStatus;
     NSMutableArray *_recordHistory;
+    RWNodeManager *_nodeManager;
+    RWFirstViewController *_s_sharedInstance;
 }
-@synthesize patternPicker, allControlsButton, lightsButton, fireButton, tempoSlider, topToolbar, topImage, bottomImage, wSocket, tapLabel, tapSwitch, onBarButton, offBarButton, panicBarButton, pattern1BarButton, pattern2BarButton, pattern3BarButton, pattern4BarButton, pattern5BarButton, recordBarButton, stopRecordBarButton, loopBarButton, stopLoopBarButton, patterns, debugConnectButton, lockSidesButton;
+
+static RWFirstViewController *s_sharedInstance;
+
++ (RWFirstViewController *)sharedInstance {
+    return s_sharedInstance;
+}
 
 #pragma mark socket functions
 - (void)initNetworkCommunication {
@@ -76,17 +73,34 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.patterns = [[NSArray alloc] initWithObjects:@"--NO PATTERN--", @"pattern 1", @"pattern 2", @"pattern 3", @"pattern 4", @"pattern 5", @"pattern 6", @"pattern 7", @"pattern 8", @"pattern 9", nil];
-    self.topImage.userInteractionEnabled = YES;
-    self.bottomImage.userInteractionEnabled = YES;
+    //self.patterns = [[NSArray alloc] initWithObjects:@"--NO PATTERN--", @"pattern 1", @"pattern 2", @"pattern 3", @"pattern 4", @"pattern 5", @"pattern 6", @"pattern 7", @"pattern 8", @"pattern 9", nil];
     
-    // for now, turn it "on" here (sending nil simulates both lights and fire)
-    [self controlButtonTapped:nil];
+    // here?
+    s_sharedInstance = self;
+    
+    _nodeManager = [[RWNodeManager alloc] init];
+    _nodeManager.delegate = self;
+    
+    // add manager to node view and add nodes to node views and manager
+    _topNodes.nodeManager = _nodeManager;
+    _topNodes.userInteractionEnabled = YES;
+    _topNodes.controlMode = kRWControlModeBoth;
+    if (![_topNodes addNodes]) {
+        NSLog(@"couldn't add nodes to top node view");
+    }
+    
+    _bottomNodes.nodeManager = _nodeManager;
+    _bottomNodes.userInteractionEnabled = YES;
+    _bottomNodes.controlMode = kRWControlModeBoth;
+    _bottomNodes.startNum = LIGHTS_PER_SIDE;
+    if (![_bottomNodes addNodes]) {
+        NSLog(@"couldn't add nodes to top node view");
+    }
     
     // label tap recognizer to enable tapping for tempo
-    tapLabel.userInteractionEnabled = YES;
+    _tapLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *tempoTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tempoTapped:)];
-    [tapLabel addGestureRecognizer:tempoTapRecognizer];
+    [_tapLabel addGestureRecognizer:tempoTapRecognizer];
     
     // init
     _playaMode = YES;
@@ -97,21 +111,22 @@
     _sidesLocked = NO;
     
     //actions
-    [tapSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+    [_tapSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     
     // bar buttons
-    self.offBarButton.tintColor = [UIColor blueColor];
-    onBarButton.action = @selector(initNetworkCommunication);
-    offBarButton.action = @selector(disconnect);
-    panicBarButton.action = @selector(panic);
-    pattern1BarButton.action = @selector(runPattern:);
-    pattern2BarButton.action = @selector(runPattern:);
-    pattern3BarButton.action = @selector(runPattern:);
-    pattern4BarButton.action = @selector(runPattern:);
-    pattern5BarButton.action = @selector(runPattern:);
-    recordBarButton.action = @selector(recordButtonTapped);
-    stopRecordBarButton.action = @selector(recordOffTapped);
-    loopBarButton.action = @selector(loopTapped);
+    _offBarButton.tintColor = [UIColor blueColor];
+    _onBarButton.action = @selector(initNetworkCommunication);
+    _offBarButton.action = @selector(disconnect);
+    _panicBarButton.action = @selector(panic:);
+    _pattern1BarButton.action = @selector(runPattern:);
+    _pattern2BarButton.action = @selector(runPattern:);
+    _pattern3BarButton.action = @selector(runPattern:);
+    _pattern4BarButton.action = @selector(runPattern:);
+    _pattern5BarButton.action = @selector(runPattern:);
+    _recordBarButton.action = @selector(recordButtonTapped);
+    _stopRecordBarButton.action = @selector(recordOffTapped);
+    _loopBarButton.action = @selector(loopTapped);
+    _connectButton.action = @selector(connectButtonTapped:);
     
     // set up array for panning view
     _panTouchingStatus = [[NSMutableArray alloc] initWithCapacity:2];
@@ -124,11 +139,7 @@
     
     _recordHistory = [[NSMutableArray alloc] init];
     
-    //self.view.multipleTouchEnabled = YES;
-    
-#ifndef DEBUG
-    debugConnectButton.hidden = YES;
-#endif
+    self.patternField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -148,13 +159,15 @@
 }
 
 // SHUT EVERYTHING OFF!!!
-- (void)panic {
+- (void)panic:(id)sender {
     [self send:@"panic=1"];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Panic!" message:@"Everything has been turned off.  Please press OK to exit panic mode" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)recordButtonTapped {
     _recordOn = YES;
-    recordBarButton.tintColor = [UIColor blueColor];
+    _recordBarButton.tintColor = [UIColor blueColor];
     // clear out any current recording
     [_recordHistory removeAllObjects];
 }
@@ -163,7 +176,7 @@
     // record final state
     [self record:nil];
     _recordOn = NO;
-    recordBarButton.tintColor = nil;
+    _recordBarButton.tintColor = nil;
     // save it?
 }
 
@@ -207,10 +220,10 @@
     // record final state
     [self record:nil];
     _recordOn = NO;
-    recordBarButton.tintColor = nil;
+    _recordBarButton.tintColor = nil;
     if (!_looping && [_recordHistory count] > 0) {
         _looping = YES;
-        loopBarButton.tintColor = [UIColor blueColor];
+        _loopBarButton.tintColor = [UIColor blueColor];
         // play it once and set timer to repeat
         [self playRecordHistory:nil];
         [self setLoopTimer];
@@ -218,7 +231,7 @@
     // turning off
     else {
         _looping = NO;
-        loopBarButton.tintColor = nil;
+        _loopBarButton.tintColor = nil;
         [_loopTimer invalidate];
     }
 }
@@ -277,15 +290,61 @@
     }
 }
 
+- (IBAction)nodeButtonTapped:(id)sender {
+    if (sender == self.clear1Button){
+        // send clear message for string 1
+    }
+    else if (sender == self.clear2Button) {
+        // send clear message for string 2
+    }
+    else if (sender == self.all1Button) {
+        
+    }
+    else if (sender == self.all2Button) {
+        
+    }
+    else if (sender == self.exec1Button) {
+        
+    }
+    else if (sender == self.exec2Button) {
+        
+    }
+}
+
 // tempo
-- (void)sliderChanged:(id)sender {
-    if (tapSwitch.on) {
+- (void)tempoChanged:(id)sender {
+    if (_tapSwitch.on) {
         return;
     }
     UISlider *slider = (UISlider *)sender;
     CGFloat value = slider.value;
+    CGFloat total = slider.maximumValue - slider.minimumValue;
     // send time between pattern updates
-    [self send:[NSString stringWithFormat:@"tick=%f", 1.1 - value]];
+    [self send:[NSString stringWithFormat:@"tick=%f", total - value]];
+    self.tickLabel.text = [NSString stringWithFormat:@"Tick: %.1fs", total - value];
+}
+
+// duration
+- (void)durationChanged:(id)sender {
+    UISlider *slider = (UISlider *)sender;
+    CGFloat value = slider.value;
+    if (slider == _lightDurationSlider) {
+        // send light duration updarte
+        [self send:[NSString stringWithFormat:@"lightduration=%f", value]];
+        _lightDurationsLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+    }
+    else {
+        // send fire duration updarte
+        [self send:[NSString stringWithFormat:@"fireduration=%f", value]];
+        _fireDurationLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+    }
+}
+
+- (void)fadeChanged:(id)sender {
+    UISlider *slider = (UISlider *)sender;
+    CGFloat value = slider.value;
+    [self send:[NSString stringWithFormat:@"fadetime=%.1f", value]];
+    _lightFadeLabel.text = [NSString stringWithFormat:@"%.1fs", value];
 }
 
 // bpm tapping
@@ -294,7 +353,7 @@
 }
 
 - (void)tempoTapped:(id)sender {
-    if (!tapSwitch.on) {
+    if (!_tapSwitch.on) {
         return;
     }
     _numTapped++;
@@ -321,8 +380,82 @@
     }
 }
 
+- (void)nodesChosen:(id)sender {
+    UISegmentedControl *sc = (UISegmentedControl *)sender;
+    // do different stuff based on what was tapped
+    switch (sc.selectedSegmentIndex) {
+        case 0: // both
+            self.topNodes.controlMode = kRWControlModeBoth;
+            self.bottomNodes.controlMode = kRWControlModeBoth;
+            break;
+        case 1: // lights
+            // go through node manager instead?
+            self.topNodes.controlMode = kRWControlModeLights;
+            self.bottomNodes.controlMode = kRWControlModeLights;
+            break;
+        case 2: // fire
+            self.topNodes.controlMode = kRWControlModeFire;
+            self.bottomNodes.controlMode = kRWControlModeFire;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)permanenceChosen:(id)sender {
+    UISegmentedControl *sc = (UISegmentedControl *)sender;
+    // do different stuff based on what was tapped
+    switch (sc.selectedSegmentIndex) {
+        case 0: // on for duration
+            _permanence = NO;
+            break;
+        case 1: // on until changed
+            _permanence = YES;
+            break;
+        default:
+            break;
+    }
+}
+
+// TO DO: get this to work
+- (void)timeChosen:(id)sender {
+    UISegmentedControl *sc = (UISegmentedControl *)sender;
+    // do different stuff based on what was tapped
+    switch (sc.selectedSegmentIndex) {
+        case 0:
+            // stuff
+            break;
+        case 1:
+            // stuff
+            break;
+        case 2:
+            // stuff
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)colorChosen:(id)sender {
+    UISegmentedControl *sc = (UISegmentedControl *)sender;
+    // do different stuff based on what was tapped
+    switch (sc.selectedSegmentIndex) {
+        case 0:
+            [self send:[NSString stringWithFormat:@"color=blue"]];
+            break;
+        case 1:
+            [self send:[NSString stringWithFormat:@"color=green"]];
+            break;
+        case 2:
+            [self send:[NSString stringWithFormat:@"color=red"]];
+            break;
+        default:
+            break;
+    }
+}
+
 // what nodes are you controlling?
-- (void)controlButtonTapped:(id)sender {
+/*- (void)controlButtonTapped:(id)sender {
     // change images based on which controls are active
     if ((UIButton *)sender == fireButton) {
         self.topImage.image = [UIImage imageNamed:@"runwayFire.png"];
@@ -342,18 +475,28 @@
         _controllingFire = YES;
         _controllingLights = YES;
     }
-}
+}*/
 
 - (void)lockSidesTapped:(id)sender {
     // make sides go in lockstep (and unlock)
     if (!_sidesLocked) {
         [self.lockSidesButton setTitle:@"Unlock" forState:UIControlStateNormal];
         _sidesLocked = YES;
+        _nodeManager.sidesLocked = YES;
     }
     else {
-        [self.lockSidesButton setTitle:@"Lock Sides" forState:UIControlStateNormal];
+        [self.lockSidesButton setTitle:@"Lock" forState:UIControlStateNormal];
         _sidesLocked = NO;
+        _nodeManager.sidesLocked = NO;
     }
+}
+
+- (IBAction)patternButtonTapped:(id)sender {
+    // later, slide in list to choose from
+    [self.patternField resignFirstResponder];
+    NSInteger patternNum = [self.patternField.text integerValue];
+    [self send:[NSString stringWithFormat:@"pattern=%d", patternNum]];
+    // change label text
 }
 
 #pragma mark recording
@@ -371,7 +514,7 @@
 }
 
 #pragma mark node calculations
-- (void)sendNodeDataBasedOnTap:(CGPoint)location view:(NSInteger)viewNum {
+/*- (void)sendNodeDataBasedOnTap:(CGPoint)location view:(NSInteger)viewNum {
     NSInteger startingLightNum = viewNum == 0 ? 1 : LIGHTS_PER_SIDE+1;
     NSInteger startingFireNum = viewNum == 0 ? 0 : FIRE_PER_SIDE;
     // no adjustment now
@@ -521,9 +664,9 @@
             }
         }
     }
-}
+}*/
 
-#pragma mark - UIPickerViewDelegate
+/*#pragma mark - UIPickerViewDelegate
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     // respond to pattern choice
     [self send:[NSString stringWithFormat:@"pattern=%d", row]];
@@ -539,7 +682,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return [patterns objectAtIndex:row];
-}
+}*/
 
 #pragma mark SRWebSocketDelegate
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
@@ -571,50 +714,57 @@
     self.offBarButton.tintColor = [UIColor blueColor];
     // views to defaults
     self.tempoSlider.value = 0.5;
-    [self.patternPicker selectedRowInComponent:0];
     self.tapSwitch.on = NO;
     // disconnected, so no more heartbeat
     [_timer invalidate];
 }
 
-#pragma mark touches functions
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    if (![touch.view isKindOfClass:[UIImageView class]]) {
-        return;
+#pragma mark
+
+- (NSString *)messageFromDict:(NSDictionary *)node {
+    NSString *command = [node valueForKey:@"command"];
+    NSString *type = [node valueForKey:@"type"];
+    NSInteger num = [[node valueForKey:@"number"] intValue];
+    // set protocol letter and convert node number
+    NSString *letter;
+    if ([type isEqualToString:@"fire"]) {
+        letter = @"f";
+        num = (num+1)/2;
     }
-    CGPoint location = [touch locationInView:touch.view];
-    NSInteger viewNum = touch.view.frame.origin.y < 50 ? 0 : 1;
-    // view 2 is off in locked mode
-    if (_sidesLocked && viewNum == 1) {
-        return;
+    else {
+        letter = @"l";
+        num = num+1;
     }
-    [self sendNodeDataBasedOnTap:location view:viewNum];
+    //NSString *letter = [type isEqualToString:@"fire"] ? @"f" : @"l";
+    if ([command isEqualToString:@"off"]) {
+        return [NSString stringWithFormat:@"%@x=%d", letter, num];
+    }
+    else {
+        return [NSString stringWithFormat:@"%@%@=%d", letter, self.permanence ? @"r" : @"", num];
+    }
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    if (![touch.view isKindOfClass:[UIImageView class]]) {
-        return;
+#pragma mark RWNodeManagerDelegate
+
+- (void)nodesChanged:(NSArray *)nodes {
+    NSString *connector = @"";
+    NSString *sendMessage = @"";
+    for (NSDictionary *node in nodes) {
+        NSString *nodeMsg = [self messageFromDict:node];
+        sendMessage = [sendMessage stringByAppendingFormat:@"%@%@", connector, nodeMsg];
+        if (connector.length == 0) {
+            connector = @",";
+        }
     }
-    CGPoint location = [touch locationInView:touch.view];
-    NSInteger viewNum = touch.view.frame.origin.y < 50 ? 0 : 1;
-    // view 2 is off in locked mode
-    if (_sidesLocked && viewNum == 1) {
-        return;
-    }
-    [self sendNodeDataBasedOnPan:location view:viewNum];
+    [self send:sendMessage];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    if (![touch.view isKindOfClass:[UIImageView class]]) {
-        return;
-    }
-    NSInteger viewNum = touch.view.frame.origin.y < 200 ? 0 : 1;
-    NSMutableDictionary *touchDict = [_panTouchingStatus objectAtIndex:viewNum];
-    [touchDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
-    [touchDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    NSInteger patternNum = [textField.text integerValue];
+    [self send:[NSString stringWithFormat:@"pattern=%d", patternNum]];
+    return YES;
 }
 
 @end
