@@ -137,7 +137,6 @@
                             <view contentMode="scaleToFill" id="e4j-4o-oMH">
                                 <rect key="frame" x="502" y="328" width="127" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.48235297199999999" green="0.78823536630000002" blue="0.92549026010000002" alpha="1" colorSpace="deviceRGB"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="d3t-tY-mG5">
                                 <rect key="frame" x="20" y="234" width="180" height="44"/>

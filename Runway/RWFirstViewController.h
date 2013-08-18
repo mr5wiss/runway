@@ -51,6 +51,8 @@
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *stopLoopBarButton;
 @property (readonly) BOOL permanence;
 
++ (RWFirstViewController *)sharedInstance;
+
 // buttons controlling string nodes
 - (IBAction)nodeButtonTapped:(id)sender;
 - (IBAction)lockSidesTapped:(id)sender;

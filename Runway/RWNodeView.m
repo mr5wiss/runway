@@ -46,7 +46,7 @@
             RWNodeButton *node = [[RWNodeButton alloc] initWithNum:startNum+i type:type frame:buttonFrame];
             [self addSubview:node];
             [manager addNode:node number:startNum+i];
-            //button.delegate = manager;
+            node.delegate = manager;
         }
     }
     return self;
@@ -64,7 +64,7 @@
         RWNodeButton *node = [[RWNodeButton alloc] initWithNum:_startNum+i type:type frame:buttonFrame];
         [self addSubview:node];
         [_nodeManager addNode:node number:_startNum+i];
-        //button.delegate = manager;
+        node.delegate = _nodeManager;
     }
     return YES;
 }

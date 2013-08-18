@@ -17,9 +17,17 @@ typedef enum {
     kRWnodeTypeBoth
 } nodeType;
 
+typedef enum {
+    kRWnodeTypeStatusOff = 0,
+    kRWnodeTypeStatusOn
+} nodeTypeStatus;
+
 @protocol RWNodeButtonDelegate <NSObject>
 // called by the button when state has changed
 - (void)stateWasChangedTo:(BOOL)state forNode:(RWNodeButton *)node type:(nodeType)type;
+@optional
+- (NSTimeInterval)fireDuration;
+- (NSTimeInterval)lightDuration;
 @optional
 // called when touches have ended, signalling that it's time to act in certain modes
 - (void)touchesEnded;
@@ -28,6 +36,8 @@ typedef enum {
 @interface RWNodeButton : UIButton
 @property (nonatomic) nodeType type;
 @property (nonatomic) NSInteger num;
+@property (nonatomic) nodeTypeStatus lightStatus;
+@property (nonatomic) nodeTypeStatus fireStatus;
 @property (nonatomic, strong) id<RWNodeButtonDelegate>delegate;
 - (RWNodeButton *)initWithNum:(NSInteger)num type:(nodeType)type frame:(CGRect)frame;
 // change tap state without sending anything (just for feedback display)

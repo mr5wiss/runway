@@ -42,6 +42,13 @@
     NSMutableArray *_panTouchingStatus;
     NSMutableArray *_recordHistory;
     RWNodeManager *_nodeManager;
+    RWFirstViewController *_s_sharedInstance;
+}
+
+static RWFirstViewController *s_sharedInstance;
+
++ (RWFirstViewController *)sharedInstance {
+    return s_sharedInstance;
 }
 
 #pragma mark socket functions
@@ -84,16 +91,21 @@
     // for now, turn it "on" here (sending nil simulates both lights and fire)
     //[self controlButtonTapped:nil];
     
+    // here?
+    s_sharedInstance = self;
+    
     _nodeManager = [[RWNodeManager alloc] init];
     //_nodeManager.delegate = self;
-    //CGRect topFrame = CGRectMake(0, 44, 1024, 173);
-    //_topNodes = [[RWNodeView alloc] initWithStartNum:0 manager:nil frame:frame];
     _topNodes.nodeManager = _nodeManager;
-    [_topNodes addNodes];
+    if (![_topNodes addNodes]) {
+        NSLog(@"couldn't add nodes to top node view");
+    }
     
     _bottomNodes.nodeManager = _nodeManager;
     _bottomNodes.startNum = LIGHTS_PER_SIDE;
-    [_bottomNodes addNodes];
+    if (![_bottomNodes addNodes]) {
+        NSLog(@"couldn't add nodes to top node view");
+    }
     
     // label tap recognizer to enable tapping for tempo
     _tapLabel.userInteractionEnabled = YES;
