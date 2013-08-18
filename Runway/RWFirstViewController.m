@@ -95,12 +95,14 @@ static RWFirstViewController *s_sharedInstance;
     // add manager to node view and add nodes to node views and manager
     _topNodes.nodeManager = _nodeManager;
     _topNodes.userInteractionEnabled = YES;
+    _topNodes.controlMode = kRWControlModeBoth;
     if (![_topNodes addNodes]) {
         NSLog(@"couldn't add nodes to top node view");
     }
     
     _bottomNodes.nodeManager = _nodeManager;
     _bottomNodes.userInteractionEnabled = YES;
+    _bottomNodes.controlMode = kRWControlModeBoth;
     _bottomNodes.startNum = LIGHTS_PER_SIDE;
     if (![_bottomNodes addNodes]) {
         NSLog(@"couldn't add nodes to top node view");
@@ -706,7 +708,17 @@ static RWFirstViewController *s_sharedInstance;
     NSString *command = [node valueForKey:@"command"];
     NSString *type = [node valueForKey:@"type"];
     NSInteger num = [[node valueForKey:@"number"] intValue];
-    NSString *letter = [type isEqualToString:@"fire"] ? @"f" : @"l";
+    // set protocol letter and convert node number
+    NSString *letter;
+    if ([type isEqualToString:@"fire"]) {
+        letter = @"f";
+        num = (num+1)/2;
+    }
+    else {
+        letter = @"l";
+        num = num+1;
+    }
+    //NSString *letter = [type isEqualToString:@"fire"] ? @"f" : @"l";
     if ([command isEqualToString:@"off"]) {
         return [NSString stringWithFormat:@"%@x=%d", letter, num];
     }

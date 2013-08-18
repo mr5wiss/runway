@@ -28,6 +28,7 @@
         // Initialization code
         _startNum = 0;
         _nodeManager = nil;
+        _controlMode = kRWControlModeBoth;
     }
     return self;
 }
@@ -116,6 +117,9 @@
     CGPoint location = [touch locationInView:self];
     //NSLog(@"touch moved at location: %f,%f", location.x, location.y);
     RWNodeButton *node = [self.subviews objectAtIndex:[self locationToNodeNum:location]];
+    if (node.hidden) {
+        return;
+    }
     CGPoint convertedPoint = [self convertPoint:location toView:node];
     nodeType typeChanged = [node typeForLocation:convertedPoint];
     if (node == _lastTouchedNode && typeChanged == _lastTypeChanged) {
