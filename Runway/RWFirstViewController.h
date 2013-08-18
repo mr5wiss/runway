@@ -11,6 +11,12 @@
 #import "RWNodeManager.h"
 #import "RWNodeView.h"
 
+typedef enum {
+    kRWOutputModeNow = 0,
+    kRWOutputModeRelease,
+    kRWOutputModeExec
+} eOutputMode;
+
 @interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate>
 @property (nonatomic, strong) IBOutlet RWNodeView *topNodes;        // custom view
 @property (nonatomic, strong) IBOutlet RWNodeView *bottomNodes;     // custom view
@@ -25,6 +31,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *tapLabel;
 @property (nonatomic, strong) IBOutlet UILabel *tickLabel;
 @property (nonatomic, strong) IBOutlet UILabel *patternLabel;
+@property (nonatomic, strong) IBOutlet UILabel *fireDurationLabel;
+@property (nonatomic, strong) IBOutlet UILabel *lightDurationsLabel;
 @property (nonatomic, strong) IBOutlet UISwitch *tapSwitch;
 @property (nonatomic, strong) IBOutlet UIButton *debugConnectButton;
 @property (nonatomic, strong) IBOutlet UIButton *clear1Button;
@@ -50,6 +58,7 @@
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *loopBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *stopLoopBarButton;
 @property (readonly) BOOL permanence;
+@property (readonly) eOutputMode outputMode;
 
 + (RWFirstViewController *)sharedInstance;
 

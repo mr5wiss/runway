@@ -25,12 +25,11 @@ typedef enum {
 @protocol RWNodeButtonDelegate <NSObject>
 // called by the button when state has changed
 - (void)stateWasChangedTo:(BOOL)state forNode:(RWNodeButton *)node type:(nodeType)type;
-@optional
 - (NSTimeInterval)fireDuration;
 - (NSTimeInterval)lightDuration;
 @optional
 // called when touches have ended, signalling that it's time to act in certain modes
-- (void)touchesEnded;
+- (void)touchesHaveEnded;
 @end
 
 @interface RWNodeButton : UIButton

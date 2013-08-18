@@ -11,7 +11,6 @@
 
 
 @implementation RWNodeManager
-//@property id<RW
 
 - (void)addNode:(RWNodeButton *)node number:(NSInteger)num {
     // add the node to a structure such that nodes can be accessed by number
@@ -21,6 +20,13 @@
 #pragma mark RWNodeButtonDelegate
 - (void)stateWasChangedTo:(BOOL)state forNode:(RWNodeButton *)node type:(nodeType)type {
     // do the right thing based on mode
+    // assume Now mode for now
+    // if mode is now, tell delegate whenever a state change comes in
+    NSMutableDictionary *nodeDict = [[NSMutableDictionary alloc] initWithCapacity:3];
+    [nodeDict setObject:(state ? @"on" : @"off") forKey:@"command"];
+    [nodeDict setObject:(type == kRWnodeTypeFire ? @"fire" : @"light") forKey:@"type"];
+    [nodeDict setObject:[NSNumber numberWithInt:node.num] forKey:@"number"];
+    [self.delegate nodesChanged:[NSArray arrayWithObject:nodeDict]];
 }
 
 - (NSTimeInterval)lightDuration {

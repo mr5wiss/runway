@@ -16,10 +16,7 @@
 #define FIRST_FIRE 1
 #define FIRE_GAP 2
 
-@implementation RWNodeView {
-    NSArray *_singleNodeButtons;
-    NSArray *_doubleNodeButtons;
-}
+@implementation RWNodeView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -69,27 +66,40 @@
     return YES;
 }
 
-// too general for now
-/*- (id)initWithLights:(NSInteger)numLights fire:(NSInteger)numFire firstFire:(NSInteger)firstFire fireGap:(NSInteger)fireGap startNum:(NSInteger)startNum manager:(RWNodeManager *)manager withFrame:(CGRect)frame {
-    self = [self initWithFrame:frame];
-    if (self) {
-        NSInteger width = frame.size.width / numLights;
-        for (NSInteger i=0; i<numLights; i++) {
-            CGRect buttonFrame = CGRectMake(i*width, 0, width, frame.size.height);
-            nodeType type = i >= numFire && (i-firstFire) / fireGap < numFire && (i-firstFire) % fireGap == 0 ? kRWnodeTypeBoth : kRWnodeTypeLight;
-            RWNodeButton *button = [[RWNodeButton alloc] initWithNum:startNum+i type:type frame:buttonFrame];
-            button.delegate = manager;
+- (void)setControlMode:(eControlMode)controlMode {
+    if (controlMode == self.controlMode) {
+        return;
+    }
+    else {
+        if (controlMode == kRWControlModeBoth) {
+            int i=0;
+            for (RWNodeButton *node in self.subviews) {
+                node.type = i >= FIRST_FIRE && (i-FIRST_FIRE) / FIRE_GAP < FIRE_PER_SIDE && (i-FIRST_FIRE) % FIRE_GAP == 0 ? kRWnodeTypeBoth : kRWnodeTypeLight;
+                node.hidden = NO;
+                i++;
+            }
+        }
+        else if (controlMode == kRWControlModeFire) {
+            int i=0;
+            for (RWNodeButton *node in self.subviews) {
+                
+                if (i >= FIRST_FIRE && (i-FIRST_FIRE) / FIRE_GAP < FIRE_PER_SIDE && (i-FIRST_FIRE) % FIRE_GAP == 0) {
+                    node.type = kRWnodeTypeFire;
+                }
+                else {
+                    node.hidden = YES;
+                }
+                i++;
+            }
+        }
+        else {
+            for (RWNodeButton *node in self.subviews) {
+                node.type = kRWnodeTypeLight;
+                node.hidden = NO;
+            }
         }
     }
-}*/
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+    _controlMode = controlMode;
 }
-*/
 
 @end

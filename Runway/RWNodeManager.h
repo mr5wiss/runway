@@ -18,6 +18,7 @@
 @end
 
 @interface RWNodeManager : NSObject<RWNodeButtonDelegate>
+@property id<RWNodeManagerDelegate>delegate;
 - (void)addNode:(RWNodeButton *)node number:(NSInteger)num;
 
 @end

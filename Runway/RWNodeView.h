@@ -12,9 +12,16 @@
 #import <UIKit/UIKit.h>
 #import "RWNodeManager.h"
 
+typedef enum {
+    kRWControlModeFire = 0,
+    kRWControlModeLights,
+    kRWControlModeBoth
+} eControlMode;
+
 @interface RWNodeView : UIView
 @property (nonatomic) NSInteger startNum;
 @property (nonatomic, strong) RWNodeManager *nodeManager;
+@property (nonatomic, readwrite) eControlMode controlMode;
 - (id)initWithStartNum:(NSInteger)startNum manager:(RWNodeManager *)manager frame:(CGRect)frame;
 - (BOOL)addNodes;
 

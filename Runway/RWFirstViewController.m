@@ -85,17 +85,14 @@ static RWFirstViewController *s_sharedInstance;
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     //self.patterns = [[NSArray alloc] initWithObjects:@"--NO PATTERN--", @"pattern 1", @"pattern 2", @"pattern 3", @"pattern 4", @"pattern 5", @"pattern 6", @"pattern 7", @"pattern 8", @"pattern 9", nil];
-    //self.topImage.userInteractionEnabled = YES;
-    //self.bottomImage.userInteractionEnabled = YES;
-    
-    // for now, turn it "on" here (sending nil simulates both lights and fire)
-    //[self controlButtonTapped:nil];
     
     // here?
     s_sharedInstance = self;
     
     _nodeManager = [[RWNodeManager alloc] init];
-    //_nodeManager.delegate = self;
+    _nodeManager.delegate = self;
+    
+    // add manager to node view and add nodes to node views and manager
     _topNodes.nodeManager = _nodeManager;
     if (![_topNodes addNodes]) {
         NSLog(@"couldn't add nodes to top node view");
@@ -331,6 +328,7 @@ static RWFirstViewController *s_sharedInstance;
     CGFloat value = slider.value;
     // send time between pattern updates
     [self send:[NSString stringWithFormat:@"tick=%f", 1.1 - value]];
+    self.tickLabel.text = [NSString stringWithFormat:@"Tick: %.1fs", 1.1 - value];
 }
 
 // duration
@@ -340,10 +338,12 @@ static RWFirstViewController *s_sharedInstance;
     if (slider == _lightDurationSlider) {
         // send light duration updarte
         [self send:[NSString stringWithFormat:@"lightduration=%f", value]];
+        _lightDurationsLabel.text = [NSString stringWithFormat:@"%.1fs", value];
     }
     else {
         // send fire duration updarte
         [self send:[NSString stringWithFormat:@"fireduration=%f", value]];
+        _fireDurationLabel.text = [NSString stringWithFormat:@"%.2fs", value];
     }
 }
 
@@ -384,14 +384,21 @@ static RWFirstViewController *s_sharedInstance;
     UISegmentedControl *sc = (UISegmentedControl *)sender;
     // do different stuff based on what was tapped
     switch (sc.selectedSegmentIndex) {
-        case 0:
+        case 0: // both
             // stuff
+            self.topNodes.controlMode = kRWControlModeBoth;
+            self.bottomNodes.controlMode = kRWControlModeBoth;
             break;
-        case 1:
+        case 1: // lights
             // stuff
+            // go through node manager instead?
+            self.topNodes.controlMode = kRWControlModeLights;
+            self.bottomNodes.controlMode = kRWControlModeLights;
             break;
-        case 2:
+        case 2: // fire
             // stuff
+            self.topNodes.controlMode = kRWControlModeFire;
+            self.bottomNodes.controlMode = kRWControlModeFire;
             break;
         default:
             break;
@@ -738,7 +745,7 @@ static RWFirstViewController *s_sharedInstance;
 - (NSString *)messageFromDict:(NSDictionary *)node {
     NSString *command = [node valueForKey:@"command"];
     NSString *type = [node valueForKey:@"type"];
-    NSInteger num = [[node valueForKey:@"numer"] intValue];
+    NSInteger num = [[node valueForKey:@"number"] intValue];
     NSString *letter = [type isEqualToString:@"fire"] ? @"f" : @"l";
     if ([command isEqualToString:@"off"]) {
         return [NSString stringWithFormat:@"%@x=%d", letter, num];
@@ -760,6 +767,7 @@ static RWFirstViewController *s_sharedInstance;
             connector = @",";
         }
     }
+    [self send:sendMessage];
 }
 
 @end

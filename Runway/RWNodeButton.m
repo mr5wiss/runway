@@ -53,15 +53,12 @@
         }
     }
     // this should cause the correct action to be sent
-    nodeTypeStatus status = typeChanged == kRWnodeTypeLight ? self.lightStatus : self.fireStatus;
+    // status reversed because it has not been changed yet (might get confusing)
+    nodeTypeStatus status = typeChanged == kRWnodeTypeLight ? !self.lightStatus : !self.fireStatus;
     [self.delegate stateWasChangedTo:status forNode:self type:typeChanged];
     // this shows what's happening on the display
     NSTimeInterval duration = typeChanged == kRWnodeTypeLight ? [self.delegate lightDuration] : [self.delegate fireDuration];
     [self changeTapStateForType:typeChanged duration:duration];
-    // if we're setting it to on only for a certain duration, maker sure the display shows that
-    if (status && duration) {
-        _tapStateTimer = [NSTimer scheduledTimerWithTimeInterval:duration target:self selector:@selector(revertTapState:) userInfo:[NSNumber numberWithInt:typeChanged] repeats:NO];
-    }
 }
 
 - (void)revertTapState:(NSTimer *)sender {
@@ -80,12 +77,10 @@
         self.lightStatus = !self.lightStatus;
     }
     [self setBackgroundImageBasedOnStatus];
+    nodeTypeStatus status = type == kRWnodeTypeLight ? self.lightStatus : self.fireStatus;
     // use the timer to do it only for a certain duration by scheduling a revert if necessary
-    if (duration) {
-        nodeTypeStatus status = type == kRWnodeTypeLight ? self.lightStatus : self.fireStatus;
-        if (status && duration) {
-            _tapStateTimer = [NSTimer scheduledTimerWithTimeInterval:duration target:self selector:@selector(revertTapState:) userInfo:[NSNumber numberWithInt:type] repeats:NO];
-        }
+    if (status && duration) {
+        _tapStateTimer = [NSTimer scheduledTimerWithTimeInterval:duration target:self selector:@selector(revertTapState:) userInfo:[NSNumber numberWithInt:type] repeats:NO];
     }
 }
 
