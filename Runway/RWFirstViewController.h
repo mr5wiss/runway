@@ -11,6 +11,9 @@
 #import "RWNodeManager.h"
 #import "RWNodeView.h"
 
+#define LIGHTS_PER_SIDE 42
+#define FIRE_PER_SIDE 20
+
 typedef enum {
     kRWOutputModeNow = 0,
     kRWOutputModeRelease,

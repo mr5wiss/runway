@@ -9,9 +9,8 @@
 #import "RWNodeView.h"
 #import "RWNodeManager.h"
 #import "RWNodeButton.h"
+#import "RWFirstViewController.h"
 
-#define LIGHTS_PER_SIDE 42
-#define FIRE_PER_SIDE 20
 #define NODE_WIDTH 22
 #define FIRST_FIRE 1
 #define FIRE_GAP 2

@@ -121,6 +121,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="lockSidesTapped:" destination="2" eventType="touchUpInside" id="lYd-ox-yJ1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uEH-wv-j1Y">
                                 <rect key="frame" x="525" y="267" width="80" height="44"/>
@@ -322,6 +325,7 @@
                         <outlet property="fireDurationSlider" destination="uVk-ev-hLl" id="d4T-E3-jWu"/>
                         <outlet property="lightDurationSlider" destination="6hJ-G9-xcT" id="jmu-zN-neJ"/>
                         <outlet property="lightDurationsLabel" destination="9rV-3V-pbm" id="6c4-vD-gZe"/>
+                        <outlet property="lockSidesButton" destination="Sdo-r8-5iA" id="KbH-NG-sXe"/>
                         <outlet property="loopBarButton" destination="Jsj-NJ-ise" id="Wuo-VP-6I0"/>
                         <outlet property="nodeControl" destination="d3t-tY-mG5" id="eo6-Db-zLu"/>
                         <outlet property="offBarButton" destination="BLJ-d8-Des" id="kD8-dx-aKI"/>

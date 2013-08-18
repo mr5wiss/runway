@@ -10,12 +10,32 @@
 #import "RWFirstViewController.h"
 
 
-@implementation RWNodeManager
+@implementation RWNodeManager {
+    NSMutableDictionary *_nodes;
+}
+
+- (RWNodeManager *)init {
+    self = [super init];
+    if (self) {
+        _nodes = [[NSMutableDictionary alloc] initWithCapacity:2*LIGHTS_PER_SIDE];
+    }
+    return self;
+}
 
 - (void)addNode:(RWNodeButton *)node number:(NSInteger)num {
     // add the node to a structure such that nodes can be accessed by number
+    [_nodes setObject:node forKey:[NSNumber numberWithInt:num]];
 }
 
+- (RWNodeButton *)mirroredNode:(RWNodeButton *)node {
+    if (node.num < LIGHTS_PER_SIDE) {
+        return [_nodes objectForKey:[NSNumber numberWithInt:node.num + LIGHTS_PER_SIDE]];
+    }
+    else {
+        return [_nodes objectForKey:[NSNumber numberWithInt:node.num - LIGHTS_PER_SIDE]];
+    }
+    return nil;
+}
 
 #pragma mark RWNodeButtonDelegate
 - (void)stateWasChangedTo:(BOOL)state forNode:(RWNodeButton *)node type:(nodeType)type {
@@ -26,7 +46,18 @@
     [nodeDict setObject:(state ? @"on" : @"off") forKey:@"command"];
     [nodeDict setObject:(type == kRWnodeTypeFire ? @"fire" : @"light") forKey:@"type"];
     [nodeDict setObject:[NSNumber numberWithInt:node.num] forKey:@"number"];
-    [self.delegate nodesChanged:[NSArray arrayWithObject:nodeDict]];
+    
+    NSMutableDictionary *mirrorNodeDict = nil;
+    if (self.sidesLocked) {
+        // change other sides' node as well
+        NSTimeInterval duration = type == kRWnodeTypeFire ? [self fireDuration] : [self lightDuration];
+        RWNodeButton *mirrorNode = [self mirroredNode:node];
+        [mirrorNode changeTapStateForType:type duration:duration];
+        mirrorNodeDict = [NSMutableDictionary dictionaryWithDictionary:nodeDict];
+        [mirrorNodeDict setObject:[NSNumber numberWithInt:mirrorNode.num] forKey:@"number"];
+    }
+    //[self.delegate nodesChanged:[NSArray arrayWithObject:nodeDict]];
+    [self.delegate nodesChanged:[NSArray arrayWithObjects:nodeDict, mirrorNodeDict, nil]];
 }
 
 - (NSTimeInterval)lightDuration {

@@ -9,17 +9,6 @@
 #import "RWFirstViewController.h"
 #import "RWNodeManager.h"
 
-// these will be based on the actual images and configuration we use
-#define LIGHTS_PER_SIDE 42
-#define FIRE_PER_SIDE 20
-#define FIRE_TOP_Y 70
-#define FIRE_BOTTOM_Y 102
-#define LIGHT_TOP_Y 32
-#define LIGHT_BOTTOM_Y 142
-#define LIGHT_WIDTH 10
-#define LIGHT_GAP 14
-#define LIGHT_INITIAL_GAP 15
-
 // change as we hook up lights
 #define LIGHTS_FOR_TEST 42
 
@@ -485,10 +474,12 @@ static RWFirstViewController *s_sharedInstance;
     if (!_sidesLocked) {
         [self.lockSidesButton setTitle:@"Unlock" forState:UIControlStateNormal];
         _sidesLocked = YES;
+        _nodeManager.sidesLocked = YES;
     }
     else {
-        [self.lockSidesButton setTitle:@"Lock Sides" forState:UIControlStateNormal];
+        [self.lockSidesButton setTitle:@"Lock" forState:UIControlStateNormal];
         _sidesLocked = NO;
+        _nodeManager.sidesLocked = NO;
     }
 }
 
@@ -515,7 +506,7 @@ static RWFirstViewController *s_sharedInstance;
 }
 
 #pragma mark node calculations
-- (void)sendNodeDataBasedOnTap:(CGPoint)location view:(NSInteger)viewNum {
+/*- (void)sendNodeDataBasedOnTap:(CGPoint)location view:(NSInteger)viewNum {
     NSInteger startingLightNum = viewNum == 0 ? 1 : LIGHTS_PER_SIDE+1;
     NSInteger startingFireNum = viewNum == 0 ? 0 : FIRE_PER_SIDE;
     // no adjustment now
@@ -665,7 +656,7 @@ static RWFirstViewController *s_sharedInstance;
             }
         }
     }
-}
+}*/
 
 /*#pragma mark - UIPickerViewDelegate
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
