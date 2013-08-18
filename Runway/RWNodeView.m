@@ -18,6 +18,8 @@
 @implementation RWNodeView {
     RWNodeButton *_lastTouchedNode;
     nodeType _lastTypeChanged;
+    CGPoint _lastTouchLocation;
+    BOOL _lastDirectionWasForward;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -124,10 +126,14 @@
         return;
     }
     CGPoint convertedPoint = [self convertPoint:location toView:node];
+    BOOL currentDirectionIsForward = location.x > _lastTouchLocation.x;
     nodeType typeChanged = [node typeForLocation:convertedPoint];
-    if (node == _lastTouchedNode && typeChanged == _lastTypeChanged) {
+    if (node == _lastTouchedNode && typeChanged == _lastTypeChanged && _lastDirectionWasForward == currentDirectionIsForward) {
+        _lastTouchLocation = location;
         return;
     }
+    _lastTouchLocation = location;
+    _lastDirectionWasForward = currentDirectionIsForward;
     _lastTouchedNode = node;
     _lastTypeChanged = typeChanged;
     nodeTypeStatus status = typeChanged == kRWnodeTypeLight ? !node.lightStatus : !node.fireStatus;
