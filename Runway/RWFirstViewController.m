@@ -73,11 +73,14 @@ static RWFirstViewController *s_sharedInstance;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // plan to do this a different way
     //self.patterns = [[NSArray alloc] initWithObjects:@"--NO PATTERN--", @"pattern 1", @"pattern 2", @"pattern 3", @"pattern 4", @"pattern 5", @"pattern 6", @"pattern 7", @"pattern 8", @"pattern 9", nil];
     
-    // here?
+    // create a shared instance - here?
     s_sharedInstance = self;
     
+    // initialize the node manager
     _nodeManager = [[RWNodeManager alloc] init];
     _nodeManager.delegate = self;
     
@@ -128,15 +131,6 @@ static RWFirstViewController *s_sharedInstance;
     _loopBarButton.action = @selector(loopTapped);
     _connectButton.action = @selector(connectButtonTapped:);
     
-    // set up array for panning view
-    _panTouchingStatus = [[NSMutableArray alloc] initWithCapacity:2];
-    NSMutableDictionary *view1TouchDict = [[NSMutableDictionary alloc] initWithCapacity:2];
-    NSMutableDictionary *view2TouchDict = [[NSMutableDictionary alloc] initWithCapacity:2];
-    [view1TouchDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
-    [view1TouchDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
-    [_panTouchingStatus addObject:view1TouchDict];
-    [_panTouchingStatus addObject:view2TouchDict];
-    
     _recordHistory = [[NSMutableArray alloc] init];
     
     self.patternField.delegate = self;
@@ -161,6 +155,7 @@ static RWFirstViewController *s_sharedInstance;
 // SHUT EVERYTHING OFF!!!
 - (void)panic:(id)sender {
     [self send:@"panic=1"];
+    // force user to confirm leaving mode
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Panic!" message:@"Everything has been turned off.  Please press OK to exit panic mode" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
@@ -290,6 +285,7 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+// TO DO
 - (IBAction)nodeButtonTapped:(id)sender {
     if (sender == self.clear1Button){
         // send clear message for string 1
@@ -340,6 +336,7 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+// fade
 - (void)fadeChanged:(id)sender {
     UISlider *slider = (UISlider *)sender;
     CGFloat value = slider.value;
@@ -389,7 +386,6 @@ static RWFirstViewController *s_sharedInstance;
             self.bottomNodes.controlMode = kRWControlModeBoth;
             break;
         case 1: // lights
-            // go through node manager instead?
             self.topNodes.controlMode = kRWControlModeLights;
             self.bottomNodes.controlMode = kRWControlModeLights;
             break;
@@ -436,6 +432,7 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+// color - TO DO: decide on colors and do interface well
 - (void)colorChosen:(id)sender {
     UISegmentedControl *sc = (UISegmentedControl *)sender;
     // do different stuff based on what was tapped
@@ -454,29 +451,6 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
-// what nodes are you controlling?
-/*- (void)controlButtonTapped:(id)sender {
-    // change images based on which controls are active
-    if ((UIButton *)sender == fireButton) {
-        self.topImage.image = [UIImage imageNamed:@"runwayFire.png"];
-        self.bottomImage.image = [UIImage imageNamed:@"runwayFire.png"];
-        _controllingFire = YES;
-        _controllingLights = NO;
-    }
-    else if ((UIButton *)sender == lightsButton) {
-        self.topImage.image = [UIImage imageNamed:@"runwayLights.png"];
-        self.bottomImage.image = [UIImage imageNamed:@"runwayLights.png"];
-        _controllingLights = YES;
-        _controllingFire = NO;
-    }
-    else {
-        self.topImage.image = [UIImage imageNamed:@"runwayLightsFire.png"];
-        self.bottomImage.image = [UIImage imageNamed:@"runwayLightsFire.png"];
-        _controllingFire = YES;
-        _controllingLights = YES;
-    }
-}*/
-
 - (void)lockSidesTapped:(id)sender {
     // make sides go in lockstep (and unlock)
     if (!_sidesLocked) {
@@ -491,6 +465,7 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+// sends number user typed in - TO DO: better interface
 - (IBAction)patternButtonTapped:(id)sender {
     // later, slide in list to choose from
     [self.patternField resignFirstResponder];
@@ -512,177 +487,6 @@ static RWFirstViewController *s_sharedInstance;
     NSDictionary *nodeTuple = [NSDictionary dictionaryWithObjectsAndKeys:message, @"message", timeStamp, @"timestamp", nil];
     [_recordHistory addObject:nodeTuple];
 }
-
-#pragma mark node calculations
-/*- (void)sendNodeDataBasedOnTap:(CGPoint)location view:(NSInteger)viewNum {
-    NSInteger startingLightNum = viewNum == 0 ? 1 : LIGHTS_PER_SIDE+1;
-    NSInteger startingFireNum = viewNum == 0 ? 0 : FIRE_PER_SIDE;
-    // no adjustment now
-    CGFloat adjustedY = location.y;
-    
-    BOOL hitFire = NO;
-    // fire touch has to be precisely within target
-    NSInteger lightCycle = LIGHT_WIDTH + LIGHT_GAP;
-    NSInteger minX = LIGHT_INITIAL_GAP + lightCycle + LIGHT_WIDTH;
-    NSInteger maxX = LIGHT_INITIAL_GAP + (LIGHTS_PER_SIDE-1)*lightCycle;
-    if (_controllingFire && adjustedY >= FIRE_TOP_Y && adjustedY <= FIRE_BOTTOM_Y && location.x >= minX && location.x < maxX) {
-        NSInteger adjustedX = location.x - LIGHT_INITIAL_GAP;
-        NSInteger modX = adjustedX % lightCycle;
-        NSInteger divX = adjustedX / lightCycle;
-        if (modX > LIGHT_WIDTH && divX % 2 == 1) {
-            hitFire = YES;
-            NSInteger fireNum = startingFireNum + (divX-1)/2;
-            NSString *sendString = [NSString stringWithFormat:@"fire=%d", fireNum];
-            if (_sidesLocked) {
-                sendString = [sendString stringByAppendingFormat:@",fire=%d", fireNum + FIRE_PER_SIDE];
-            }
-            [self record:sendString];
-            [self send:sendString];
-        }
-    }
-    // if fire wasn't hit, turn on closest light to touch, even if it missed the actual target
-    if (!hitFire && _controllingLights) {
-        NSInteger xAdjustemnt = LIGHT_INITIAL_GAP - LIGHT_GAP/2;
-        NSInteger adjustedX = location.x - xAdjustemnt;
-        if (adjustedX < 0) adjustedX = 0;
-        NSInteger highX = 1023 - 2*xAdjustemnt;
-        if (adjustedX > highX) adjustedX = highX;
-        NSInteger lightNum = startingLightNum + adjustedX/lightCycle;
-        NSString *sendString = [NSString stringWithFormat:@"light=%d", lightNum];
-        if (_sidesLocked) {
-            sendString = [sendString stringByAppendingFormat:@",light=%d", lightNum + LIGHTS_PER_SIDE];
-        }
-        [self record:sendString];
-        [self send:sendString];
-    }
-}
-
-// TO DO: deal with multiple pans on same side and pans from one view to another
-- (void)sendNodeDataBasedOnPan:(CGPoint)location view:(NSInteger)viewNum {
-    // sender's view is always bottom image, so check y value to determine which view was clicked on
-    NSInteger startingLightNum = viewNum == 0 ? 1 : LIGHTS_PER_SIDE+1;
-    NSInteger startingFireNum = viewNum == 0 ? 0 : FIRE_PER_SIDE;
-    // no adjustment anymore
-    CGFloat adjustedY = location.y;
-    
-    NSMutableDictionary *touchingDict = [_panTouchingStatus objectAtIndex:viewNum];
-    
-    NSInteger lightCycle = LIGHT_WIDTH + LIGHT_GAP;
-    NSInteger minX = LIGHT_INITIAL_GAP + lightCycle + LIGHT_WIDTH;
-    NSInteger maxX = LIGHT_INITIAL_GAP + (LIGHTS_PER_SIDE-1)*lightCycle;
-    if (_controllingFire) {
-        if (adjustedY >= FIRE_TOP_Y && adjustedY <= FIRE_BOTTOM_Y && location.x >= minX && location.x < maxX) {
-            NSInteger adjustedX = location.x - LIGHT_INITIAL_GAP;
-            NSInteger modX = adjustedX % lightCycle;
-            NSInteger divX = adjustedX / lightCycle;
-            // we're touching fire
-            if (modX > LIGHT_WIDTH && divX % 2 == 1) {
-                // if we were already touching fire, don't send again
-                if ([[touchingDict objectForKey:@"fire"] boolValue]) {
-                    return;
-                }
-                // if not, send the command
-                else {
-                    [touchingDict setObject:[NSNumber numberWithBool:YES] forKey:@"fire"];
-                    [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
-                    NSInteger fireNum = startingFireNum + (divX-1)/2;
-                    NSString *sendString = [NSString stringWithFormat:@"fire=%d", fireNum];
-                    if (_sidesLocked) {
-                        sendString = [sendString stringByAppendingFormat:@",fire=%d", fireNum + FIRE_PER_SIDE];
-                    }
-                    [self record:sendString];
-                    [self send:sendString];
-                    return;
-                }
-            }
-            // we're touching nothing, set both to NO
-            else if (modX > LIGHT_WIDTH) {
-                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
-                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
-                return;
-            }
-            // we're touching a light area
-            // if we were already touching a light, ignore
-            else if ([[touchingDict objectForKey:@"light"] boolValue]) {
-                return;
-            }
-            // newly touching a light area
-            else {
-                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
-                // send command if we're controlling lights
-                if (_controllingLights) {
-                    [touchingDict setObject:[NSNumber numberWithBool:YES] forKey:@"light"];
-                    NSInteger lightNum = startingLightNum + divX;
-                    NSString *sendString = [NSString stringWithFormat:@"light=%d", lightNum];
-                    if (_sidesLocked) {
-                        sendString = [sendString stringByAppendingFormat:@",light=%d", lightNum + LIGHTS_PER_SIDE];
-                    }
-                    [self record:sendString];
-                    [self send:sendString];
-                    return;
-                }
-            }
-        }
-        // we're out of fire's range
-        else if ([[touchingDict objectForKey:@"fire"] boolValue]) {
-            [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
-        }
-    }
-    if (_controllingLights) {
-        // TO DO: fix these numbers
-        if (adjustedY < LIGHT_TOP_Y || adjustedY > LIGHT_BOTTOM_Y || location.x < LIGHT_INITIAL_GAP) {
-            [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
-        }
-        else {
-            NSInteger adjustedX = location.x - LIGHT_INITIAL_GAP;
-            NSInteger modX = adjustedX % lightCycle;
-            NSInteger divX = adjustedX / lightCycle;
-            // touching light
-            if (modX <= LIGHT_WIDTH) {
-                // already touching
-                if ([[touchingDict objectForKey:@"light"] boolValue]) {
-                    return;
-                }
-                // newly touching, send command
-                else {
-                    [touchingDict setObject:[NSNumber numberWithBool:YES] forKey:@"light"];
-                    [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
-                    NSInteger lightNum = startingLightNum + divX;
-                    NSString *sendString = [NSString stringWithFormat:@"light=%d", lightNum];
-                    if (_sidesLocked) {
-                        sendString = [sendString stringByAppendingFormat:@",light=%d", lightNum + LIGHTS_PER_SIDE];
-                    }
-                    [self record:sendString];
-                    [self send:sendString];
-                    return;
-                }
-            }
-            // not touching anything
-            else {
-                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"fire"];
-                [touchingDict setObject:[NSNumber numberWithBool:NO] forKey:@"light"];
-            }
-        }
-    }
-}*/
-
-/*#pragma mark - UIPickerViewDelegate
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    // respond to pattern choice
-    [self send:[NSString stringWithFormat:@"pattern=%d", row]];
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return patterns.count;
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 1;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [patterns objectAtIndex:row];
-}*/
 
 #pragma mark SRWebSocketDelegate
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
