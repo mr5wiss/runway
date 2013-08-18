@@ -30,12 +30,14 @@ typedef enum {
 @property (nonatomic, strong) IBOutlet UISlider *tempoSlider;
 @property (nonatomic, strong) IBOutlet UISlider *lightDurationSlider;
 @property (nonatomic, strong) IBOutlet UISlider *fireDurationSlider;
+@property (nonatomic, strong) IBOutlet UISlider *flightFadeSlider;
 @property (nonatomic, strong) IBOutlet UIToolbar *topToolbar;
 @property (nonatomic, strong) IBOutlet UILabel *tapLabel;
 @property (nonatomic, strong) IBOutlet UILabel *tickLabel;
 @property (nonatomic, strong) IBOutlet UILabel *patternLabel;
 @property (nonatomic, strong) IBOutlet UILabel *fireDurationLabel;
 @property (nonatomic, strong) IBOutlet UILabel *lightDurationsLabel;
+@property (nonatomic, strong) IBOutlet UILabel *lightFadeLabel;
 @property (nonatomic, strong) IBOutlet UISwitch *tapSwitch;
 @property (nonatomic, strong) IBOutlet UIButton *debugConnectButton;
 @property (nonatomic, strong) IBOutlet UIButton *clear1Button;
@@ -80,6 +82,7 @@ typedef enum {
 // sliders
 - (IBAction)tempoChanged:(id)sender;
 - (IBAction)durationChanged:(id)sender;
+- (IBAction)fadeChanged:(id)sender;
 
 // segmented controls
 - (IBAction)nodesChosen:(id)sender;

@@ -336,8 +336,15 @@ static RWFirstViewController *s_sharedInstance;
     else {
         // send fire duration updarte
         [self send:[NSString stringWithFormat:@"fireduration=%f", value]];
-        _fireDurationLabel.text = [NSString stringWithFormat:@"%.2fs", value];
+        _fireDurationLabel.text = [NSString stringWithFormat:@"%.1fs", value];
     }
+}
+
+- (void)fadeChanged:(id)sender {
+    UISlider *slider = (UISlider *)sender;
+    CGFloat value = slider.value;
+    [self send:[NSString stringWithFormat:@"fadetime=%.1f", value]];
+    _lightFadeLabel.text = [NSString stringWithFormat:@"%.1fs", value];
 }
 
 // bpm tapping

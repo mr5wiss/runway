@@ -182,7 +182,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="ri3-HJ-RvJ">
-                                <rect key="frame" x="261" y="234" width="180" height="44"/>
+                                <rect key="frame" x="141" y="298" width="180" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Now"/>
@@ -194,7 +194,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="hj6-H6-K9k">
-                                <rect key="frame" x="151" y="300" width="161" height="44"/>
+                                <rect key="frame" x="276" y="234" width="161" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Temp"/>
@@ -205,14 +205,14 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light Duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NV4-pa-bjS">
-                                <rect key="frame" x="57" y="362" width="106" height="21"/>
+                                <rect key="frame" x="24" y="362" width="106" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fire Duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5VH-Qg-FLD">
-                                <rect key="frame" x="302" y="362" width="99" height="21"/>
+                                <rect key="frame" x="182" y="362" width="99" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -261,15 +261,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.10000000000000001" maxValue="3" id="6hJ-G9-xcT">
-                                <rect key="frame" x="51" y="393" width="118" height="23"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.02" maxValue="2" id="6hJ-G9-xcT">
+                                <rect key="frame" x="18" y="393" width="118" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="durationChanged:" destination="2" eventType="valueChanged" id="Fhh-3R-UTi"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.01" maxValue="1" id="uVk-ev-hLl">
-                                <rect key="frame" x="292" y="393" width="118" height="23"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.02" maxValue="1" id="uVk-ev-hLl">
+                                <rect key="frame" x="172" y="393" width="118" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="durationChanged:" destination="2" eventType="valueChanged" id="orh-S3-j34"/>
@@ -290,15 +290,15 @@
                                     <action selector="panic:" destination="2" eventType="touchUpInside" id="B0e-Ab-yqj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.3s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9rV-3V-pbm">
-                                <rect key="frame" x="94" y="423" width="33" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.1s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9rV-3V-pbm">
+                                <rect key="frame" x="61" y="423" width="33" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.10s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2nA-fk-9nT">
-                                <rect key="frame" x="330" y="423" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.1s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2nA-fk-9nT">
+                                <rect key="frame" x="210" y="423" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -306,6 +306,27 @@
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tick: 0.5s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4f8-fI-daH">
                                 <rect key="frame" x="769" y="479" width="73" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="nb9-1W-fh2">
+                                <rect key="frame" x="321" y="393" width="118" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="fadeChanged:" destination="2" eventType="valueChanged" id="Uj1-kb-FSU"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light Fade" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pJL-LP-oLT">
+                                <rect key="frame" x="340" y="362" width="81" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.0s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pBk-1d-eCm">
+                                <rect key="frame" x="364" y="423" width="33" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -323,8 +344,10 @@
                         <outlet property="connectButton" destination="NHh-ZN-Ncb" id="FbN-pu-fLS"/>
                         <outlet property="fireDurationLabel" destination="2nA-fk-9nT" id="XRY-8f-wCW"/>
                         <outlet property="fireDurationSlider" destination="uVk-ev-hLl" id="d4T-E3-jWu"/>
+                        <outlet property="flightFadeSlider" destination="nb9-1W-fh2" id="8nV-qP-CnC"/>
                         <outlet property="lightDurationSlider" destination="6hJ-G9-xcT" id="jmu-zN-neJ"/>
                         <outlet property="lightDurationsLabel" destination="9rV-3V-pbm" id="6c4-vD-gZe"/>
+                        <outlet property="lightFadeLabel" destination="pBk-1d-eCm" id="kGN-Y1-Hrj"/>
                         <outlet property="lockSidesButton" destination="Sdo-r8-5iA" id="KbH-NG-sXe"/>
                         <outlet property="loopBarButton" destination="Jsj-NJ-ise" id="Wuo-VP-6I0"/>
                         <outlet property="nodeControl" destination="d3t-tY-mG5" id="eo6-Db-zLu"/>
@@ -417,6 +440,77 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="RWFirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="colorChosen:"/>
+                <relationship kind="action" name="durationChanged:"/>
+                <relationship kind="action" name="fadeChanged:"/>
+                <relationship kind="action" name="lockSidesTapped:"/>
+                <relationship kind="action" name="nodeButtonTapped:"/>
+                <relationship kind="action" name="nodesChosen:"/>
+                <relationship kind="action" name="panic:"/>
+                <relationship kind="action" name="patternButtonTapped:"/>
+                <relationship kind="action" name="permanenceChosen:"/>
+                <relationship kind="action" name="tempoChanged:"/>
+                <relationship kind="action" name="timeChosen:"/>
+                <relationship kind="outlet" name="all1Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="all2Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bottomNodes" candidateClass="RWNodeView"/>
+                <relationship kind="outlet" name="clear1Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="clear2Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="colorControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="connectButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="debugBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="debugConnectButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="exec1Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="exec2Button" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fireDurationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fireDurationSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="flightFadeSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="lightDurationSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="lightDurationsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lightFadeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lockSidesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loopBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="nodeControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="offBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="onBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="panicBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="panicButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pattern1BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern2BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern3BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern4BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern5BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="patternChooseButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="patternField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patternKeyPad" candidateClass="UIView"/>
+                <relationship kind="outlet" name="patternLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="permanenceControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="recordBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="stopLoopBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="stopRecordBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tapLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tapSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tempoSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="tickLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="topNodes" candidateClass="RWNodeView"/>
+                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="RWNodeView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWNodeView.h"/>
+        </class>
+        <class className="RWSecondViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWSecondViewController.h"/>
+        </class>
+        <class className="RWTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWTabBarController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
