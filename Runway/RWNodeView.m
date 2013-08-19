@@ -109,8 +109,8 @@
 
 - (NSInteger)locationToNodePosition:(CGPoint)location {
     NSInteger nodeNum = location.x / NODE_WIDTH;
-    if (nodeNum > self.startNum + LIGHTS_PER_SIDE - 1) {
-        nodeNum = self.startNum + LIGHTS_PER_SIDE - 1;
+    if (nodeNum >= LIGHTS_PER_SIDE) {
+        nodeNum = LIGHTS_PER_SIDE-1;
     }
     return nodeNum;
 }
