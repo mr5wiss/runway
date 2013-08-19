@@ -10,6 +10,7 @@
 #import "RWPatternButton.h"
 #import "RWFirstViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIView+UIView_Background.h"
 
 
 #define HORIZONTAL_PADDING_BETWEEN_BUTTONS 40
@@ -86,7 +87,48 @@
                           PATTERNDICT_FLAME(23, @"Twinkle All Flames", [UIColor whiteColor])
                           PATTERNDICT_FLAME(24, @"Twinkle ALL", [UIColor whiteColor])
                           PATTERNDICT(25, @"Twinkle All Lights Random Fade", [UIColor whiteColor])
+
+                          PATTERNDICT_FLAME(26, @"Light and Fire Chaser Left", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(27, @"Light and Fire Chaser Right", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(28, @"Light and Fire Chaser Left Reverse", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(29, @"Light and Fire Chaser Right Reverse", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(30, @"Twinkle One Flame", [UIColor whiteColor])
+                          
+                          PATTERNDICT(31, @"Twinkle One Light", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(32, @"Twinkle One Flame and Light", [UIColor whiteColor])
+                          PATTERNDICT(33, @"Twinkle All Lights", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(34, @"Twinkle All Lights, One Flame", [UIColor whiteColor])
+                          
+                          PATTERNDICT_FLAME(35, @"Light and Fire Chasers both directions", [UIColor whiteColor])
+
+                          PATTERNDICT_FLAME(36, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(37, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(38, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(39, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(40, @"Pattern", [UIColor whiteColor])
+
+                          PATTERNDICT_FLAME(41, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(42, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(43, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(44, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(45, @"Pattern", [UIColor whiteColor])
+
+                          PATTERNDICT_FLAME(46, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(47, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(48, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(49, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(50, @"Pattern", [UIColor whiteColor])
+
+                          
+                          PATTERNDICT_FLAME(51, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(52, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(53, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(54, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(55, @"Pattern", [UIColor whiteColor])
+
                           ];
+        
+        
         
     });
     return s_patternArray;
@@ -96,6 +138,7 @@
 - (void)layoutPatterns {
     CGFloat xPos = HORIZONTAL_START_POS;
     CGFloat yPos = VERTICAL_PADDING_BETWEEN_BUTTONS;
+    CGFloat buttonHeight;
     
     NSMutableDictionary *buttonDict = [NSMutableDictionary dictionaryWithCapacity:1];
     
@@ -103,6 +146,7 @@
     
     for (NSDictionary *patternDict in self.patternArray) {
         RWPatternButton *button = [RWPatternButton patternButtonWithDictionary:patternDict];
+        buttonHeight = button.frame.size.height;
         button.frame = CGRectMake(xPos, yPos, button.frame.size.width, button.frame.size.height);
 
         button.delegate = self;
@@ -118,6 +162,8 @@
     }
 
     self.patternButtonDictionary = buttonDict;
+    
+    self.patternButtonsContainerView.contentSize = CGSizeMake(self.patternButtonsContainerView.frame.size.width, yPos + buttonHeight + VERTICAL_PADDING_BETWEEN_BUTTONS);
 }
 
 - (void)viewDidLoad
@@ -128,6 +174,8 @@
     [self layoutPatterns];
     
     self.view.backgroundColor = [UIColor blackColor];
+    [self.parametersContainerView addDarkRoundyShadowBackground];
+    [self.patternButtonsContainerView addDarkRoundyShadowBackground];
     
     //listen to commands from first view controller
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandSent:) name:kCommandSentNotification object:nil];
