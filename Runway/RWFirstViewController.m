@@ -14,7 +14,7 @@
 
 // change as we hook up lights
 #define LIGHTS_FOR_TEST 42
-#define MAX_PATTERN_NUMBER 25
+#define MAX_PATTERN_NUMBER 100
 
 @interface RWFirstViewController ()
 @property (nonatomic, strong) SRWebSocket *wSocket;
