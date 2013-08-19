@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RWPatternButton.h"
 
-@interface RWSecondViewController : UIViewController
+@interface RWSecondViewController : UIViewController <RWPatternButtonDelegate>
 
 @end

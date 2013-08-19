@@ -48,15 +48,32 @@ static RWFirstViewController *s_sharedInstance;
     [self.wSocket open];
 }
 
++ (NSDictionary *)parametersDictionaryFromMessage:(NSString *)msg {
+    NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithCapacity:1];
+    NSArray *parametersStrings = [msg componentsSeparatedByString:@"&"];
+    for (NSString *string in parametersStrings) {
+        NSArray *arr = [string componentsSeparatedByString:@"="];
+        if (arr.count > 1) {
+            [parametersDictionary setObject:[arr objectAtIndex:1] forKey:[arr objectAtIndex:0]];
+        }
+    }
+    return parametersDictionary;
+}
+
 - (BOOL)send:(NSString *)msg {
     NSLog(@"sending %@...", msg);
     if (self.wSocket.readyState == SR_OPEN) {
         [self.wSocket send:msg];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCommandSentNotification object:[[self class] parametersDictionaryFromMessage:msg]];
+        
         return YES;
-    }
-    else {
+    } else {
         if (!_recordOn) {
             NSLog(@"socket not open: nothing sent");
+            
+            //TODO: This is for debugging - arguably we only want to post this above if the command sent is successful
+            [[NSNotificationCenter defaultCenter] postNotificationName:kCommandSentNotification object:[[self class] parametersDictionaryFromMessage:msg]];
         }
         return NO;
     }
@@ -481,12 +498,20 @@ static RWFirstViewController *s_sharedInstance;
 }
 
 // sends number user typed in - TO DO: better interface
+
+- (void)sendPatternNumber:(NSInteger)patternNumber {
+    [self send:[NSString stringWithFormat:@"pattern=%d", patternNumber]];
+}
+
+
 - (IBAction)patternButtonTapped:(id)sender {
     // later, slide in list to choose from
     [self.patternField resignFirstResponder];
     NSInteger patternNum = [self.patternField.text integerValue];
-    [self send:[NSString stringWithFormat:@"pattern=%d", patternNum]];
+    
+    [self sendPatternNumber:patternNum];
     // change label text
+    
 }
 
 #pragma mark recording
