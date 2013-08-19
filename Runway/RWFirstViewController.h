@@ -26,11 +26,13 @@
 // mode controls
 @property (nonatomic, strong) IBOutlet UISegmentedControl *nodeControl;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *permanenceControl;
+
 // sliders
 @property (nonatomic, strong) IBOutlet UISlider *tempoSlider;
 @property (nonatomic, strong) IBOutlet UISlider *lightDurationSlider;
 @property (nonatomic, strong) IBOutlet UISlider *fireDurationSlider;
-@property (nonatomic, strong) IBOutlet UISlider *flightFadeSlider;
+@property (nonatomic, strong) IBOutlet UISlider *fadeInSlider;
+@property (nonatomic, strong) IBOutlet UISlider *fadeOutSlider;
 
 @property (nonatomic, strong) IBOutlet UIToolbar *topToolbar;
 
@@ -40,7 +42,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *patternLabel;
 @property (nonatomic, strong) IBOutlet UILabel *fireDurationLabel;
 @property (nonatomic, strong) IBOutlet UILabel *lightDurationsLabel;
-@property (nonatomic, strong) IBOutlet UILabel *lightFadeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *fadeInLabel;
+@property (nonatomic, strong) IBOutlet UILabel *fadeOutLabel;
 
 // buttons controlling nodes
 @property (nonatomic, strong) IBOutlet UIButton *clearButton;
