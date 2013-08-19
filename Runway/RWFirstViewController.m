@@ -576,6 +576,7 @@ static RWFirstViewController *s_sharedInstance;
         }
     }
     [self send:sendMessage];
+    [self record:sendMessage];
 }
 
 #pragma mark UITextFieldDelegate
