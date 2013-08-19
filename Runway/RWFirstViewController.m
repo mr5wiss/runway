@@ -239,7 +239,7 @@ static RWFirstViewController *s_sharedInstance;
     int normalisedPeakRight = (int) ((rightPeakPower + 160.0f)/40.0f);
     
     // send the levels to the websocket
-    [self send:[NSString stringWithFormat:@"leftAudioPower=%i&rightAudioPower=%i&leftPeakPower=%i&rightPeakPower=%i",
+    [self send:[NSString stringWithFormat:@"eql=%i,eqr=%i,eqpl=%i,eqpr=%i",
             normalisedAvgLeft, normalisedAvgRight, normalisedPeakLeft, normalisedPeakRight]];
 }
 
