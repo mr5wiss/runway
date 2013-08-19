@@ -456,7 +456,7 @@ static RWFirstViewController *s_sharedInstance;
             [self send:[NSString stringWithFormat:@"color=yellow"]];
             break;
         case 4:
-            [self send:[NSString stringWithFormat:@"color=pick"]];
+            [self send:[NSString stringWithFormat:@"color=pink"]];
             break;
         case 5:
             [self send:[NSString stringWithFormat:@"color=eq"]];
