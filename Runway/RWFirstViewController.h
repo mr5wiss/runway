@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "SRWebSocket.h"
 #import "RWNodeManager.h"
 #import "FPNumberPadView.h"

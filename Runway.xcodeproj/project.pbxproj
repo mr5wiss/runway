@@ -45,6 +45,7 @@
 		5BF98D1417B7E7CD00E1A88A /* runwayFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1117B7E7CD00E1A88A /* runwayFire.png */; };
 		5BF98D1517B7E7CD00E1A88A /* runwayLights.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1217B7E7CD00E1A88A /* runwayLights.png */; };
 		5BF98D1617B7E7CD00E1A88A /* runwayLightsFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1317B7E7CD00E1A88A /* runwayLightsFire.png */; };
+		90E3897C17C2CF700005F312 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E3897B17C2CF700005F312 /* AVFoundation.framework */; };
 		EF48F0231787725200912CD3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0201787725200912CD3 /* libicucore.dylib */; };
 		EF48F0241787725200912CD3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0211787725200912CD3 /* CFNetwork.framework */; };
 		EF48F0251787725200912CD3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0221787725200912CD3 /* Security.framework */; };
@@ -123,6 +124,7 @@
 		5BF98D1117B7E7CD00E1A88A /* runwayFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayFire.png; sourceTree = "<group>"; };
 		5BF98D1217B7E7CD00E1A88A /* runwayLights.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayLights.png; sourceTree = "<group>"; };
 		5BF98D1317B7E7CD00E1A88A /* runwayLightsFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayLightsFire.png; sourceTree = "<group>"; };
+		90E3897B17C2CF700005F312 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EF48F0201787725200912CD3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		EF48F0211787725200912CD3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		EF48F0221787725200912CD3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -173,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E3897C17C2CF700005F312 /* AVFoundation.framework in Frameworks */,
 				5B6B2EF9177FCD6500FF98D5 /* UIKit.framework in Frameworks */,
 				5B6B2EFB177FCD6500FF98D5 /* Foundation.framework in Frameworks */,
 				5B6B2EFD177FCD6500FF98D5 /* CoreGraphics.framework in Frameworks */,
@@ -206,6 +209,7 @@
 		5B6B2EF7177FCD6500FF98D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90E3897B17C2CF700005F312 /* AVFoundation.framework */,
 				EF48F0201787725200912CD3 /* libicucore.dylib */,
 				EF48F0211787725200912CD3 /* CFNetwork.framework */,
 				EF48F0221787725200912CD3 /* Security.framework */,

@@ -36,6 +36,9 @@
     NSMutableArray *_recordHistory;
     RWNodeManager *_nodeManager;
     RWFirstViewController *_s_sharedInstance;
+    
+    AVAudioRecorder *_avAudioRecorder;
+    NSTimer *_avTimer;
 }
 
 static RWFirstViewController *s_sharedInstance;
@@ -203,13 +206,47 @@ static RWFirstViewController *s_sharedInstance;
 }
 
 - (void)recordButtonTapped {
+    // configure and start the AVAudioRecorder
+    NSError *err = nil;
+    NSURL *url = [NSURL URLWithString:@"/dev/null"]; // don't save the recording
+    NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:kAudioFormatLinearPCM], [NSNumber numberWithFloat:44100.0f], [NSNumber numberWithInt:2], nil]
+        forKeys:[NSArray arrayWithObjects:AVFormatIDKey, AVSampleRateKey, AVNumberOfChannelsKey, nil]];
+    _avAudioRecorder = [[AVAudioRecorder alloc] initWithURL:url settings:dict error:&err];
+    _avAudioRecorder.meteringEnabled = YES;
+    [_avAudioRecorder record];
+
+    // start timer to update the level meter
+    _avTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateMicrophoneLevels) userInfo:nil repeats:YES];
+    
     _recordOn = YES;
     _recordBarButton.tintColor = [UIColor blueColor];
     // clear out any current recording
     [_recordHistory removeAllObjects];
 }
 
+- (void)updateMicrophoneLevels {
+    [_avAudioRecorder updateMeters];
+    float leftAvgPower = [_avAudioRecorder averagePowerForChannel:0];
+    float rightAvgPower = [_avAudioRecorder averagePowerForChannel:1];
+    
+    int normalisedLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
+    int normalisedRight = (int) ((rightAvgPower + 160.0f)/40.0f);
+    
+    // normalise meter levels to between 0 and 40
+    // send the levels to the websocket
+    [self send:[NSString stringWithFormat:@"leftAudioPower=%i&rightAudioPower=%i",
+            normalisedLeft, normalisedRight]];
+}
+
 - (void)recordOffTapped {
+    // stop the timer which updates the microphone levels
+    [_avTimer invalidate];
+    _avTimer = nil;
+    
+    // stop recording the microphone
+    [_avAudioRecorder stop];
+    _avAudioRecorder = nil;
+    
     // record final state
     [self record:nil];
     _recordOn = NO;
