@@ -18,13 +18,6 @@
 //This lets any listening controller (e.g. RWSecondViewController) know when any command was sent and react appropriately
 #define kCommandSentNotification @"kCommandSentNotification"  //sends dictionary of {@"command" : commandString, @"value" : value} 
 
-#define kCurrentPatternNumberChangedNotification @"kCurrentPatternNumberChangedNotification"
-#define kCurrentColorChangedNotification @"kCurrentPatternNumberChangedNotification"
-#define kCurrentModeChangedNotification @"kCurrentModeChangedNotification" //mode is lights, fire, or both
-#define kCurrentLightDurationChangedNotification @"kCurrentLightDurationChangedNotification"
-#define kCurrentFireDurationChangedNotification @"kCurrentFireDurationChangedNotification"
-#define kCurrentLightFadeDurationChangedNotification @"kCurrentLightFadeDurationChangedNotification"
-
 @interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate, UITextFieldDelegate>
 // the main input views
 @property (nonatomic, strong) IBOutlet RWNodeView *topNodes;
