@@ -40,26 +40,42 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         s_patternArray = @[
-                          //0-4
-                          PATTERNDICT(0, @"Clear", [UIColor whiteColor])
-                          PATTERNDICT(1, @"Random String", [UIColor whiteColor])
-                          PATTERNDICT(2, @"Random Point", [UIColor whiteColor])
-                          PATTERNDICT(3, @"Simple Chaser", [UIColor whiteColor])
-                          PATTERNDICT(4, @"Cylon Chaser", [UIColor whiteColor])
-                          //5-9
-                          PATTERNDICT(5, @"String Blink", [UIColor whiteColor])
-                          PATTERNDICT(6, @"Lightning String Blink", [UIColor whiteColor])
-                          PATTERNDICT(7, @"String Pulsate", [UIColor whiteColor])
-                          PATTERNDICT(8, @"Watery", [UIColor whiteColor])
-                          PATTERNDICT(9, @"Blue Watery", [UIColor whiteColor])
-                          //10-14
-                          PATTERNDICT(10, @"Light Chase", [UIColor whiteColor])
-                          PATTERNDICT(11, @"Blink Specific", [UIColor whiteColor])
-                          PATTERNDICT(12, @"All On", [UIColor yellowColor])
-                          PATTERNDICT(13, @"Light Chase Blue", [UIColor whiteColor])
-                          PATTERNDICT(14, @"Blink Specific All", [UIColor whiteColor])
-                          //15-19
-                          PATTERNDICT(15, @"Chase Specific", [UIColor whiteColor])
+                          //0-5
+                           //PATTERNDICT(-1, @"Clear", [UIColor whiteColor])
+                           //PATTERNDICT(0, @"Show Node", [UIColor grayColor]) //doesn't work without parameters
+                          PATTERNDICT(1, @"Show Lights", [UIColor whiteColor])
+                          PATTERNDICT(2, @"Show Flames", [UIColor whiteColor])
+                          PATTERNDICT(3, @"Left Side All", [UIColor whiteColor])
+                          PATTERNDICT(4, @"Right Side All", [UIColor whiteColor])
+                          PATTERNDICT(5, @"Simple Chaser", [UIColor whiteColor])
+
+                          //6-10
+                          PATTERNDICT(6, @"Dual Chaser", [UIColor whiteColor])
+                          PATTERNDICT(7, @"Dual Reverse Chaser", [UIColor whiteColor])
+//                          PATTERNDICT(8, @"Multi Node Dual", [UIColor whiteColor]) // needs parameter (lightgap)
+                          PATTERNDICT(9, @"Chase Light Simple", [UIColor whiteColor])
+                          PATTERNDICT(10, @"Chase Light Circuit", [UIColor whiteColor])
+
+                          //11-15
+                          PATTERNDICT(11, @"Twinkle All", [UIColor whiteColor])
+//                          PATTERNDICT(12, @"Show Logical Light", [UIColor grayColor]) //needs parameter
+                          PATTERNDICT(13, @"Chase Light Dual", [UIColor grayColor]) //needs lightgap parameter
+//                          PATTERNDICT(14, @"Chase Multi Light Dual", [UIColor grayColor]) //needs lightgap parameter
+                          PATTERNDICT(15, @"Silly Rabbits", [UIColor whiteColor])
+
+                          //16-20
+                          PATTERNDICT(16, @"Fill Up Lights Simple", [UIColor whiteColor])
+                          PATTERNDICT(17, @"Fill Up Lights Dual", [UIColor whiteColor])
+//                          PATTERNDICT(18, @"Fill Up Lights Dual Eq", [UIColor grayColor]) //needs lightEq parameter
+                          PATTERNDICT(19, @"Light And Fire Simple Chaser", [UIColor orangeColor])
+                          PATTERNDICT(20, @"Light And Fire Dual Chaser", [UIColor orangeColor])
+
+                          //21-25
+                          PATTERNDICT(21, @"Light And Fire Simple Dual", [UIColor orangeColor])
+                          PATTERNDICT(22, @"Light And Fire Simple Dual Reverse", [UIColor orangeColor])
+                          PATTERNDICT(23, @"Twinkle All Flames", [UIColor orangeColor])
+                          PATTERNDICT(24, @"Twinkle ALL", [UIColor orangeColor])
+                          PATTERNDICT(25, @"Twinkle All Lights Random Fade", [UIColor whiteColor])
                           ];
         
     });

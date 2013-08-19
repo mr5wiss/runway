@@ -13,6 +13,7 @@
 @interface RWPatternButton ()
 @property (readwrite) NSInteger patternNumber;
 @property (strong) UILabel *titleLabel;
+@property (strong) UILabel *numberLabel;
 @property (nonatomic, strong) UIColor *preservedBackgroundColor;
 @property (strong) UIColor *selectedBackgroundColor;
 @property (strong) UIColor *tappedBackgroundColor;
@@ -22,14 +23,16 @@
 @synthesize patternNumber;
 
 + (RWPatternButton *)patternButtonWithDictionary:(NSDictionary *)patternInfo {
-    UIColor *color = [patternInfo valueForKey:@"color"];
+    UIColor *color = [patternInfo valueForKey:@"displayColor"];
     NSString *title = [patternInfo valueForKey:@"name"];
     NSInteger number = [[patternInfo valueForKey:@"number"] integerValue];
+//    BOOL hasFire = [[patternInfo valueForKey:@"hasFire"] boolValue];
+//    NSDictionary *parameters = [patternInfo valueForKey:@"parameters"];
     
     RWPatternButton *aButton = [[RWPatternButton alloc] initWithFrame:CGRectMake(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT)];
     aButton.titleLabel.text = title ? title : [NSString stringWithFormat:@"Pattern %d", 1];
     aButton.patternNumber = number;
-    aButton.preservedBackgroundColor = [UIColor colorWithWhite:.8 alpha:1.0];// color ? color : [UIColor whiteColor];
+    aButton.preservedBackgroundColor = color ? color : [UIColor whiteColor];
     aButton.selectedBackgroundColor = [UIColor yellowColor];
     aButton.tappedBackgroundColor = [UIColor orangeColor];
     aButton.frame = CGRectMake(0,0,BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -43,7 +46,7 @@
         // Initialization code
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectInset(frame, 4, 4)];
         self.titleLabel.center = self.center;
-        self.titleLabel.font = [UIFont systemFontOfSize:15];
+        self.titleLabel.font = [UIFont systemFontOfSize:13];
         self.titleLabel.textAlignment = UITextAlignmentCenter;
         self.titleLabel.numberOfLines = 3;
         self.titleLabel.backgroundColor = [UIColor clearColor];
