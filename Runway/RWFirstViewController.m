@@ -636,8 +636,9 @@ static RWFirstViewController *s_sharedInstance;
     [self addDigitAndSendPatternIfEnoughTimeElapses:digit];
 }
 
-- (void)decimalTapped {
-    self.patternField.text = nil;
+- (void)enterTapped {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self submitPatternNumber];
 }
 
 - (void)clearTapped {

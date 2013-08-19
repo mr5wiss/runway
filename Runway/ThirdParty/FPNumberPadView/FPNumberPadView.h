@@ -31,7 +31,7 @@
 
 @protocol FPKeypadDelegate <NSObject>
 - (void)digitTapped:(NSInteger)digit;
-- (void)decimalTapped;
+- (void)enterTapped;
 - (void)clearTapped;
 @end
 
