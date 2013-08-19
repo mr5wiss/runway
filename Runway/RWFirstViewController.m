@@ -227,15 +227,20 @@ static RWFirstViewController *s_sharedInstance;
 - (void)updateMicrophoneLevels {
     [_avAudioRecorder updateMeters];
     float leftAvgPower = [_avAudioRecorder averagePowerForChannel:0];
+    float leftPeakPower = [_avAudioRecorder peakPowerForChannel:0];
+    
     float rightAvgPower = [_avAudioRecorder averagePowerForChannel:1];
+    float rightPeakPower = [_avAudioRecorder peakPowerForChannel:1];
     
     // normalise meter levels to between 0 and 40
-    int normalisedLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
-    int normalisedRight = (int) ((rightAvgPower + 160.0f)/40.0f);
+    int normalisedAvgLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
+    int normalisedAvgRight = (int) ((rightAvgPower + 160.0f)/40.0f);
+    int normalisedPeakLeft = (int) ((leftPeakPower + 160.0f)/40.0f);
+    int normalisedPeakRight = (int) ((rightPeakPower + 160.0f)/40.0f);
     
     // send the levels to the websocket
-    [self send:[NSString stringWithFormat:@"leftAudioPower=%i&rightAudioPower=%i",
-            normalisedLeft, normalisedRight]];
+    [self send:[NSString stringWithFormat:@"leftAudioPower=%i&rightAudioPower=%i&leftPeakPower=%i&rightPeakPower=%i",
+            normalisedAvgLeft, normalisedAvgRight, normalisedPeakLeft, normalisedPeakRight]];
 }
 
 - (void)recordOffTapped {
