@@ -8,9 +8,13 @@
 
 #import "RWFirstViewController.h"
 #import "RWNodeManager.h"
+#import "RWColorSegmentedControl.h"
+#import "FPNumberPadView.h"
+#import "UIView+UIView_Background.h"
 
 // change as we hook up lights
 #define LIGHTS_FOR_TEST 42
+#define MAX_PATTERN_NUMBER 25
 
 @interface RWFirstViewController ()
 @property (nonatomic, strong) SRWebSocket *wSocket;
@@ -151,6 +155,27 @@ static RWFirstViewController *s_sharedInstance;
     _recordHistory = [[NSMutableArray alloc] init];
     
     self.patternField.delegate = self;
+    
+    FPNumberPadView *keyPad = [[FPNumberPadView alloc] initWithFrame:CGRectMake(0,0, self.patternKeyPadContainer.frame.size.width, self.patternKeyPadContainer.frame.size.height)];
+    keyPad.keypadDelegate = self;
+    
+    
+    [self.patternKeyPadContainer addSubview:keyPad];
+    
+    [self.patternContainerView addDarkRoundyShadowBackground];
+    [self.fireTogglesContainerView addDarkRoundyShadowBackground];
+    [self.tempoContainerView addDarkRoundyShadowBackground];
+    [self.sharedControlsView addDarkRoundyShadowBackground];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    UIView *sharedControlsView = [[RWFirstViewController sharedInstance] sharedControlsView];
+    if (![sharedControlsView isDescendantOfView:self.view]) {
+        if ([sharedControlsView superview]) {
+            [sharedControlsView removeFromSuperview];
+        }
+        [self.view addSubview:sharedControlsView];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -457,30 +482,15 @@ static RWFirstViewController *s_sharedInstance;
 
 // color - TO DO: decide on colors and do interface well
 - (void)colorChosen:(id)sender {
-    UISegmentedControl *sc = (UISegmentedControl *)sender;
-    // do different stuff based on what was tapped
-    switch (sc.selectedSegmentIndex) {
-        case 0:
-            [self send:[NSString stringWithFormat:@"color=blue"]];
-            break;
-        case 1:
-            [self send:[NSString stringWithFormat:@"color=green"]];
-            break;
-        case 2:
-            [self send:[NSString stringWithFormat:@"color=red"]];
-            break;
-        case 3:
-            [self send:[NSString stringWithFormat:@"color=yellow"]];
-            break;
-        case 4:
-            [self send:[NSString stringWithFormat:@"color=pink"]];
-            break;
-        case 5:
-            [self send:[NSString stringWithFormat:@"color=eq"]];
-            break;
-        default:
-            break;
+    RWColorSegmentedControl *sc = (RWColorSegmentedControl *)sender;
+    NSString *colorString = [sc colorString];
+    
+    if (colorString) {
+        [self send:[NSString stringWithFormat:@"color=%@", colorString]];
+    } else {
+        NSLog(@"Error - no color");
     }
+    
 }
 
 - (void)lockSidesTapped:(id)sender {
@@ -501,6 +511,7 @@ static RWFirstViewController *s_sharedInstance;
 
 - (void)sendPatternNumber:(NSInteger)patternNumber {
     [self send:[NSString stringWithFormat:@"pattern=%d", patternNumber]];
+    self.patternField.placeholder = [NSString stringWithFormat:@"%d", patternNumber];
 }
 
 
@@ -610,6 +621,53 @@ static RWFirstViewController *s_sharedInstance;
     NSInteger patternNum = [textField.text integerValue];
     [self send:[NSString stringWithFormat:@"pattern=%d", patternNum]];
     return YES;
+}
+
+- (void)viewDidUnload {
+    [self setSharedControlsView:nil];
+    [self setFireTogglesContainerView:nil];
+    [self setPatternContainerView:nil];
+    [self setTempoContainerView:nil];
+    [super viewDidUnload];
+}
+
+#pragma mark FPKeypadDelegate
+- (void)digitTapped:(NSInteger)digit {
+    [self addDigitAndSendPatternIfEnoughTimeElapses:digit];
+}
+
+- (void)decimalTapped {
+    self.patternField.text = nil;
+}
+
+- (void)clearTapped {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    self.patternField.text = nil;
+}
+
+- (void)submitPatternNumber {
+    if (self.patternField.text.length > 0) {
+        NSInteger patternNumber = [self.patternField.text integerValue];
+        [self sendPatternNumber:patternNumber];
+        self.patternField.text = nil;
+    }
+}
+
+- (void)addDigitAndSendPatternIfEnoughTimeElapses:(NSInteger)digit {
+    
+    //if user types only one digit, auto-submit that after one second
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(submitPatternNumber) withObject:nil afterDelay:1.5];
+    
+    if (self.patternField.text.length == 1) {
+        NSString *candidateText = [self.patternField.text stringByAppendingFormat:@"%d", digit];
+        if ([candidateText integerValue] > MAX_PATTERN_NUMBER) {
+            return;
+        }
+        self.patternField.text = candidateText;
+    } else if (self.patternField.text.length == 0) {
+        self.patternField.text = [NSString stringWithFormat:@"%d", digit];
+    }
 }
 
 @end

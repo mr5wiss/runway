@@ -10,5 +10,7 @@
 #import "RWPatternButton.h"
 
 @interface RWSecondViewController : UIViewController <RWPatternButtonDelegate>
+@property (weak, nonatomic) IBOutlet UIView *parametersContainerView;
+@property (weak, nonatomic) IBOutlet UIView *patternButtonsContainerView;
 
 @end
