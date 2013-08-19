@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E3067" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
@@ -124,18 +124,18 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="COJ-mD-hzS" userLabel="Shared Controls View">
-                                <rect key="frame" x="64" y="589" width="860" height="103"/>
+                                <rect key="frame" x="7" y="589" width="1005" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jIy-80-BB3">
-                                        <rect key="frame" x="686" y="8" width="42" height="21"/>
+                                        <rect key="frame" x="844" y="8" width="42" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="qE6-Pp-GWY" customClass="RWColorSegmentedControl">
-                                        <rect key="frame" x="575" y="40" width="265" height="44"/>
+                                        <rect key="frame" x="733" y="39" width="265" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="" image="smallBlueCircle.png"/>
@@ -151,68 +151,89 @@
                                         </connections>
                                     </segmentedControl>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NV4-pa-bjS">
-                                        <rect key="frame" x="0.0" y="8" width="170" height="21"/>
+                                        <rect key="frame" x="7" y="8" width="170" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.1s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9rV-3V-pbm">
-                                        <rect key="frame" x="-2" y="69" width="170" height="21"/>
+                                        <rect key="frame" x="5" y="69" width="170" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.1s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2nA-fk-9nT">
-                                        <rect key="frame" x="177" y="69" width="170" height="21"/>
+                                        <rect key="frame" x="184" y="69" width="170" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="nb9-1W-fh2">
-                                        <rect key="frame" x="366" y="39" width="161" height="23"/>
+                                        <rect key="frame" x="373" y="39" width="161" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="fadeChanged:" destination="2" eventType="valueChanged" id="Uj1-kb-FSU"/>
                                         </connections>
                                     </slider>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Light Fade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pJL-LP-oLT">
-                                        <rect key="frame" x="368" y="8" width="170" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fade In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pJL-LP-oLT">
+                                        <rect key="frame" x="375" y="8" width="170" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.0s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pBk-1d-eCm">
-                                        <rect key="frame" x="368" y="69" width="157" height="21"/>
+                                        <rect key="frame" x="375" y="69" width="157" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.02" maxValue="2" id="6hJ-G9-xcT">
-                                        <rect key="frame" x="-2" y="39" width="170" height="23"/>
+                                        <rect key="frame" x="5" y="39" width="170" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="durationChanged:" destination="2" eventType="valueChanged" id="Fhh-3R-UTi"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fire Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5VH-Qg-FLD">
-                                        <rect key="frame" x="177" y="8" width="170" height="21"/>
+                                        <rect key="frame" x="184" y="8" width="170" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.02" maxValue="1" id="uVk-ev-hLl">
-                                        <rect key="frame" x="177" y="39" width="170" height="23"/>
+                                        <rect key="frame" x="184" y="39" width="170" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="durationChanged:" destination="2" eventType="valueChanged" id="orh-S3-j34"/>
                                         </connections>
                                     </slider>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fade Out" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t4j-L8-nez">
+                                        <rect key="frame" x="548" y="8" width="170" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="rDM-VX-leg">
+                                        <rect key="frame" x="553" y="39" width="161" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="fadeChanged:" destination="2" eventType="valueChanged" id="aiv-Ik-eNl"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.0s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="91Z-lJ-oW1">
+                                        <rect key="frame" x="555" y="69" width="157" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -331,13 +352,15 @@
                         <outlet property="clearButton" destination="l1M-DI-aeK" id="AhL-cg-TnI"/>
                         <outlet property="colorControl" destination="qE6-Pp-GWY" id="jOO-SI-Pzx"/>
                         <outlet property="connectButton" destination="NHh-ZN-Ncb" id="FbN-pu-fLS"/>
+                        <outlet property="fadeInLabel" destination="pBk-1d-eCm" id="pvy-0g-153"/>
+                        <outlet property="fadeInSlider" destination="nb9-1W-fh2" id="IBe-1s-Yna"/>
+                        <outlet property="fadeOutLabel" destination="91Z-lJ-oW1" id="94R-HO-GWU"/>
+                        <outlet property="fadeOutSlider" destination="rDM-VX-leg" id="XQi-B7-EEK"/>
                         <outlet property="fireDurationLabel" destination="2nA-fk-9nT" id="XRY-8f-wCW"/>
                         <outlet property="fireDurationSlider" destination="uVk-ev-hLl" id="d4T-E3-jWu"/>
                         <outlet property="fireTogglesContainerView" destination="JMB-vw-fjL" id="gjh-vt-ZKe"/>
-                        <outlet property="flightFadeSlider" destination="nb9-1W-fh2" id="8nV-qP-CnC"/>
                         <outlet property="lightDurationSlider" destination="6hJ-G9-xcT" id="jmu-zN-neJ"/>
                         <outlet property="lightDurationsLabel" destination="9rV-3V-pbm" id="6c4-vD-gZe"/>
-                        <outlet property="lightFadeLabel" destination="pBk-1d-eCm" id="kGN-Y1-Hrj"/>
                         <outlet property="lockSidesButton" destination="Sdo-r8-5iA" id="KbH-NG-sXe"/>
                         <outlet property="loopBarButton" destination="Jsj-NJ-ise" id="Wuo-VP-6I0"/>
                         <outlet property="nodeControl" destination="d3t-tY-mG5" id="eo6-Db-zLu"/>
@@ -459,13 +482,15 @@
                 <relationship kind="outlet" name="clearButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="colorControl" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="connectButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="fadeInLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fadeInSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="fadeOutLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fadeOutSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="fireDurationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="fireDurationSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="fireTogglesContainerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="flightFadeSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="lightDurationSlider" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="lightDurationsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lightFadeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="lockSidesButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="loopBarButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="nodeControl" candidateClass="UISegmentedControl"/>
