@@ -14,6 +14,7 @@
 @property (readwrite) NSInteger patternNumber;
 @property (strong) UILabel *titleLabel;
 @property (strong) UILabel *numberLabel;
+@property (strong) UIImageView *fireIndicator;
 @property (nonatomic, strong) UIColor *preservedBackgroundColor;
 @property (strong) UIColor *selectedBackgroundColor;
 @property (strong) UIColor *tappedBackgroundColor;
@@ -26,7 +27,7 @@
     UIColor *color = [patternInfo valueForKey:@"displayColor"];
     NSString *title = [patternInfo valueForKey:@"name"];
     NSInteger number = [[patternInfo valueForKey:@"number"] integerValue];
-//    BOOL hasFire = [[patternInfo valueForKey:@"hasFire"] boolValue];
+    BOOL hasFire = [[patternInfo valueForKey:@"hasFlame"] boolValue];
 //    NSDictionary *parameters = [patternInfo valueForKey:@"parameters"];
     
     RWPatternButton *aButton = [[RWPatternButton alloc] initWithFrame:CGRectMake(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT)];
@@ -36,6 +37,8 @@
     aButton.selectedBackgroundColor = [UIColor yellowColor];
     aButton.tappedBackgroundColor = [UIColor orangeColor];
     aButton.frame = CGRectMake(0,0,BUTTON_WIDTH, BUTTON_HEIGHT);
+    aButton.numberLabel.text = [NSString stringWithFormat:@"%d", number];
+    aButton.fireIndicator.hidden = !hasFire;
     return aButton;
 }
 
@@ -44,6 +47,25 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.layer.borderColor = [UIColor colorWithWhite:.5 alpha:1.0].CGColor;
+        self.layer.borderWidth = 2.0;
+        self.layer.cornerRadius = 4.0;
+        self.layer.shadowColor = [UIColor colorWithWhite:.2 alpha:.5].CGColor;
+        self.layer.shadowOffset = CGSizeMake(-2,-2);
+        
+        self.fireIndicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fire"]];
+        self.fireIndicator.contentMode = UIViewContentModeScaleAspectFit;
+        self.fireIndicator.frame = CGRectMake(BUTTON_WIDTH-18, 2, 15, 15);
+        self.fireIndicator.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin;
+        [self addSubview:self.fireIndicator];
+        
+        self.numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(4, BUTTON_HEIGHT-15, 25, 10)];
+        self.numberLabel.font = [UIFont boldSystemFontOfSize:14];
+        self.numberLabel.textColor = [UIColor colorWithWhite:.3 alpha:1.0];
+        self.numberLabel.backgroundColor = [UIColor clearColor];
+        self.numberLabel.textAlignment = UITextAlignmentLeft;
+        [self addSubview:self.numberLabel];
+        
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectInset(frame, 4, 4)];
         self.titleLabel.center = self.center;
         self.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -51,13 +73,7 @@
         self.titleLabel.numberOfLines = 3;
         self.titleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:self.titleLabel];
-        self.layer.borderColor = [UIColor colorWithWhite:.5 alpha:1.0].CGColor;
-        self.layer.borderWidth = 2.0;
-        self.layer.cornerRadius = 4.0;
-        self.layer.shadowColor = [UIColor colorWithWhite:.2 alpha:.5].CGColor;
-        self.layer.shadowOffset = CGSizeMake(-2,-2);
-        
-        
+
         UIGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
         [self addGestureRecognizer:gr];
         
