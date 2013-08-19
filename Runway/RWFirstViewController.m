@@ -229,10 +229,10 @@ static RWFirstViewController *s_sharedInstance;
     float leftAvgPower = [_avAudioRecorder averagePowerForChannel:0];
     float rightAvgPower = [_avAudioRecorder averagePowerForChannel:1];
     
+    // normalise meter levels to between 0 and 40
     int normalisedLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
     int normalisedRight = (int) ((rightAvgPower + 160.0f)/40.0f);
     
-    // normalise meter levels to between 0 and 40
     // send the levels to the websocket
     [self send:[NSString stringWithFormat:@"leftAudioPower=%i&rightAudioPower=%i",
             normalisedLeft, normalisedRight]];
