@@ -9,16 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "SRWebSocket.h"
 #import "RWNodeManager.h"
+#import "FPNumberPadView.h"
 #import "RWNodeView.h"
 
 #define LIGHTS_PER_SIDE 42
 #define FIRE_PER_SIDE 20
 
-
 //This lets any listening controller (e.g. RWSecondViewController) know when any command was sent and react appropriately
 #define kCommandSentNotification @"kCommandSentNotification"  //sends dictionary of {@"command" : commandString, @"value" : value} 
 
-@interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate, UITextFieldDelegate>
+@interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate, UITextFieldDelegate, FPKeypadDelegate>
 // the main input views
 @property (nonatomic, strong) IBOutlet RWNodeView *topNodes;
 @property (nonatomic, strong) IBOutlet RWNodeView *bottomNodes;
@@ -70,7 +70,10 @@
 @property (nonatomic, strong) IBOutlet UIButton *patternChooseButton;
 @property (nonatomic, strong) IBOutlet UITextField *patternField;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *colorControl;
-@property (nonatomic, strong) IBOutlet UIView *patternKeyPad; //  not implemented
+@property (nonatomic, strong) IBOutlet UIView *patternKeyPadContainer; //  not implemented
+@property (weak, nonatomic) IBOutlet UIView *fireTogglesContainerView;
+@property (weak, nonatomic) IBOutlet UIView *patternContainerView;
+@property (weak, nonatomic) IBOutlet UIView *tempoContainerView;
 
 // are lights staying on until turned off, or only for duration
 @property (readonly) BOOL permanence;
@@ -98,6 +101,8 @@
 
 - (IBAction)colorChosen:(id)sender;
 - (IBAction)panic:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIView *sharedControlsView;
 
 
 #pragma mark control interface for external callers (e.g., RWSecondViewController)

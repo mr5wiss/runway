@@ -53,6 +53,25 @@
 		EF48F0311787760F00912CD3 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = EF48F02E1787760F00912CD3 /* SRWebSocket.m */; };
 		EF4EC45617C18CBE00854DB3 /* RWPatternButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4EC45517C18CBE00854DB3 /* RWPatternButton.m */; };
 		EFB9CA1817C196D7000853BA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFB9CA1717C196D7000853BA /* QuartzCore.framework */; };
+		EFB9CA1D17C1B30A000853BA /* fire@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB9CA1C17C1B30A000853BA /* fire@2x.png */; };
+		EFB9CA2017C1BE2B000853BA /* RWColorSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA1F17C1BE2B000853BA /* RWColorSegmentedControl.m */; };
+		EFB9CA2417C1BFC0000853BA /* ILCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA2317C1BFC0000853BA /* ILCircleView.m */; };
+		EFB9CA2D17C1C086000853BA /* UIButton+Glossy.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA2617C1C086000853BA /* UIButton+Glossy.m */; };
+		EFB9CA2E17C1C086000853BA /* UIColor+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA2817C1C086000853BA /* UIColor+Extensions.m */; };
+		EFB9CA2F17C1C086000853BA /* UIColor+Lightness.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA2A17C1C086000853BA /* UIColor+Lightness.m */; };
+		EFB9CA3017C1C086000853BA /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA2C17C1C086000853BA /* UIView+Image.m */; };
+		EFB9CA3217C1C8D2000853BA /* eq_meter.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB9CA3117C1C8D2000853BA /* eq_meter.png */; };
+		EFB9CA3417C1C944000853BA /* colorwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB9CA3317C1C944000853BA /* colorwheel.png */; };
+		EFB9CA3617C1C995000853BA /* questionmark.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB9CA3517C1C995000853BA /* questionmark.png */; };
+		EFB9CA3917C1CC56000853BA /* UIImage+ProportionalFill.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA3817C1CC56000853BA /* UIImage+ProportionalFill.m */; };
+		EFB9CA3F17C1D7A1000853BA /* RWSharedControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA3E17C1D7A1000853BA /* RWSharedControlsViewController.m */; };
+		EFB9CA4117C1DD44000853BA /* dots.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB9CA4017C1DD44000853BA /* dots.png */; };
+		EFB9CA4A17C1E02D000853BA /* FPNumberPadView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA4517C1E02D000853BA /* FPNumberPadView.m */; };
+		EFB9CA4B17C1E02D000853BA /* FPNumberPadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFB9CA4617C1E02D000853BA /* FPNumberPadView.xib */; };
+		EFB9CA4C17C1E02D000853BA /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB9CA4817C1E02D000853BA /* background@2x.png */; };
+		EFB9CA4D17C1E02D000853BA /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB9CA4917C1E02D000853BA /* button@2x.png */; };
+		EFB9CA5017C1EA01000853BA /* UIView+UIView_Background.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA4F17C1EA01000853BA /* UIView+UIView_Background.m */; };
+		EFB9CA7C17C1EB6F000853BA /* RWGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA7B17C1EB6E000853BA /* RWGlossyButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +136,36 @@
 		EF4EC45417C18CBE00854DB3 /* RWPatternButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RWPatternButton.h; path = Views/RWPatternButton.h; sourceTree = "<group>"; };
 		EF4EC45517C18CBE00854DB3 /* RWPatternButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RWPatternButton.m; path = Views/RWPatternButton.m; sourceTree = "<group>"; };
 		EFB9CA1717C196D7000853BA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EFB9CA1C17C1B30A000853BA /* fire@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fire@2x.png"; path = "images/fire@2x.png"; sourceTree = "<group>"; };
+		EFB9CA1E17C1BE2B000853BA /* RWColorSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RWColorSegmentedControl.h; path = Views/RWColorSegmentedControl.h; sourceTree = "<group>"; };
+		EFB9CA1F17C1BE2B000853BA /* RWColorSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RWColorSegmentedControl.m; path = Views/RWColorSegmentedControl.m; sourceTree = "<group>"; };
+		EFB9CA2217C1BFC0000853BA /* ILCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILCircleView.h; sourceTree = "<group>"; };
+		EFB9CA2317C1BFC0000853BA /* ILCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILCircleView.m; sourceTree = "<group>"; };
+		EFB9CA2517C1C086000853BA /* UIButton+Glossy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Glossy.h"; sourceTree = "<group>"; };
+		EFB9CA2617C1C086000853BA /* UIButton+Glossy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Glossy.m"; sourceTree = "<group>"; };
+		EFB9CA2717C1C086000853BA /* UIColor+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extensions.h"; sourceTree = "<group>"; };
+		EFB9CA2817C1C086000853BA /* UIColor+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extensions.m"; sourceTree = "<group>"; };
+		EFB9CA2917C1C086000853BA /* UIColor+Lightness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Lightness.h"; sourceTree = "<group>"; };
+		EFB9CA2A17C1C086000853BA /* UIColor+Lightness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Lightness.m"; sourceTree = "<group>"; };
+		EFB9CA2B17C1C086000853BA /* UIView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Image.h"; sourceTree = "<group>"; };
+		EFB9CA2C17C1C086000853BA /* UIView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Image.m"; sourceTree = "<group>"; };
+		EFB9CA3117C1C8D2000853BA /* eq_meter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eq_meter.png; path = images/eq_meter.png; sourceTree = "<group>"; };
+		EFB9CA3317C1C944000853BA /* colorwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = colorwheel.png; path = images/colorwheel.png; sourceTree = "<group>"; };
+		EFB9CA3517C1C995000853BA /* questionmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = questionmark.png; path = images/questionmark.png; sourceTree = "<group>"; };
+		EFB9CA3717C1CC56000853BA /* UIImage+ProportionalFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ProportionalFill.h"; sourceTree = "<group>"; };
+		EFB9CA3817C1CC56000853BA /* UIImage+ProportionalFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ProportionalFill.m"; sourceTree = "<group>"; };
+		EFB9CA3D17C1D7A1000853BA /* RWSharedControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWSharedControlsViewController.h; sourceTree = "<group>"; };
+		EFB9CA3E17C1D7A1000853BA /* RWSharedControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWSharedControlsViewController.m; sourceTree = "<group>"; };
+		EFB9CA4017C1DD44000853BA /* dots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dots.png; path = images/dots.png; sourceTree = "<group>"; };
+		EFB9CA4417C1E02D000853BA /* FPNumberPadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPNumberPadView.h; sourceTree = "<group>"; };
+		EFB9CA4517C1E02D000853BA /* FPNumberPadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPNumberPadView.m; sourceTree = "<group>"; };
+		EFB9CA4617C1E02D000853BA /* FPNumberPadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FPNumberPadView.xib; sourceTree = "<group>"; };
+		EFB9CA4817C1E02D000853BA /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		EFB9CA4917C1E02D000853BA /* button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@2x.png"; sourceTree = "<group>"; };
+		EFB9CA4E17C1EA01000853BA /* UIView+UIView_Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+UIView_Background.h"; sourceTree = "<group>"; };
+		EFB9CA4F17C1EA01000853BA /* UIView+UIView_Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIView_Background.m"; sourceTree = "<group>"; };
+		EFB9CA7A17C1EB6E000853BA /* RWGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RWGlossyButton.h; path = Views/RWGlossyButton.h; sourceTree = "<group>"; };
+		EFB9CA7B17C1EB6E000853BA /* RWGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RWGlossyButton.m; path = Views/RWGlossyButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,10 +220,14 @@
 		5B6B2EFE177FCD6500FF98D5 /* Runway */ = {
 			isa = PBXGroup;
 			children = (
+				EFB9CA2117C1BFA8000853BA /* Custom Views */,
+				EFB9CA1917C1B2EC000853BA /* Images */,
 				EF48F0261787760300912CD3 /* Third Party */,
 				5B6B2F07177FCD6500FF98D5 /* RWAppDelegate.h */,
 				5B6B2F08177FCD6500FF98D5 /* RWAppDelegate.m */,
 				5B6B2F10177FCD6600FF98D5 /* MainStoryboard.storyboard */,
+				EFB9CA1E17C1BE2B000853BA /* RWColorSegmentedControl.h */,
+				EFB9CA1F17C1BE2B000853BA /* RWColorSegmentedControl.m */,
 				5B6B2F13177FCD6600FF98D5 /* RWFirstViewController.h */,
 				5B6B2F14177FCD6600FF98D5 /* RWFirstViewController.m */,
 				5B47415217BF5E2D005FF4D9 /* RWNodeButton.h */,
@@ -194,6 +247,8 @@
 				5B6B2EFF177FCD6500FF98D5 /* Supporting Files */,
 				5B52E1CC17B8374800B53BB3 /* RWTabBarController.h */,
 				5B52E1CD17B8374800B53BB3 /* RWTabBarController.m */,
+				EFB9CA3D17C1D7A1000853BA /* RWSharedControlsViewController.h */,
+				EFB9CA3E17C1D7A1000853BA /* RWSharedControlsViewController.m */,
 			);
 			path = Runway;
 			sourceTree = "<group>";
@@ -233,6 +288,7 @@
 		EF48F0261787760300912CD3 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				EFB9CA4317C1E02D000853BA /* FPNumberPadView */,
 				EF48F0271787760F00912CD3 /* SocketRocket */,
 			);
 			name = "Third Party";
@@ -252,6 +308,62 @@
 			name = SocketRocket;
 			path = "Third Party/SocketRocket/SocketRocket";
 			sourceTree = SOURCE_ROOT;
+		};
+		EFB9CA1917C1B2EC000853BA /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EFB9CA4017C1DD44000853BA /* dots.png */,
+				EFB9CA3517C1C995000853BA /* questionmark.png */,
+				EFB9CA3117C1C8D2000853BA /* eq_meter.png */,
+				EFB9CA3317C1C944000853BA /* colorwheel.png */,
+				EFB9CA1C17C1B30A000853BA /* fire@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		EFB9CA2117C1BFA8000853BA /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				EFB9CA4E17C1EA01000853BA /* UIView+UIView_Background.h */,
+				EFB9CA4F17C1EA01000853BA /* UIView+UIView_Background.m */,
+				EFB9CA3717C1CC56000853BA /* UIImage+ProportionalFill.h */,
+				EFB9CA3817C1CC56000853BA /* UIImage+ProportionalFill.m */,
+				EFB9CA2517C1C086000853BA /* UIButton+Glossy.h */,
+				EFB9CA2617C1C086000853BA /* UIButton+Glossy.m */,
+				EFB9CA2717C1C086000853BA /* UIColor+Extensions.h */,
+				EFB9CA2817C1C086000853BA /* UIColor+Extensions.m */,
+				EFB9CA2917C1C086000853BA /* UIColor+Lightness.h */,
+				EFB9CA2A17C1C086000853BA /* UIColor+Lightness.m */,
+				EFB9CA2B17C1C086000853BA /* UIView+Image.h */,
+				EFB9CA2C17C1C086000853BA /* UIView+Image.m */,
+				EFB9CA2217C1BFC0000853BA /* ILCircleView.h */,
+				EFB9CA2317C1BFC0000853BA /* ILCircleView.m */,
+				EFB9CA7A17C1EB6E000853BA /* RWGlossyButton.h */,
+				EFB9CA7B17C1EB6E000853BA /* RWGlossyButton.m */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		EFB9CA4317C1E02D000853BA /* FPNumberPadView */ = {
+			isa = PBXGroup;
+			children = (
+				EFB9CA4417C1E02D000853BA /* FPNumberPadView.h */,
+				EFB9CA4517C1E02D000853BA /* FPNumberPadView.m */,
+				EFB9CA4617C1E02D000853BA /* FPNumberPadView.xib */,
+				EFB9CA4717C1E02D000853BA /* images */,
+			);
+			name = FPNumberPadView;
+			path = ThirdParty/FPNumberPadView;
+			sourceTree = "<group>";
+		};
+		EFB9CA4717C1E02D000853BA /* images */ = {
+			isa = PBXGroup;
+			children = (
+				EFB9CA4817C1E02D000853BA /* background@2x.png */,
+				EFB9CA4917C1E02D000853BA /* button@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -332,6 +444,14 @@
 				5B13C18717C192D80019BCFB /* smallRedCircle.png in Resources */,
 				5B13C18817C192D80019BCFB /* smallWhiteCircle.png in Resources */,
 				5B13C18917C192D80019BCFB /* smallYellowCircle.png in Resources */,
+				EFB9CA1D17C1B30A000853BA /* fire@2x.png in Resources */,
+				EFB9CA3217C1C8D2000853BA /* eq_meter.png in Resources */,
+				EFB9CA3417C1C944000853BA /* colorwheel.png in Resources */,
+				EFB9CA3617C1C995000853BA /* questionmark.png in Resources */,
+				EFB9CA4117C1DD44000853BA /* dots.png in Resources */,
+				EFB9CA4B17C1E02D000853BA /* FPNumberPadView.xib in Resources */,
+				EFB9CA4C17C1E02D000853BA /* background@2x.png in Resources */,
+				EFB9CA4D17C1E02D000853BA /* button@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +474,17 @@
 				5B47415717BF5FDD005FF4D9 /* RWNodeView.m in Sources */,
 				5B47415A17BF782A005FF4D9 /* RWNodeManager.m in Sources */,
 				EF4EC45617C18CBE00854DB3 /* RWPatternButton.m in Sources */,
+				EFB9CA2017C1BE2B000853BA /* RWColorSegmentedControl.m in Sources */,
+				EFB9CA2417C1BFC0000853BA /* ILCircleView.m in Sources */,
+				EFB9CA2D17C1C086000853BA /* UIButton+Glossy.m in Sources */,
+				EFB9CA2E17C1C086000853BA /* UIColor+Extensions.m in Sources */,
+				EFB9CA2F17C1C086000853BA /* UIColor+Lightness.m in Sources */,
+				EFB9CA3017C1C086000853BA /* UIView+Image.m in Sources */,
+				EFB9CA3917C1CC56000853BA /* UIImage+ProportionalFill.m in Sources */,
+				EFB9CA3F17C1D7A1000853BA /* RWSharedControlsViewController.m in Sources */,
+				EFB9CA4A17C1E02D000853BA /* FPNumberPadView.m in Sources */,
+				EFB9CA5017C1EA01000853BA /* UIView+UIView_Background.m in Sources */,
+				EFB9CA7C17C1EB6F000853BA /* RWGlossyButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
