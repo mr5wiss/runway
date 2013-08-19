@@ -388,8 +388,14 @@ static RWFirstViewController *s_sharedInstance;
 - (void)fadeChanged:(id)sender {
     UISlider *slider = (UISlider *)sender;
     CGFloat value = slider.value;
-    [self send:[NSString stringWithFormat:@"fadetime=%.1f", value]];
-    _lightFadeLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+    if (sender == _fadeInSlider) {
+        [self send:[NSString stringWithFormat:@"fadein=%f", value]];
+        _fadeInLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+    }
+    else {
+        [self send:[NSString stringWithFormat:@"fadetime=%.1f", value]];
+        _fadeOutLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+    }
 }
 
 // bpm tapping
