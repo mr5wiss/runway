@@ -616,11 +616,13 @@ static RWFirstViewController *s_sharedInstance;
     self.fadeOutSlider.value = 0.0;
     self.lightDurationSlider.value = 0.0;
     self.fireDurationSlider.value = 0.02;
+    self.tempoSlider.value = 0.5;
     
     [self fadeChanged:self.fadeOutSlider];
     [self fadeChanged:self.fadeInSlider];
     [self durationChanged:self.fireDurationSlider];
     [self durationChanged:self.lightDurationSlider];
+    [self tempoChanged:self.tempoSlider];
 }
 
 
