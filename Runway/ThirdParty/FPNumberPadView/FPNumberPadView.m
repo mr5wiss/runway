@@ -72,17 +72,13 @@
     NSRange dot = [_textField.text rangeOfString:@"."];
     
     switch (sender.tag) {
-        case 10:
-            if (dot.location == NSNotFound) {
-                // only 1 decimal dot allowed
-                [self.delegate insertText:@"."];
-                [[UIDevice currentDevice] playInputClick];
-                if ([self.keypadDelegate respondsToSelector:@selector(decimalTapped)]) {
-                    [self.keypadDelegate decimalTapped];
-                }
-            }
-            break;
         case 11:
+                [[UIDevice currentDevice] playInputClick];
+                if ([self.keypadDelegate respondsToSelector:@selector(enterTapped)]) {
+                    [self.keypadDelegate enterTapped];
+                }
+            break;
+        case 10:
             [self.delegate deleteBackward];
             [[UIDevice currentDevice] playInputClick];
             if ([self.keypadDelegate respondsToSelector:@selector(clearTapped)]) {
