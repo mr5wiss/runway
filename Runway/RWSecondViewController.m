@@ -56,6 +56,8 @@
     NSTimer *_avTimer;
     CGFloat _testValue;
     UILabel *_testLabel;
+    
+    CGFloat ambientLeveldB;
 }
 
 - (RWFirstViewController *)lightController {
@@ -226,10 +228,11 @@
 - (void)addMicTestSlider {
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(20, 100, 150, 44)];
     [slider addTarget:self action:@selector(testSliderTapped:) forControlEvents:UIControlEventValueChanged];
-    slider.minimumValue = 10;
-    slider.maximumValue = 400;
-    slider.value = 160;
-    _testValue = 160;
+    slider.minimumValue = 1;
+    slider.maximumValue = 200;
+    slider.value = 70;
+    _testValue = 70;
+    ambientLeveldB = 70;
     [_parametersContainerView addSubview:slider];
     _testLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 150, 60, 30)];
     _testLabel.text = @"160";
@@ -339,18 +342,25 @@
 
 - (void)updateMicrophoneLevels {
     [_avAudioRecorder updateMeters];
+    
+    // meter values are between -160 and 0
     float leftAvgPower = [_avAudioRecorder averagePowerForChannel:0];
     float leftPeakPower = [_avAudioRecorder peakPowerForChannel:0];
-    
     float rightAvgPower = [_avAudioRecorder averagePowerForChannel:1];
     float rightPeakPower = [_avAudioRecorder peakPowerForChannel:1];
     
+    ambientLeveldB = 0.95f*ambientLeveldB + 0.05f*(-1.0f*leftAvgPower);
+    
+    // NSLog(@"%0.3fdB | %0.3fdB (%0.3fdB | %0.3fdB)", leftAvgPower, rightAvgPower, leftPeakPower, rightPeakPower);
+    
     // normalise meter levels to between 0 and 40
-    //int normalisedAvgLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
-    int normalisedAvgLeft = (int) ((leftAvgPower + _testValue)/40.0f);
-    int normalisedAvgRight = (int) ((rightAvgPower + _testValue)/40.0f);
-    int normalisedPeakLeft = (int) ((leftPeakPower + _testValue)/40.0f);
-    int normalisedPeakRight = (int) ((rightPeakPower + _testValue)/40.0f);
+    // _testValue should be around 70 for a silent room (lower for noisier environments)
+    int normalisedAvgLeft = (int) fmaxf((40.0f * (leftAvgPower + ambientLeveldB) / ambientLeveldB), 0.0f);
+    int normalisedAvgRight = (int) fmaxf((40.0f * (rightAvgPower + ambientLeveldB) / ambientLeveldB), 0.0f);
+    int normalisedPeakLeft = (int) fmaxf((40.0f * (leftPeakPower + ambientLeveldB) / ambientLeveldB), 0.0f);
+    int normalisedPeakRight = (int) fmaxf((40.0f * (rightPeakPower + ambientLeveldB) / ambientLeveldB), 0.0f);
+    
+    NSLog(@"%f", self.sensitivitySlider.value);
     
     normalisedAvgLeft += self.sensitivitySlider.value;
     normalisedPeakLeft += self.sensitivitySlider.value;
