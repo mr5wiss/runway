@@ -388,8 +388,14 @@ static RWFirstViewController *s_sharedInstance;
 - (void)fadeChanged:(id)sender {
     UISlider *slider = (UISlider *)sender;
     CGFloat value = slider.value;
-    [self send:[NSString stringWithFormat:@"fadetime=%.1f", value]];
-    _lightFadeLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+    if (sender == _fadeInSlider) {
+        [self send:[NSString stringWithFormat:@"fadein=%f", value]];
+        _fadeInLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+    }
+    else {
+        [self send:[NSString stringWithFormat:@"fadetime=%.1f", value]];
+        _fadeOutLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+    }
 }
 
 // bpm tapping
@@ -581,14 +587,10 @@ static RWFirstViewController *s_sharedInstance;
     NSString *type = [node valueForKey:@"type"];
     NSInteger num = [[node valueForKey:@"number"] intValue];
     // set protocol letter and convert node number
-    NSString *letter;
+    NSString *letter = @"l";
     if ([type isEqualToString:@"fire"]) {
         letter = @"f";
-        num = (num+1)/2;
-    }
-    else {
-        letter = @"l";
-        num = num+1;
+        num = num < LIGHTS_PER_SIDE ? num/2 : (num-1)/2;
     }
     //NSString *letter = [type isEqualToString:@"fire"] ? @"f" : @"l";
     if ([command isEqualToString:@"off"]) {
