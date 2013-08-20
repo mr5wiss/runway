@@ -50,6 +50,9 @@
 		EF32D51117C335000019CB45 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D50F17C335000019CB45 /* icon@2x.png */; };
 		EF32D51917C3386D0019CB45 /* RWSliderPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF32D51717C3386D0019CB45 /* RWSliderPopoverViewController.m */; };
 		EF32D51A17C3386D0019CB45 /* RWSliderPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF32D51817C3386D0019CB45 /* RWSliderPopoverViewController.xib */; };
+		EF32D52017C4117D0019CB45 /* eq-slider-border@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D51C17C4117D0019CB45 /* eq-slider-border@2x.png */; };
+		EF32D52117C4117D0019CB45 /* LARSBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EF32D51E17C4117D0019CB45 /* LARSBar.m */; };
+		EF32D52217C4117D0019CB45 /* slider-knob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D51F17C4117D0019CB45 /* slider-knob@2x.png */; };
 		EF48F0231787725200912CD3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0201787725200912CD3 /* libicucore.dylib */; };
 		EF48F0241787725200912CD3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0211787725200912CD3 /* CFNetwork.framework */; };
 		EF48F0251787725200912CD3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0221787725200912CD3 /* Security.framework */; };
@@ -136,6 +139,10 @@
 		EF32D51617C3386D0019CB45 /* RWSliderPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RWSliderPopoverViewController.h; path = Views/RWSliderPopoverViewController.h; sourceTree = "<group>"; };
 		EF32D51717C3386D0019CB45 /* RWSliderPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RWSliderPopoverViewController.m; path = Views/RWSliderPopoverViewController.m; sourceTree = "<group>"; };
 		EF32D51817C3386D0019CB45 /* RWSliderPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RWSliderPopoverViewController.xib; path = Views/RWSliderPopoverViewController.xib; sourceTree = "<group>"; };
+		EF32D51C17C4117D0019CB45 /* eq-slider-border@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eq-slider-border@2x.png"; sourceTree = "<group>"; };
+		EF32D51D17C4117D0019CB45 /* LARSBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LARSBar.h; sourceTree = "<group>"; };
+		EF32D51E17C4117D0019CB45 /* LARSBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LARSBar.m; sourceTree = "<group>"; };
+		EF32D51F17C4117D0019CB45 /* slider-knob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-knob@2x.png"; sourceTree = "<group>"; };
 		EF48F0201787725200912CD3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		EF48F0211787725200912CD3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		EF48F0221787725200912CD3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -302,9 +309,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EF32D51B17C4117D0019CB45 /* LARSBar */ = {
+			isa = PBXGroup;
+			children = (
+				EF32D51C17C4117D0019CB45 /* eq-slider-border@2x.png */,
+				EF32D51D17C4117D0019CB45 /* LARSBar.h */,
+				EF32D51E17C4117D0019CB45 /* LARSBar.m */,
+				EF32D51F17C4117D0019CB45 /* slider-knob@2x.png */,
+			);
+			name = LARSBar;
+			path = "Third Party/LARSBar";
+			sourceTree = SOURCE_ROOT;
+		};
 		EF48F0261787760300912CD3 /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				EF32D51B17C4117D0019CB45 /* LARSBar */,
 				EFB9CA4317C1E02D000853BA /* FPNumberPadView */,
 				EF48F0271787760F00912CD3 /* SocketRocket */,
 			);
@@ -477,6 +497,8 @@
 				EF32D51017C335000019CB45 /* icon.png in Resources */,
 				EF32D51117C335000019CB45 /* icon@2x.png in Resources */,
 				EF32D51A17C3386D0019CB45 /* RWSliderPopoverViewController.xib in Resources */,
+				EF32D52017C4117D0019CB45 /* eq-slider-border@2x.png in Resources */,
+				EF32D52217C4117D0019CB45 /* slider-knob@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +533,7 @@
 				EFB9CA5017C1EA01000853BA /* UIView+UIView_Background.m in Sources */,
 				EFB9CA7C17C1EB6F000853BA /* RWGlossyButton.m in Sources */,
 				EF32D51917C3386D0019CB45 /* RWSliderPopoverViewController.m in Sources */,
+				EF32D52117C4117D0019CB45 /* LARSBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
