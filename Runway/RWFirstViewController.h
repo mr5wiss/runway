@@ -110,6 +110,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *fireDurationButton;
 @property (weak, nonatomic) IBOutlet UIButton *fadeOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *fadeInButton;
+@property (weak, nonatomic) IBOutlet UIButton *tempoButton;
 
 @property (weak, nonatomic) IBOutlet UIView *sharedControlsView;
 

@@ -224,14 +224,16 @@ static RWFirstViewController *s_sharedInstance;
     
     static NSArray *fireTimes = nil;
     static NSArray *lightTimes = nil;
+    static NSArray *tempoTimes = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         fireTimes = @[@(0.02), @(0.03), @(0.04), @(0.05), @(0.06), @(0.07), @(0.08), @(0.09), @(0.10), @(0.125), @(0.15), @(0.175), @(0.2), @(0.3), @(0.4), @(0.5), @(0.75), @(1.0), @(1.5), @(2.0), @(2.5), @(3.0)];
         lightTimes = @[@(0.0), @(0.1),@(0.2),@(0.3),@(0.4),@(0.5),@(0.6),@(0.7),@(0.8),@(0.9),@(1.0),@(1.25),@(1.5),@(1.75),@(2.0),@(3.0),@(4.0),@(5.0),@(7.5),@(10)];
+        tempoTimes = @[@(5), @(4.5), @(4.0), @(3.5), @(3), @(2.5), @(2.0), @(1.5), @(1), @(0.75), @(0.5), @(0.25), @(0.175), @(0.10), @(0.09), @(0.08), @(0.07), @(0.06), @(0.05), @(0.04), @(0.03), @(0.02)];
     });
     
-    
+    self.sliderViewController.reversed = NO;
     if (sender == self.lightDurationButton) {
         self.sliderViewController.tandemValueLabel = self.lightDurationsLabel;
         self.sliderViewController.tandemSlider = self.lightDurationSlider;
@@ -250,6 +252,11 @@ static RWFirstViewController *s_sharedInstance;
         self.sliderViewController.tandemValueLabel = self.fadeOutLabel;
         self.sliderViewController.tandemSlider = self.fadeOutSlider;
         self.sliderViewController.descreteValues = lightTimes;
+    } else if (sender == self.tempoButton) {
+        self.sliderViewController.tandemValueLabel = self.tickLabel;
+        self.sliderViewController.tandemSlider = self.tempoSlider;
+        self.sliderViewController.descreteValues = tempoTimes;
+        self.sliderViewController.reversed = YES;
     } else {
         //WTF?
         self.sliderViewController.tandemValueLabel = nil;
@@ -269,6 +276,8 @@ static RWFirstViewController *s_sharedInstance;
         [self durationChanged:self.fireDurationSlider];
     } else if (self.sliderViewController.tandemSlider == self.lightDurationSlider) {
         [self durationChanged:self.lightDurationSlider];
+    } else if (self.sliderViewController.tandemSlider == self.tempoSlider) {
+        [self tempoChanged:self.tempoSlider];
     }
 
 }
@@ -436,7 +445,7 @@ static RWFirstViewController *s_sharedInstance;
     CGFloat total = slider.maximumValue + slider.minimumValue;
     // send time between pattern updates
     [self send:[NSString stringWithFormat:@"tick=%f", total - value]];
-    self.tickLabel.text = [NSString stringWithFormat:@"Tick: %.2fs", total - value];
+    self.tickLabel.text = [NSString stringWithFormat:@"%.2fs", total - value];
 }
 
 // duration
@@ -732,6 +741,7 @@ static RWFirstViewController *s_sharedInstance;
     [self setFadeInButton:nil];
     [self setPatternPresetSwitch:nil];
     [self setPatternPresetLabel:nil];
+    [self setTempoButton:nil];
     [super viewDidUnload];
 }
 

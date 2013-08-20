@@ -59,6 +59,36 @@
     return [RWFirstViewController sharedInstance];
 }
 
+- (NSArray *)presetArray {
+    static NSArray *s_presetArray = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        s_presetArray = @[
+                          PRESETDICT(0, @"Preset 0")
+                          PRESETDICT(1, @"Preset 1")
+                          PRESETDICT(2, @"Preset 2")
+                          PRESETDICT(3, @"Preset 3")
+                          PRESETDICT(4, @"Preset 4")
+                          PRESETDICT(5, @"Preset 5")
+
+                          PRESETDICT(6, @"Preset 6")
+                          PRESETDICT(7, @"Preset 7")
+                          PRESETDICT(8, @"Preset 8")
+                          PRESETDICT(9, @"Preset 9")
+                          PRESETDICT(10, @"Preset 10")
+
+                          PRESETDICT(11, @"Preset 11")
+                          PRESETDICT(12, @"Preset 12")
+                          PRESETDICT(13, @"Preset 13")
+                          PRESETDICT(14, @"Preset 14")
+                          PRESETDICT(15, @"Preset 15")
+];
+    });
+
+    return s_presetArray;
+    
+}
+
 - (NSArray *)patternArray {
     static NSArray *s_patternArray = nil;
     static dispatch_once_t onceToken;

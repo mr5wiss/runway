@@ -96,6 +96,9 @@
     CGFloat snappedValue = [[[self descreteValues] objectAtIndex:closestIndex] floatValue];
     
     self.slider.value = ((CGFloat)closestIndex)/((CGFloat)[self descreteValues].count-1) ;
+//    if (self.reversed) {
+//        self.slider.value = 1.0f - self.slider.value;
+//    }
 
     if (snappedValue == _currentValue) {
         return;
@@ -103,8 +106,11 @@
     _currentValue = snappedValue;
     self.currentValueLabel.text = [self formattedStringForFloat:snappedValue];
     self.tandemValueLabel.text = self.currentValueLabel.text;
-    NSLog(@"Telling Delegate: %f", snappedValue);
+    NSLog(@"Telling Delegate: %f My val: %f", snappedValue, self.slider.value);
     self.tandemSlider.value = snappedValue;
+    if (self.reversed) {
+        self.tandemSlider.value = self.tandemSlider.maximumValue - self.tandemSlider.value + self.tandemSlider.minimumValue;
+    }
     
     [self.delegate sliderValueChanged:self];
 
@@ -174,6 +180,10 @@
 
 - (CGFloat)snappedSliderValueForSliderValue:(CGFloat)sliderValue {
     //slidervalue is the range 0..1
+    
+//    if (self.reversed) {
+//        sliderValue = 1.0f - sliderValue;
+//    }
     
     int closestIndex = (int)(([self descreteValues].count-1) * sliderValue);
 //    NSLog(@"Closest Value: %d", closestIndex);

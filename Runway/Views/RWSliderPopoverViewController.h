@@ -16,6 +16,8 @@
 
 @interface RWSliderPopoverViewController : UIViewController
 
+@property (nonatomic, readwrite) BOOL reversed;
+
 @property (nonatomic, readwrite) CGFloat currentValue;
 
 @property (nonatomic, strong) NSArray *descreteValues; //must be set before this is useful.  An Array of NSNumbers
