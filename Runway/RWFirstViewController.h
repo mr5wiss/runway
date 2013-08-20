@@ -113,7 +113,13 @@
 
 @property (weak, nonatomic) IBOutlet UIView *sharedControlsView;
 
+@property (weak, nonatomic) IBOutlet UISwitch *patternPresetSwitch;
+- (IBAction)togglePatternPreset:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *patternPresetLabel;
+
 #pragma mark control interface for external callers (e.g., RWSecondViewController)
 - (void)sendPatternNumber:(NSInteger)patternNumber;
+- (void)sendString:(NSString *)text;
 
+- (IBAction)resetTapped:(id)sender;
 @end

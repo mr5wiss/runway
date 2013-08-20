@@ -228,7 +228,7 @@ static RWFirstViewController *s_sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         fireTimes = @[@(0.02), @(0.03), @(0.04), @(0.05), @(0.06), @(0.07), @(0.08), @(0.09), @(0.10), @(0.125), @(0.15), @(0.175), @(0.2), @(0.3), @(0.4), @(0.5), @(0.75), @(1.0), @(1.5), @(2.0), @(2.5), @(3.0)];
-        lightTimes = @[@(0.1),@(0.2),@(0.3),@(0.4),@(0.5),@(0.6),@(0.7),@(0.8),@(0.9),@(1.0),@(1.25),@(1.5),@(1.75),@(2.0),@(2.5),@(3.0),@(4.0),@(5.0),@(7.5),@(10)];
+        lightTimes = @[@(0.0), @(0.1),@(0.2),@(0.3),@(0.4),@(0.5),@(0.6),@(0.7),@(0.8),@(0.9),@(1.0),@(1.25),@(1.5),@(1.75),@(2.0),@(3.0),@(4.0),@(5.0),@(7.5),@(10)];
     });
     
     
@@ -436,7 +436,7 @@ static RWFirstViewController *s_sharedInstance;
     CGFloat total = slider.maximumValue + slider.minimumValue;
     // send time between pattern updates
     [self send:[NSString stringWithFormat:@"tick=%f", total - value]];
-    self.tickLabel.text = [NSString stringWithFormat:@"Tick: %.1fs", total - value];
+    self.tickLabel.text = [NSString stringWithFormat:@"Tick: %.2fs", total - value];
 }
 
 // duration
@@ -446,12 +446,12 @@ static RWFirstViewController *s_sharedInstance;
     if (slider == _lightDurationSlider) {
         // send light duration updarte
         [self send:[NSString stringWithFormat:@"lightduration=%f", value]];
-        _lightDurationsLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+        _lightDurationsLabel.text = [NSString stringWithFormat:@"%0.2fs", value];
     }
     else {
         // send fire duration updarte
         [self send:[NSString stringWithFormat:@"fireduration=%f", value]];
-        _fireDurationLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+        _fireDurationLabel.text = [NSString stringWithFormat:@"%0.2fs", value];
     }
 }
 
@@ -461,11 +461,11 @@ static RWFirstViewController *s_sharedInstance;
     CGFloat value = slider.value;
     if (sender == _fadeInSlider) {
         [self send:[NSString stringWithFormat:@"fadein=%f", value]];
-        _fadeInLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+        _fadeInLabel.text = [NSString stringWithFormat:@"%0.2fs", value];
     }
     else {
         [self send:[NSString stringWithFormat:@"fadetime=%.1f", value]];
-        _fadeOutLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+        _fadeOutLabel.text = [NSString stringWithFormat:@"%0.2fs", value];
     }
 }
 
@@ -584,11 +584,29 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+#pragma mark -
+
+- (void)sendString:(NSString *)text {
+    [self send:text];
+}
+
 // sends number user typed in - TO DO: better interface
 
 - (void)sendPatternNumber:(NSInteger)patternNumber {
     [self send:[NSString stringWithFormat:@"pattern=%d", patternNumber]];
     self.patternField.placeholder = [NSString stringWithFormat:@"%d", patternNumber];
+}
+
+- (IBAction)resetTapped:(id)sender {
+    self.fadeInSlider.value = 0.0;
+    self.fadeOutSlider.value = 0.0;
+    self.lightDurationSlider.value = 0.0;
+    self.fireDurationSlider.value = 0.02;
+    
+    [self fadeChanged:self.fadeOutSlider];
+    [self fadeChanged:self.fadeInSlider];
+    [self durationChanged:self.fireDurationSlider];
+    [self durationChanged:self.lightDurationSlider];
 }
 
 
@@ -707,6 +725,8 @@ static RWFirstViewController *s_sharedInstance;
     [self setFireDurationButton:nil];
     [self setFadeOutButton:nil];
     [self setFadeInButton:nil];
+    [self setPatternPresetSwitch:nil];
+    [self setPatternPresetLabel:nil];
     [super viewDidUnload];
 }
 
@@ -750,4 +770,6 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+- (IBAction)togglePatternPreset:(id)sender {
+}
 @end

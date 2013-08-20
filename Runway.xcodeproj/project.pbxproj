@@ -14,6 +14,7 @@
 		5B13C18717C192D80019BCFB /* smallRedCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C18017C192D80019BCFB /* smallRedCircle.png */; };
 		5B13C18817C192D80019BCFB /* smallWhiteCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C18117C192D80019BCFB /* smallWhiteCircle.png */; };
 		5B13C18917C192D80019BCFB /* smallYellowCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B13C18217C192D80019BCFB /* smallYellowCircle.png */; };
+		5B23AD8517C35D8500CBF83D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B23AD8417C35D8500CBF83D /* AVFoundation.framework */; };
 		5B47415417BF5E2D005FF4D9 /* RWNodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B47415317BF5E2D005FF4D9 /* RWNodeButton.m */; };
 		5B47415717BF5FDD005FF4D9 /* RWNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B47415617BF5FDD005FF4D9 /* RWNodeView.m */; };
 		5B47415A17BF782A005FF4D9 /* RWNodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B47415917BF782A005FF4D9 /* RWNodeManager.m */; };
@@ -86,6 +87,7 @@
 		5B13C18017C192D80019BCFB /* smallRedCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallRedCircle.png; sourceTree = "<group>"; };
 		5B13C18117C192D80019BCFB /* smallWhiteCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallWhiteCircle.png; sourceTree = "<group>"; };
 		5B13C18217C192D80019BCFB /* smallYellowCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallYellowCircle.png; sourceTree = "<group>"; };
+		5B23AD8417C35D8500CBF83D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5B47415217BF5E2D005FF4D9 /* RWNodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWNodeButton.h; sourceTree = "<group>"; };
 		5B47415317BF5E2D005FF4D9 /* RWNodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWNodeButton.m; sourceTree = "<group>"; };
 		5B47415517BF5FDD005FF4D9 /* RWNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWNodeView.h; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B23AD8517C35D8500CBF83D /* AVFoundation.framework in Frameworks */,
 				5B6B2EF9177FCD6500FF98D5 /* UIKit.framework in Frameworks */,
 				5B6B2EFB177FCD6500FF98D5 /* Foundation.framework in Frameworks */,
 				5B6B2EFD177FCD6500FF98D5 /* CoreGraphics.framework in Frameworks */,
@@ -202,6 +205,7 @@
 			children = (
 				EF32D51417C335320019CB45 /* icon@2x.png */,
 				EF32D51217C3352E0019CB45 /* icon.png */,
+				5B23AD8417C35D8500CBF83D /* AVFoundation.framework */,
 				5B6B2EFE177FCD6500FF98D5 /* Runway */,
 				5B6B2EF7177FCD6500FF98D5 /* Frameworks */,
 				5B6B2EF6177FCD6500FF98D5 /* Products */,
