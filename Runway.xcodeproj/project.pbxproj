@@ -45,6 +45,12 @@
 		5BF98D1417B7E7CD00E1A88A /* runwayFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1117B7E7CD00E1A88A /* runwayFire.png */; };
 		5BF98D1517B7E7CD00E1A88A /* runwayLights.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1217B7E7CD00E1A88A /* runwayLights.png */; };
 		5BF98D1617B7E7CD00E1A88A /* runwayLightsFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1317B7E7CD00E1A88A /* runwayLightsFire.png */; };
+		EF32D51017C335000019CB45 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D50E17C335000019CB45 /* icon.png */; };
+		EF32D51117C335000019CB45 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D50F17C335000019CB45 /* icon@2x.png */; };
+		EF32D51317C3352E0019CB45 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D51217C3352E0019CB45 /* icon.png */; };
+		EF32D51517C335320019CB45 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D51417C335320019CB45 /* icon@2x.png */; };
+		EF32D51917C3386D0019CB45 /* RWSliderPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF32D51717C3386D0019CB45 /* RWSliderPopoverViewController.m */; };
+		EF32D51A17C3386D0019CB45 /* RWSliderPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF32D51817C3386D0019CB45 /* RWSliderPopoverViewController.xib */; };
 		EF48F0231787725200912CD3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0201787725200912CD3 /* libicucore.dylib */; };
 		EF48F0241787725200912CD3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0211787725200912CD3 /* CFNetwork.framework */; };
 		EF48F0251787725200912CD3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0221787725200912CD3 /* Security.framework */; };
@@ -123,6 +129,13 @@
 		5BF98D1117B7E7CD00E1A88A /* runwayFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayFire.png; sourceTree = "<group>"; };
 		5BF98D1217B7E7CD00E1A88A /* runwayLights.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayLights.png; sourceTree = "<group>"; };
 		5BF98D1317B7E7CD00E1A88A /* runwayLightsFire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runwayLightsFire.png; sourceTree = "<group>"; };
+		EF32D50E17C335000019CB45 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = images/icon.png; sourceTree = "<group>"; };
+		EF32D50F17C335000019CB45 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "images/icon@2x.png"; sourceTree = "<group>"; };
+		EF32D51217C3352E0019CB45 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		EF32D51417C335320019CB45 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		EF32D51617C3386D0019CB45 /* RWSliderPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RWSliderPopoverViewController.h; path = Views/RWSliderPopoverViewController.h; sourceTree = "<group>"; };
+		EF32D51717C3386D0019CB45 /* RWSliderPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RWSliderPopoverViewController.m; path = Views/RWSliderPopoverViewController.m; sourceTree = "<group>"; };
+		EF32D51817C3386D0019CB45 /* RWSliderPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RWSliderPopoverViewController.xib; path = Views/RWSliderPopoverViewController.xib; sourceTree = "<group>"; };
 		EF48F0201787725200912CD3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		EF48F0211787725200912CD3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		EF48F0221787725200912CD3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -189,6 +202,8 @@
 		5B6B2EEC177FCD6500FF98D5 = {
 			isa = PBXGroup;
 			children = (
+				EF32D51417C335320019CB45 /* icon@2x.png */,
+				EF32D51217C3352E0019CB45 /* icon.png */,
 				5B6B2EFE177FCD6500FF98D5 /* Runway */,
 				5B6B2EF7177FCD6500FF98D5 /* Frameworks */,
 				5B6B2EF6177FCD6500FF98D5 /* Products */,
@@ -312,6 +327,8 @@
 		EFB9CA1917C1B2EC000853BA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EF32D50E17C335000019CB45 /* icon.png */,
+				EF32D50F17C335000019CB45 /* icon@2x.png */,
 				EFB9CA4017C1DD44000853BA /* dots.png */,
 				EFB9CA3517C1C995000853BA /* questionmark.png */,
 				EFB9CA3117C1C8D2000853BA /* eq_meter.png */,
@@ -340,6 +357,9 @@
 				EFB9CA2317C1BFC0000853BA /* ILCircleView.m */,
 				EFB9CA7A17C1EB6E000853BA /* RWGlossyButton.h */,
 				EFB9CA7B17C1EB6E000853BA /* RWGlossyButton.m */,
+				EF32D51617C3386D0019CB45 /* RWSliderPopoverViewController.h */,
+				EF32D51717C3386D0019CB45 /* RWSliderPopoverViewController.m */,
+				EF32D51817C3386D0019CB45 /* RWSliderPopoverViewController.xib */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -452,6 +472,11 @@
 				EFB9CA4B17C1E02D000853BA /* FPNumberPadView.xib in Resources */,
 				EFB9CA4C17C1E02D000853BA /* background@2x.png in Resources */,
 				EFB9CA4D17C1E02D000853BA /* button@2x.png in Resources */,
+				EF32D51017C335000019CB45 /* icon.png in Resources */,
+				EF32D51117C335000019CB45 /* icon@2x.png in Resources */,
+				EF32D51317C3352E0019CB45 /* icon.png in Resources */,
+				EF32D51517C335320019CB45 /* icon@2x.png in Resources */,
+				EF32D51A17C3386D0019CB45 /* RWSliderPopoverViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +510,7 @@
 				EFB9CA4A17C1E02D000853BA /* FPNumberPadView.m in Sources */,
 				EFB9CA5017C1EA01000853BA /* UIView+UIView_Background.m in Sources */,
 				EFB9CA7C17C1EB6F000853BA /* RWGlossyButton.m in Sources */,
+				EF32D51917C3386D0019CB45 /* RWSliderPopoverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,10 +604,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arshad Tayyeb (LRXLYYC227)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Runway/Runway-Prefix.pch";
 				INFOPLIST_FILE = "Runway/Runway-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "233F18AC-4BA3-4C38-AD4F-5641DD314FCF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

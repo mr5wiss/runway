@@ -11,12 +11,15 @@
 #import "RWColorSegmentedControl.h"
 #import "FPNumberPadView.h"
 #import "UIView+UIView_Background.h"
+#import "RWSliderPopoverViewController.h"
 
 // change as we hook up lights
 #define LIGHTS_FOR_TEST 42
 #define MAX_PATTERN_NUMBER 100
 
 @interface RWFirstViewController ()
+@property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, strong) RWSliderPopoverViewController *sliderViewController;
 @property (nonatomic, strong) SRWebSocket *wSocket;
 @end
 
@@ -36,6 +39,7 @@
     NSMutableArray *_recordHistory;
     RWNodeManager *_nodeManager;
     RWFirstViewController *_s_sharedInstance;
+    UIPopoverController *_popoverController;
 }
 
 static RWFirstViewController *s_sharedInstance;
@@ -200,6 +204,73 @@ static RWFirstViewController *s_sharedInstance;
     // force user to confirm leaving mode
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Panic!" message:@"Everything has been turned off.  Please press OK to exit panic mode" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
+}
+
+- (IBAction)showPopover:(id)sender {
+    if (!self.popoverController) {
+        self.sliderViewController = [[RWSliderPopoverViewController alloc] initWithNibName:@"RWSliderPopoverViewController" bundle:nil];
+        self.sliderViewController.delegate = self;
+        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:self.sliderViewController];
+        [self.popoverController setPopoverContentSize:self.sliderViewController.view.frame.size];
+    }
+
+    CGRect frame = [sender frame];
+    CGPoint pointInMainView = [self.view convertPoint:[sender frame].origin fromView:sender];
+    frame.origin = pointInMainView;
+    frame.origin.x = [sender center].x - 60; // don't have time to debug the math, just doing this instead
+
+    
+    [self.popoverController presentPopoverFromRect:frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+    
+    static NSArray *fireTimes = nil;
+    static NSArray *lightTimes = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fireTimes = @[@(0.02), @(0.03), @(0.04), @(0.05), @(0.06), @(0.07), @(0.08), @(0.09), @(0.10), @(0.125), @(0.15), @(0.175), @(0.2), @(0.3), @(0.4), @(0.5), @(0.75), @(1.0), @(1.5), @(2.0), @(2.5), @(3.0)];
+        lightTimes = @[@(0.1),@(0.2),@(0.3),@(0.4),@(0.5),@(0.6),@(0.7),@(0.8),@(0.9),@(1.0),@(1.25),@(1.5),@(1.75),@(2.0),@(2.5),@(3.0),@(4.0),@(5.0),@(7.5),@(10)];
+    });
+    
+    
+    if (sender == self.lightDurationButton) {
+        self.sliderViewController.tandemValueLabel = self.lightDurationsLabel;
+        self.sliderViewController.tandemSlider = self.lightDurationSlider;
+        self.sliderViewController.descreteValues = lightTimes;
+        ;
+    } else if (sender == self.fireDurationButton) {
+        self.sliderViewController.descreteValues = fireTimes;
+
+        self.sliderViewController.tandemValueLabel = self.fireDurationLabel;
+        self.sliderViewController.tandemSlider = self.fireDurationSlider;
+    } else if (sender == self.fadeInButton) {
+        self.sliderViewController.tandemValueLabel = self.fadeInLabel;
+        self.sliderViewController.tandemSlider = self.fadeInSlider;
+        self.sliderViewController.descreteValues = lightTimes;
+    } else if (sender == self.fadeOutButton) {
+        self.sliderViewController.tandemValueLabel = self.fadeOutLabel;
+        self.sliderViewController.tandemSlider = self.fadeOutSlider;
+        self.sliderViewController.descreteValues = lightTimes;
+    } else {
+        //WTF?
+        self.sliderViewController.tandemValueLabel = nil;
+        self.sliderViewController.tandemSlider = nil;
+    }
+    
+}
+
+
+#pragma mark RWSliderPopoverViewControllerDelegate
+- (void)sliderValueChanged:(RWSliderPopoverViewController *)sender {
+    if (self.sliderViewController.tandemSlider == self.fadeOutSlider) {
+        [self fadeChanged:self.fadeOutSlider];
+    } else if (self.sliderViewController.tandemSlider == self.fadeInSlider) {
+        [self fadeChanged:self.fadeInSlider];
+    } else if (self.sliderViewController.tandemSlider == self.fireDurationSlider) {
+        [self durationChanged:self.fireDurationSlider];
+    } else if (self.sliderViewController.tandemSlider == self.lightDurationSlider) {
+        [self durationChanged:self.lightDurationSlider];
+    }
+
 }
 
 - (void)recordButtonTapped {
@@ -632,6 +703,10 @@ static RWFirstViewController *s_sharedInstance;
     [self setFireTogglesContainerView:nil];
     [self setPatternContainerView:nil];
     [self setTempoContainerView:nil];
+    [self setLightDurationButton:nil];
+    [self setFireDurationButton:nil];
+    [self setFadeOutButton:nil];
+    [self setFadeInButton:nil];
     [super viewDidUnload];
 }
 
