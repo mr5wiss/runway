@@ -56,6 +56,8 @@
     NSTimer *_avTimer;
     CGFloat _testValue;
     UILabel *_testLabel;
+    
+    CGFloat ambientLeveldB;
 }
 
 - (RWFirstViewController *)lightController {
@@ -228,8 +230,9 @@
     [slider addTarget:self action:@selector(testSliderTapped:) forControlEvents:UIControlEventValueChanged];
     slider.minimumValue = 1;
     slider.maximumValue = 200;
-    slider.value = 60;
-    _testValue = 60;
+    slider.value = 70;
+    _testValue = 70;
+    ambientLeveldB = 70;
     [_parametersContainerView addSubview:slider];
     _testLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 150, 60, 30)];
     _testLabel.text = @"160";
@@ -346,14 +349,18 @@
     float rightAvgPower = [_avAudioRecorder averagePowerForChannel:1];
     float rightPeakPower = [_avAudioRecorder peakPowerForChannel:1];
     
+    ambientLeveldB = 0.95f*ambientLeveldB + 0.05f*(-1.0f*leftAvgPower);
+    
     // NSLog(@"%0.3fdB | %0.3fdB (%0.3fdB | %0.3fdB)", leftAvgPower, rightAvgPower, leftPeakPower, rightPeakPower);
     
     // normalise meter levels to between 0 and 40
     // _testValue should be around 70 for a silent room (lower for noisier environments)
-    int normalisedAvgLeft = (int) (40.0f * (leftAvgPower + _testValue) / _testValue);
-    int normalisedAvgRight = (int) (40.0f * (rightAvgPower + _testValue) / _testValue);
-    int normalisedPeakLeft = (int) (40.0f * (leftPeakPower + _testValue) / _testValue);
-    int normalisedPeakRight = (int) (40.0f * (rightPeakPower + _testValue) / _testValue);
+    int normalisedAvgLeft = (int) fmaxf((40.0f * (leftAvgPower + ambientLeveldB) / ambientLeveldB), 0.0f);
+    int normalisedAvgRight = (int) fmaxf((40.0f * (rightAvgPower + ambientLeveldB) / ambientLeveldB), 0.0f);
+    int normalisedPeakLeft = (int) fmaxf((40.0f * (leftPeakPower + ambientLeveldB) / ambientLeveldB), 0.0f);
+    int normalisedPeakRight = (int) fmaxf((40.0f * (rightPeakPower + ambientLeveldB) / ambientLeveldB), 0.0f);
+    
+    NSLog(@"%f", self.sensitivitySlider.value);
     
     normalisedAvgLeft += self.sensitivitySlider.value;
     normalisedPeakLeft += self.sensitivitySlider.value;
