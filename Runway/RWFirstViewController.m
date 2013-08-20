@@ -616,7 +616,7 @@ static RWFirstViewController *s_sharedInstance;
     self.fadeOutSlider.value = 0.0;
     self.lightDurationSlider.value = 0.0;
     self.fireDurationSlider.value = 0.02;
-    self.tempoSlider.value = 0.5;
+    self.tempoSlider.value = self.tempoSlider.maximumValue + self.tempoSlider.minimumValue - 0.5;
     
     [self fadeChanged:self.fadeOutSlider];
     [self fadeChanged:self.fadeInSlider];
@@ -704,7 +704,8 @@ static RWFirstViewController *s_sharedInstance;
         return [NSString stringWithFormat:@"%@x=%d", letter, num];
     }
     else {
-        return [NSString stringWithFormat:@"%@%@=%d", letter, self.permanence ? @"r" : @"", num];
+//        return [NSString stringWithFormat:@"%@%@=%d", letter, self.permanence ? @"r" : @"", num];
+        return [NSString stringWithFormat:@"%@=%d", letter, num];
     }
 }
 

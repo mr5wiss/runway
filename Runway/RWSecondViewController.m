@@ -96,7 +96,7 @@
     dispatch_once(&onceToken, ^{
         s_patternArray = @[
                           //0-5
-                          PATTERNDICT(-1, @"Clear", [UIColor whiteColor])
+                          PATTERNDICT(0, @"Clear", [UIColor whiteColor])
                            //PATTERNDICT(0, @"Show Node", [UIColor grayColor]) //doesn't work without parameters
                           PATTERNDICT(1, @"Show Lights", [UIColor whiteColor])
                           PATTERNDICT_FLAME(2, @"Show Flames", [UIColor whiteColor])
@@ -121,7 +121,7 @@
                           //16-20
                           PATTERNDICT(16, @"Fill Up Lights Simple", [UIColor whiteColor])
                           PATTERNDICT(17, @"Fill Up Lights Dual", [UIColor whiteColor])
-//                          PATTERNDICT(18, @"Fill Up Lights Dual Eq", [UIColor grayColor]) //needs lightEq parameter
+                          PATTERNDICT(18, @"EQ (needs audio)", [UIColor whiteColor]) //needs lightEq parameter
                           PATTERNDICT_FLAME(19, @"Light And Fire Simple Chaser", [UIColor whiteColor])
                           PATTERNDICT_FLAME(20, @"Light And Fire Dual Chaser", [UIColor whiteColor])
 
@@ -145,17 +145,17 @@
                           
                           PATTERNDICT_FLAME(35, @"Light and Fire Chasers both directions", [UIColor whiteColor])
 
-                          PATTERNDICT_FLAME(36, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(37, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(38, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(39, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(40, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT(36, @"Fake EQ", [UIColor whiteColor])
+                          PATTERNDICT(37, @"Lightning Synced Sides", [UIColor whiteColor])
+                          PATTERNDICT(38, @"Lightning Different Sides", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(39, @"Chase Dual Light Bounce", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(40, @"Left and Right Bounce", [UIColor whiteColor])
 
-                          PATTERNDICT_FLAME(41, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(42, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(43, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(44, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(45, @"Pattern", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(41, @"Chase Flames", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(42, @"Chase Flames Dual", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(43, @"Chase Flames Dual Reverse", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(44, @"Chase Flames Dual Bounce", [UIColor whiteColor])
+                          PATTERNDICT_FLAME(45, @"Dual Lights and Flames Bounce", [UIColor whiteColor])
 
                           PATTERNDICT_FLAME(46, @"Pattern", [UIColor whiteColor])
                           PATTERNDICT_FLAME(47, @"Pattern", [UIColor whiteColor])
@@ -229,6 +229,8 @@
     [button setTitle:@"Start Mic" forState:UIControlStateNormal];
     button.frame = CGRectMake(50.0, 10.0, 100.0, 40.0);
     [_parametersContainerView addSubview:button];
+    
+    
 }
 
 - (void)viewDidLoad
@@ -245,6 +247,10 @@
     
     //listen to commands from first view controller
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commandSent:) name:kCommandSentNotification object:nil];
+    CGAffineTransform trans = CGAffineTransformMakeRotation(3*M_PI * 0.5);
+    self.levelSliderLeft.transform = trans;
+    self.levelSliderRight.transform = trans;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -258,6 +264,8 @@
 }
 
 - (void)viewDidUnload {
+    [self setLevelSliderRight:nil];
+    [self setLevelSliderLeft:nil];
     [self setPatternButtonsContainerView:nil];
     [self setParametersContainerView:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -317,6 +325,14 @@
     int normalisedAvgRight = (int) ((rightAvgPower + 160.0f)/40.0f);
     int normalisedPeakLeft = (int) ((leftPeakPower + 160.0f)/40.0f);
     int normalisedPeakRight = (int) ((rightPeakPower + 160.0f)/40.0f);
+    
+    self.levelSliderLeft.leftChannelLevel = normalisedPeakLeft / 40.0;
+    self.levelSliderLeft.rightChannelLevel = normalisedPeakRight / 40.0;
+    
+    self.levelSliderRight.leftChannelLevel = normalisedPeakLeft / 40.0;
+    self.levelSliderRight.rightChannelLevel = normalisedPeakRight / 40.0;
+   
+    NSLog(@"LEFT POWER: %f\n\tnormalized: %d\n\tpeak:%d", leftAvgPower, normalisedAvgLeft, normalisedPeakLeft);
     
     // send the levels to the websocket
     [[self lightController] sendString:[NSString stringWithFormat:@"eql=%i,eqr=%i,eqpl=%i,eqpr=%i", normalisedAvgLeft, normalisedAvgRight, normalisedPeakLeft, normalisedPeakRight]];
