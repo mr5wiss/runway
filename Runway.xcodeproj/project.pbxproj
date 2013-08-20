@@ -47,8 +47,6 @@
 		5BF98D1617B7E7CD00E1A88A /* runwayLightsFire.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF98D1317B7E7CD00E1A88A /* runwayLightsFire.png */; };
 		EF32D51017C335000019CB45 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D50E17C335000019CB45 /* icon.png */; };
 		EF32D51117C335000019CB45 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D50F17C335000019CB45 /* icon@2x.png */; };
-		EF32D51317C3352E0019CB45 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D51217C3352E0019CB45 /* icon.png */; };
-		EF32D51517C335320019CB45 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF32D51417C335320019CB45 /* icon@2x.png */; };
 		EF32D51917C3386D0019CB45 /* RWSliderPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF32D51717C3386D0019CB45 /* RWSliderPopoverViewController.m */; };
 		EF32D51A17C3386D0019CB45 /* RWSliderPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF32D51817C3386D0019CB45 /* RWSliderPopoverViewController.xib */; };
 		EF48F0231787725200912CD3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF48F0201787725200912CD3 /* libicucore.dylib */; };
@@ -474,8 +472,6 @@
 				EFB9CA4D17C1E02D000853BA /* button@2x.png in Resources */,
 				EF32D51017C335000019CB45 /* icon.png in Resources */,
 				EF32D51117C335000019CB45 /* icon@2x.png in Resources */,
-				EF32D51317C3352E0019CB45 /* icon.png in Resources */,
-				EF32D51517C335320019CB45 /* icon@2x.png in Resources */,
 				EF32D51A17C3386D0019CB45 /* RWSliderPopoverViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
