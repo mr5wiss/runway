@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E3067" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
@@ -230,6 +230,66 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h47-Bp-OiD">
+                                        <rect key="frame" x="27" y="0.0" width="131" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Light Duration">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showPopover:" destination="2" eventType="touchUpInside" id="iVa-aW-4zZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ezE-KI-41v">
+                                        <rect key="frame" x="204" y="-1" width="131" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Fire Duration">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showPopover:" destination="2" eventType="touchUpInside" id="LnH-NN-hSN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4lC-5D-RQC">
+                                        <rect key="frame" x="388" y="-1" width="131" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Fade In">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showPopover:" destination="2" eventType="touchUpInside" id="USi-LN-heT"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IMr-Nj-yqb">
+                                        <rect key="frame" x="568" y="-1" width="131" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Fade Out">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showPopover:" destination="2" eventType="touchUpInside" id="bfx-gI-isv"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -352,13 +412,17 @@
                         <outlet property="clearButton" destination="l1M-DI-aeK" id="AhL-cg-TnI"/>
                         <outlet property="colorControl" destination="qE6-Pp-GWY" id="jOO-SI-Pzx"/>
                         <outlet property="connectButton" destination="NHh-ZN-Ncb" id="FbN-pu-fLS"/>
+                        <outlet property="fadeInButton" destination="4lC-5D-RQC" id="fZj-f2-XbH"/>
                         <outlet property="fadeInLabel" destination="pBk-1d-eCm" id="pvy-0g-153"/>
                         <outlet property="fadeInSlider" destination="nb9-1W-fh2" id="IBe-1s-Yna"/>
+                        <outlet property="fadeOutButton" destination="IMr-Nj-yqb" id="d0W-ek-8K4"/>
                         <outlet property="fadeOutLabel" destination="91Z-lJ-oW1" id="94R-HO-GWU"/>
                         <outlet property="fadeOutSlider" destination="rDM-VX-leg" id="XQi-B7-EEK"/>
+                        <outlet property="fireDurationButton" destination="ezE-KI-41v" id="zMF-ET-wDA"/>
                         <outlet property="fireDurationLabel" destination="2nA-fk-9nT" id="XRY-8f-wCW"/>
                         <outlet property="fireDurationSlider" destination="uVk-ev-hLl" id="d4T-E3-jWu"/>
                         <outlet property="fireTogglesContainerView" destination="JMB-vw-fjL" id="gjh-vt-ZKe"/>
+                        <outlet property="lightDurationButton" destination="h47-Bp-OiD" id="kaV-Sr-IQt"/>
                         <outlet property="lightDurationSlider" destination="6hJ-G9-xcT" id="jmu-zN-neJ"/>
                         <outlet property="lightDurationsLabel" destination="9rV-3V-pbm" id="6c4-vD-gZe"/>
                         <outlet property="lockSidesButton" destination="Sdo-r8-5iA" id="KbH-NG-sXe"/>
@@ -456,88 +520,6 @@
         <image name="smallRedCircle.png" width="8" height="8"/>
         <image name="smallYellowCircle.png" width="8" height="8"/>
     </resources>
-    <classes>
-        <class className="RWColorSegmentedControl" superclassName="UISegmentedControl">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWColorSegmentedControl.h"/>
-        </class>
-        <class className="RWFirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="allReleased:"/>
-                <relationship kind="action" name="allTapped:"/>
-                <relationship kind="action" name="clearButtonTapped:"/>
-                <relationship kind="action" name="colorChosen:"/>
-                <relationship kind="action" name="durationChanged:"/>
-                <relationship kind="action" name="fadeChanged:"/>
-                <relationship kind="action" name="lockSidesTapped:"/>
-                <relationship kind="action" name="nodesChosen:"/>
-                <relationship kind="action" name="panic:"/>
-                <relationship kind="action" name="patternButtonTapped:"/>
-                <relationship kind="action" name="permanenceChosen:"/>
-                <relationship kind="action" name="tempoChanged:"/>
-                <relationship kind="action" name="timeChosen:"/>
-                <relationship kind="outlet" name="allBottomButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="allTopButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="bottomNodes" candidateClass="RWNodeView"/>
-                <relationship kind="outlet" name="clearButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="colorControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="connectButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="fadeInLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fadeInSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="fadeOutLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fadeOutSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="fireDurationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fireDurationSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="fireTogglesContainerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="lightDurationSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="lightDurationsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lockSidesButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loopBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="nodeControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="offBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="onBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="panicBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="panicButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="pattern1BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pattern2BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pattern3BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pattern4BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pattern5BarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="patternChooseButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="patternContainerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="patternField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="patternKeyPadContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="patternLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="permanenceControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="recordBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="sharedControlsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="stopRecordBarButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="tapLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tapSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="tempoContainerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="tempoSlider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="tickLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="topNodes" candidateClass="RWNodeView"/>
-                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="RWGlossyButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWGlossyButton.h"/>
-        </class>
-        <class className="RWNodeView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWNodeView.h"/>
-        </class>
-        <class className="RWSecondViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWSecondViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="parametersContainerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="patternButtonsContainerView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="RWTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWTabBarController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

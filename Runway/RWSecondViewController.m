@@ -35,9 +35,19 @@
 @"hasFlame": @(hasFlame), \
 },
 
+#define PRESETDICT_FULL(number, name, displayColor, hasFlame) @{\
+@"number" : @(number),\
+@"name" : (name), \
+@"displayColor" : (displayColor), \
+@"hasFlame": @(hasFlame), \
+},
+
 
 #define PATTERNDICT(number, name, displayColor) PATTERNDICT_FULL(number, name, displayColor, NO)
 #define PATTERNDICT_FLAME(number, name, displayColor) PATTERNDICT_FULL(number, name, displayColor, YES)
+
+#define PRESETDICT(number, name) PRESETDICT_FULL(number, name, [UIColor orangeColor], NO)
+#define PRESETDICT_FLAME(number, name) PATTERNDICT_FULL(number, name, [UIColor orangeColor], YES)
 
 
 @implementation RWSecondViewController
