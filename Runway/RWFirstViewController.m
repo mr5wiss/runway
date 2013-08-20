@@ -513,6 +513,12 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+#pragma mark -
+
+- (void)sendString:(NSString *)text {
+    [self send:text];
+}
+
 // sends number user typed in - TO DO: better interface
 
 - (void)sendPatternNumber:(NSInteger)patternNumber {
