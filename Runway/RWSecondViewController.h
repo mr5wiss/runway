@@ -17,4 +17,15 @@
 @property (weak, nonatomic) IBOutlet LARSBar *levelSliderLeft;
 @property (weak, nonatomic) IBOutlet LARSBar *levelSliderRight;
 
+@property (weak, nonatomic) IBOutlet UILabel *leftLevelLabel;
+@property (weak, nonatomic) IBOutlet UILabel *leftAvgLabel;
+@property (weak, nonatomic) IBOutlet UILabel *leftPeakLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *rightLevelLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rightAvgLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rightPeakLabel;
+@property (weak, nonatomic) IBOutlet UISlider *sensitivitySlider;
+@property (weak, nonatomic) IBOutlet UILabel *sensitivityLabel;
+- (IBAction)sensitivityChanged:(id)sender;
+
 @end

@@ -227,7 +227,7 @@
     UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(20, 100, 150, 44)];
     [slider addTarget:self action:@selector(testSliderTapped:) forControlEvents:UIControlEventValueChanged];
     slider.minimumValue = 10;
-    slider.maximumValue = 200;
+    slider.maximumValue = 400;
     slider.value = 160;
     _testValue = 160;
     [_parametersContainerView addSubview:slider];
@@ -266,6 +266,7 @@
     CGAffineTransform trans = CGAffineTransformMakeRotation(3*M_PI * 0.5);
     self.levelSliderLeft.transform = trans;
     self.levelSliderRight.transform = trans;
+    self.sensitivityLabel.text = [NSString stringWithFormat:@"%d", (int)self.sensitivitySlider.value];
     
 }
 
@@ -280,6 +281,14 @@
 }
 
 - (void)viewDidUnload {
+    [self setSensitivityLabel:nil];
+    [self setSensitivitySlider:nil];
+    [self setLeftPeakLabel:nil];
+    [self setLeftAvgLabel:nil];
+    [self setLeftLevelLabel:nil];
+    [self setRightPeakLabel:nil];
+    [self setRightAvgLabel:nil];
+    [self setRightLevelLabel:nil];
     [self setLevelSliderRight:nil];
     [self setLevelSliderLeft:nil];
     [self setPatternButtonsContainerView:nil];
@@ -339,9 +348,15 @@
     // normalise meter levels to between 0 and 40
     //int normalisedAvgLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
     int normalisedAvgLeft = (int) ((leftAvgPower + _testValue)/40.0f);
-    int normalisedAvgRight = (int) ((rightAvgPower + 160.0f)/40.0f);
-    int normalisedPeakLeft = (int) ((leftPeakPower + 160.0f)/40.0f);
-    int normalisedPeakRight = (int) ((rightPeakPower + 160.0f)/40.0f);
+    int normalisedAvgRight = (int) ((rightAvgPower + _testValue)/40.0f);
+    int normalisedPeakLeft = (int) ((leftPeakPower + _testValue)/40.0f);
+    int normalisedPeakRight = (int) ((rightPeakPower + _testValue)/40.0f);
+    
+    normalisedAvgLeft += self.sensitivitySlider.value;
+    normalisedPeakLeft += self.sensitivitySlider.value;
+    normalisedAvgRight += self.sensitivitySlider.value;
+    normalisedPeakRight += self.sensitivitySlider.value;
+    
     
     self.levelSliderLeft.leftChannelLevel = normalisedPeakLeft / 40.0;
     self.levelSliderLeft.rightChannelLevel = normalisedPeakRight / 40.0;
@@ -349,7 +364,17 @@
     self.levelSliderRight.leftChannelLevel = normalisedPeakLeft / 40.0;
     self.levelSliderRight.rightChannelLevel = normalisedPeakRight / 40.0;
    
-    NSLog(@"LEFT POWER: %f\n\tnormalized: %d\n\tpeak:%d", leftAvgPower, normalisedAvgLeft, normalisedPeakLeft);
+//    NSLog(@"LEFT POWER: %f\n\tnormalized: %d\n\tpeak:%d", leftAvgPower, normalisedAvgLeft, normalisedPeakLeft);
+    
+    self.leftLevelLabel.text = [NSString stringWithFormat:@"%0.1f", rightAvgPower];
+    self.rightLevelLabel.text = [NSString stringWithFormat:@"%0.1f", rightAvgPower];
+
+    self.leftAvgLabel.text = [NSString stringWithFormat:@"%d", normalisedAvgLeft];
+    self.rightAvgLabel.text = [NSString stringWithFormat:@"%d", normalisedAvgRight];
+
+    self.leftPeakLabel.text = [NSString stringWithFormat:@"%d", normalisedPeakLeft];
+    self.rightPeakLabel.text = [NSString stringWithFormat:@"%d", normalisedPeakRight];
+
     
     // send the levels to the websocket
     [[self lightController] sendString:[NSString stringWithFormat:@"eql=%i,eqr=%i,eqpl=%i,eqpr=%i", normalisedAvgLeft, normalisedAvgRight, normalisedPeakLeft, normalisedPeakRight]];
@@ -388,4 +413,7 @@
     _testLabel.text = [NSString stringWithFormat:@"%f",((UISlider *)sender).value];
 }
 
+- (IBAction)sensitivityChanged:(id)sender {
+    self.sensitivityLabel.text = [NSString stringWithFormat:@"%d", (int)self.sensitivitySlider.value];
+}
 @end

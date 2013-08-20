@@ -220,7 +220,7 @@ static RWFirstViewController *s_sharedInstance;
     frame.origin.x = [sender center].x - 60; // don't have time to debug the math, just doing this instead
 
     
-    [self.popoverController presentPopoverFromRect:frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+    [self.popoverController presentPopoverFromRect:frame inView:[self.sharedControlsView superview] permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
     
     static NSArray *fireTimes = nil;
     static NSArray *lightTimes = nil;
