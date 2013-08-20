@@ -597,6 +597,11 @@ static RWFirstViewController *s_sharedInstance;
     self.patternField.placeholder = [NSString stringWithFormat:@"%d", patternNumber];
 }
 
+- (void)sendPresetNumber:(NSInteger)patternNumber {
+    [self send:[NSString stringWithFormat:@"preset=%d", patternNumber]];
+    self.patternField.placeholder = [NSString stringWithFormat:@"%d", patternNumber];
+}
+
 - (IBAction)resetTapped:(id)sender {
     self.fadeInSlider.value = 0.0;
     self.fadeOutSlider.value = 0.0;
@@ -737,7 +742,7 @@ static RWFirstViewController *s_sharedInstance;
 
 - (void)enterTapped {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self submitPatternNumber];
+    [self submitPatternOrPresetNumber];
 }
 
 - (void)clearTapped {
@@ -745,10 +750,15 @@ static RWFirstViewController *s_sharedInstance;
     self.patternField.text = nil;
 }
 
-- (void)submitPatternNumber {
+- (void)submitPatternOrPresetNumber {
     if (self.patternField.text.length > 0) {
         NSInteger patternNumber = [self.patternField.text integerValue];
-        [self sendPatternNumber:patternNumber];
+        
+        if (self.patternPresetSwitch.isOn) {
+            [self sendPresetNumber:patternNumber];
+        } else {
+            [self sendPatternNumber:patternNumber];
+        }
         self.patternField.text = nil;
     }
 }
@@ -757,7 +767,7 @@ static RWFirstViewController *s_sharedInstance;
     
     //if user types only one digit, auto-submit that after one second
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(submitPatternNumber) withObject:nil afterDelay:1.5];
+    [self performSelector:@selector(submitPatternOrPresetNumber) withObject:nil afterDelay:1.5];
     
     if (self.patternField.text.length == 1) {
         NSString *candidateText = [self.patternField.text stringByAppendingFormat:@"%d", digit];
@@ -771,5 +781,10 @@ static RWFirstViewController *s_sharedInstance;
 }
 
 - (IBAction)togglePatternPreset:(id)sender {
+    if ([sender isOn]) {
+        self.patternPresetLabel.text = @"Preset";
+    } else {
+        self.patternPresetLabel.text = @"Pattern";
+    }
 }
 @end
