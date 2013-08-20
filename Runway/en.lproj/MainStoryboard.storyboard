@@ -409,17 +409,6 @@
                                 <rect key="frame" x="7" y="182" width="205" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="hj6-H6-K9k">
-                                        <rect key="frame" x="20" y="93" width="161" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="Temp"/>
-                                            <segment title="Stay On"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="permanenceChosen:" destination="2" eventType="valueChanged" id="Vx0-Rf-dJv"/>
-                                        </connections>
-                                    </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="d3t-tY-mG5">
                                         <rect key="frame" x="12" y="20" width="180" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -493,7 +482,6 @@
                         <outlet property="patternKeyPadContainer" destination="DzQ-FJ-05T" id="9dQ-DH-jTo"/>
                         <outlet property="patternPresetLabel" destination="TIs-02-Evy" id="YSa-si-1J8"/>
                         <outlet property="patternPresetSwitch" destination="b8p-fA-K8v" id="i3f-sL-wAh"/>
-                        <outlet property="permanenceControl" destination="hj6-H6-K9k" id="QGS-Ix-36n"/>
                         <outlet property="recordBarButton" destination="dTc-pp-3tD" id="QGX-F4-6Of"/>
                         <outlet property="sharedControlsView" destination="COJ-mD-hzS" id="Gzl-Vb-fut"/>
                         <outlet property="stopRecordBarButton" destination="mhZ-z7-GUV" id="aXc-Yr-Cce"/>
@@ -522,6 +510,16 @@
                             <view contentMode="scaleToFill" id="baE-vo-JzS" userLabel="Parameters Container View">
                                 <rect key="frame" x="804" y="13" width="200" height="540"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="pQa-vi-eWc" customClass="LARSBar">
+                                        <rect key="frame" x="41" y="309" width="118" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="hDJ-4c-M29" customClass="LARSBar">
+                                        <rect key="frame" x="73" y="309" width="118" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </slider>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ljt-KB-xkk">
@@ -535,6 +533,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Patterns" image="dots" id="6"/>
                     <connections>
+                        <outlet property="levelSliderLeft" destination="pQa-vi-eWc" id="2p8-pn-w3Z"/>
+                        <outlet property="levelSliderRight" destination="hDJ-4c-M29" id="Gzr-oz-dpF"/>
                         <outlet property="parametersContainerView" destination="baE-vo-JzS" id="8ri-ar-Ur8"/>
                         <outlet property="patternButtonsContainerView" destination="ljt-KB-xkk" id="C21-nd-Sii"/>
                     </connections>
@@ -575,6 +575,9 @@
         <image name="smallYellowCircle.png" width="8" height="8"/>
     </resources>
     <classes>
+        <class className="LARSBar" superclassName="UISlider">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LARSBar.h"/>
+        </class>
         <class className="RWColorSegmentedControl" superclassName="UISegmentedControl">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RWColorSegmentedControl.h"/>
         </class>
@@ -658,6 +661,8 @@
         <class className="RWSecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RWSecondViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="levelSliderLeft" candidateClass="LARSBar"/>
+                <relationship kind="outlet" name="levelSliderRight" candidateClass="LARSBar"/>
                 <relationship kind="outlet" name="parametersContainerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="patternButtonsContainerView" candidateClass="UIScrollView"/>
             </relationships>
