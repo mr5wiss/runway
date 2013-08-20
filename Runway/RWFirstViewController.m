@@ -587,7 +587,7 @@ static RWFirstViewController *s_sharedInstance;
     NSString *type = [node valueForKey:@"type"];
     NSInteger num = [[node valueForKey:@"number"] intValue];
     // set protocol letter and convert node number
-    NSString *letter;
+    NSString *letter = @"l";
     if ([type isEqualToString:@"fire"]) {
         letter = @"f";
         num = num < LIGHTS_PER_SIDE ? num/2 : (num-1)/2;
