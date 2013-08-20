@@ -27,7 +27,7 @@
         @"blue" : [UIColor blueColor],\
         @"green" : [UIColor greenColor],\
         @"red" : [UIColor redColor],\
-        @"orange" : [UIColor orangeColor],\
+        @"checker" : [UIColor grayColor],\
         @"eq" : [UIImage imageNamed:@"eq_meter"],\
         @"rainbow" : [UIImage imageNamed:@"colorwheel"],\
         @"random" : [UIImage imageNamed:@"questionmark"],\
@@ -42,7 +42,7 @@
              @"blue",
              @"green",
              @"red",
-             @"orange",
+             @"checker",
              @"eq",
              @"rainbow",
              @"random",

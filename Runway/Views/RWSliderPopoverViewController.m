@@ -104,9 +104,9 @@
     self.currentValueLabel.text = [self formattedStringForFloat:snappedValue];
     self.tandemValueLabel.text = self.currentValueLabel.text;
     NSLog(@"Telling Delegate: %f", snappedValue);
+    self.tandemSlider.value = snappedValue;
     
     [self.delegate sliderValueChanged:self];
-    self.tandemSlider.value = snappedValue;
 
 }
 
