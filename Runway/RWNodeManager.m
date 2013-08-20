@@ -84,13 +84,7 @@
 }
 
 - (RWNodeButton *)mirroredNode:(RWNodeButton *)node {
-    if (node.num < LIGHTS_PER_SIDE) {
-        return [_nodes objectForKey:[NSNumber numberWithInt:node.num + LIGHTS_PER_SIDE]];
-    }
-    else {
-        return [_nodes objectForKey:[NSNumber numberWithInt:node.num - LIGHTS_PER_SIDE]];
-    }
-    return nil;
+    return [_nodes objectForKey:[NSNumber numberWithInt:2*LIGHTS_PER_SIDE-1-node.num]];
 }
 
 #pragma mark RWNodeButtonDelegate

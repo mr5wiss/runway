@@ -592,7 +592,9 @@ static RWFirstViewController *s_sharedInstance;
         letter = @"f";
         num = num < LIGHTS_PER_SIDE ? num/2 : (num-1)/2;
     }
-    //NSString *letter = [type isEqualToString:@"fire"] ? @"f" : @"l";
+    else {
+        num++;
+    }
     if ([command isEqualToString:@"off"]) {
         return [NSString stringWithFormat:@"%@x=%d", letter, num];
     }
