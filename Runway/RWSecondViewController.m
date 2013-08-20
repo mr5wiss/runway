@@ -50,7 +50,10 @@
 #define PRESETDICT_FLAME(number, name) PATTERNDICT_FULL(number, name, [UIColor orangeColor], YES)
 
 
-@implementation RWSecondViewController
+@implementation RWSecondViewController {
+    AVAudioRecorder *_avAudioRecorder;
+    NSTimer *_avTimer;
+}
 
 - (RWFirstViewController *)lightController {
     return [RWFirstViewController sharedInstance];
@@ -176,12 +179,23 @@
     self.patternButtonsContainerView.contentSize = CGSizeMake(self.patternButtonsContainerView.frame.size.width, yPos + buttonHeight + VERTICAL_PADDING_BETWEEN_BUTTONS);
 }
 
+- (void)addMicrophoneControlButton {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self
+               action:@selector(micButtonTapped:)
+     forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"Start Mic" forState:UIControlStateNormal];
+    button.frame = CGRectMake(50.0, 10.0, 100.0, 40.0);
+    [_parametersContainerView addSubview:button];
+}
+
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self layoutPatterns];
+    [self addMicrophoneControlButton];
     
     self.view.backgroundColor = [UIColor blackColor];
     [self.parametersContainerView addDarkRoundyShadowBackground];
@@ -237,6 +251,54 @@
         [self patternSent:[[commandInfo valueForKey:@"pattern"] integerValue]];
     }
     
+}
+
+#pragma mark microphone
+
+- (void)updateMicrophoneLevels {
+    [_avAudioRecorder updateMeters];
+    float leftAvgPower = [_avAudioRecorder averagePowerForChannel:0];
+    float leftPeakPower = [_avAudioRecorder peakPowerForChannel:0];
+    
+    float rightAvgPower = [_avAudioRecorder averagePowerForChannel:1];
+    float rightPeakPower = [_avAudioRecorder peakPowerForChannel:1];
+    
+    // normalise meter levels to between 0 and 40
+    int normalisedAvgLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
+    int normalisedAvgRight = (int) ((rightAvgPower + 160.0f)/40.0f);
+    int normalisedPeakLeft = (int) ((leftPeakPower + 160.0f)/40.0f);
+    int normalisedPeakRight = (int) ((rightPeakPower + 160.0f)/40.0f);
+    
+    // send the levels to the websocket
+    [[self lightController] sendString:[NSString stringWithFormat:@"eql=%i,eqr=%i,eqpl=%i,eqpr=%i", normalisedAvgLeft, normalisedAvgRight, normalisedPeakLeft, normalisedPeakRight]];
+}
+
+- (void)micButtonTapped:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    if ([button.titleLabel.text isEqualToString:@"Start Mic"]) {
+        [button setTitle:@"Stop Mic" forState:UIControlStateNormal];
+        // configure and start the AVAudioRecorder
+        NSError *err = nil;
+        NSURL *url = [NSURL URLWithString:@"/dev/null"]; // don't save the recording
+        NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:kAudioFormatLinearPCM], [NSNumber numberWithFloat:44100.0f], [NSNumber numberWithInt:2], nil]
+                                                         forKeys:[NSArray arrayWithObjects:AVFormatIDKey, AVSampleRateKey, AVNumberOfChannelsKey, nil]];
+        _avAudioRecorder = [[AVAudioRecorder alloc] initWithURL:url settings:dict error:&err];
+        _avAudioRecorder.meteringEnabled = YES;
+        [_avAudioRecorder record];
+        
+        // start timer to update the level meter
+        _avTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateMicrophoneLevels) userInfo:nil repeats:YES];
+    }
+    else {
+        [button setTitle:@"Start Mic" forState:UIControlStateNormal];
+        // stop the timer which updates the microphone levels
+        [_avTimer invalidate];
+        _avTimer = nil;
+        
+        // stop recording the microphone
+        [_avAudioRecorder stop];
+        _avAudioRecorder = nil;
+    }
 }
 
 @end

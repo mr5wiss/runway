@@ -119,6 +119,7 @@
 
 #pragma mark control interface for external callers (e.g., RWSecondViewController)
 - (void)sendPatternNumber:(NSInteger)patternNumber;
+- (void)sendString:(NSString *)text;
 
 - (IBAction)resetTapped:(id)sender;
 @end
