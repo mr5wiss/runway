@@ -54,6 +54,8 @@
 @implementation RWSecondViewController {
     AVAudioRecorder *_avAudioRecorder;
     NSTimer *_avTimer;
+    CGFloat _testValue;
+    UILabel *_testLabel;
 }
 
 - (RWFirstViewController *)lightController {
@@ -221,6 +223,19 @@
     self.patternButtonsContainerView.contentSize = CGSizeMake(self.patternButtonsContainerView.frame.size.width, yPos + buttonHeight + VERTICAL_PADDING_BETWEEN_BUTTONS);
 }
 
+- (void)addMicTestSlider {
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(20, 100, 150, 44)];
+    [slider addTarget:self action:@selector(testSliderTapped:) forControlEvents:UIControlEventValueChanged];
+    slider.minimumValue = 10;
+    slider.maximumValue = 200;
+    slider.value = 160;
+    _testValue = 160;
+    [_parametersContainerView addSubview:slider];
+    _testLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 150, 60, 30)];
+    _testLabel.text = @"160";
+    [_parametersContainerView addSubview:_testLabel];
+}
+
 - (void)addMicrophoneControlButton {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self
@@ -238,6 +253,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self layoutPatterns];
     [self addMicrophoneControlButton];
+    [self addMicTestSlider];
     
     self.view.backgroundColor = [UIColor blackColor];
     [self.parametersContainerView addDarkRoundyShadowBackground];
@@ -313,7 +329,8 @@
     float rightPeakPower = [_avAudioRecorder peakPowerForChannel:1];
     
     // normalise meter levels to between 0 and 40
-    int normalisedAvgLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
+    //int normalisedAvgLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
+    int normalisedAvgLeft = (int) ((leftAvgPower + _testValue)/40.0f);
     int normalisedAvgRight = (int) ((rightAvgPower + 160.0f)/40.0f);
     int normalisedPeakLeft = (int) ((leftPeakPower + 160.0f)/40.0f);
     int normalisedPeakRight = (int) ((rightPeakPower + 160.0f)/40.0f);
@@ -348,6 +365,11 @@
         [_avAudioRecorder stop];
         _avAudioRecorder = nil;
     }
+}
+
+- (void)testSliderTapped:(id)sender {
+    _testValue = ((UISlider *)sender).value;
+    _testLabel.text = [NSString stringWithFormat:@"%f",((UISlider *)sender).value];
 }
 
 @end
