@@ -11,6 +11,6 @@
 
 @interface RWSecondViewController : UIViewController <RWPatternButtonDelegate>
 @property (weak, nonatomic) IBOutlet UIView *parametersContainerView;
-@property (weak, nonatomic) IBOutlet UIView *patternButtonsContainerView;
+@property (weak, nonatomic) IBOutlet UIScrollView *patternButtonsContainerView;
 
 @end
