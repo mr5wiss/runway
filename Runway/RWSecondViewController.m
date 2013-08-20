@@ -40,6 +40,7 @@
 @"name" : (name), \
 @"displayColor" : (displayColor), \
 @"hasFlame": @(hasFlame), \
+@"isPreset": @(YES), \
 },
 
 
@@ -162,13 +163,24 @@
                           PATTERNDICT_FLAME(49, @"Pattern", [UIColor whiteColor])
                           PATTERNDICT_FLAME(50, @"Pattern", [UIColor whiteColor])
 
+                          PRESETDICT(0, @"Preset 0")
+                          PRESETDICT(1, @"Preset 1")
+                          PRESETDICT(2, @"Preset 2")
+                          PRESETDICT(3, @"Preset 3")
+                          PRESETDICT(4, @"Preset 4")
+                          PRESETDICT(5, @"Preset 5")
                           
-                          PATTERNDICT_FLAME(51, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(52, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(53, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(54, @"Pattern", [UIColor whiteColor])
-                          PATTERNDICT_FLAME(55, @"Pattern", [UIColor whiteColor])
-
+                          PRESETDICT(6, @"Preset 6")
+                          PRESETDICT(7, @"Preset 7")
+                          PRESETDICT(8, @"Preset 8")
+                          PRESETDICT(9, @"Preset 9")
+                          PRESETDICT(10, @"Preset 10")
+                          
+                          PRESETDICT(11, @"Preset 11")
+                          PRESETDICT(12, @"Preset 12")
+                          PRESETDICT(13, @"Preset 13")
+                          PRESETDICT(14, @"Preset 14")
+                          PRESETDICT(15, @"Preset 15")
                           ];
         
         
@@ -258,7 +270,7 @@
 }
 
 #pragma mark updating UI
-- (void)patternSent:(NSInteger)patternNumber {
+- (void)patternOrPresetSent:(NSInteger)patternNumber {
     for (RWPatternButton *button in [self.patternButtonDictionary allValues]) {
         button.on = (button.patternNumber == patternNumber);
     }
@@ -270,6 +282,10 @@
     [[self lightController] sendPatternNumber:patternNumber];
 }
 
+- (void)presetTapped:(NSInteger)patternNumber {
+    [[self lightController] sendPresetNumber:patternNumber];
+}
+
 
 #pragma mark updates from the controller
 - (void)commandSent:(NSNotification *)note {
@@ -278,8 +294,11 @@
 //    NSLog(@"+++ Observed command sent: %@", commandInfo);
     
     if ([[commandInfo allKeys] containsObject:@"pattern"]) {
-        [self patternSent:[[commandInfo valueForKey:@"pattern"] integerValue]];
+        [self patternOrPresetSent:[[commandInfo valueForKey:@"pattern"] integerValue]];
+    } else if ([[commandInfo allKeys] containsObject:@"preset"]) {
+        [self patternOrPresetSent:[[commandInfo valueForKey:@"preset"] integerValue]];
     }
+
     
 }
 
