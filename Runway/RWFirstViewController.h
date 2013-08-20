@@ -12,6 +12,7 @@
 #import "RWNodeManager.h"
 #import "FPNumberPadView.h"
 #import "RWNodeView.h"
+#import "RWSliderPopoverViewController.h"
 
 #define LIGHTS_PER_SIDE 42
 #define FIRE_PER_SIDE 20
@@ -19,7 +20,7 @@
 //This lets any listening controller (e.g. RWSecondViewController) know when any command was sent and react appropriately
 #define kCommandSentNotification @"kCommandSentNotification"  //sends dictionary of {@"command" : commandString, @"value" : value} 
 
-@interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate, UITextFieldDelegate, FPKeypadDelegate>
+@interface RWFirstViewController : UIViewController<SRWebSocketDelegate, RWNodeManagerDelegate, UITextFieldDelegate, FPKeypadDelegate, RWSliderPopoverViewControllerDelegate>
 // the main input views
 @property (nonatomic, strong) IBOutlet RWNodeView *topNodes;
 @property (nonatomic, strong) IBOutlet RWNodeView *bottomNodes;
@@ -105,11 +106,23 @@
 
 - (IBAction)colorChosen:(id)sender;
 - (IBAction)panic:(id)sender;
+- (IBAction)showPopover:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *lightDurationButton;
+@property (weak, nonatomic) IBOutlet UIButton *fireDurationButton;
+@property (weak, nonatomic) IBOutlet UIButton *fadeOutButton;
+@property (weak, nonatomic) IBOutlet UIButton *fadeInButton;
+@property (weak, nonatomic) IBOutlet UIButton *tempoButton;
 
 @property (weak, nonatomic) IBOutlet UIView *sharedControlsView;
 
+@property (weak, nonatomic) IBOutlet UISwitch *patternPresetSwitch;
+- (IBAction)togglePatternPreset:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *patternPresetLabel;
 
 #pragma mark control interface for external callers (e.g., RWSecondViewController)
 - (void)sendPatternNumber:(NSInteger)patternNumber;
+- (void)sendPresetNumber:(NSInteger)patternNumber;
+- (void)sendString:(NSString *)text;
 
+- (IBAction)resetTapped:(id)sender;
 @end

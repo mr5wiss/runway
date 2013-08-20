@@ -16,11 +16,13 @@
 
 @protocol RWPatternButtonDelegate <NSObject>
 - (void)patternTapped:(NSInteger)patternNumber;
+- (void)presetTapped:(NSInteger)patternNumber;
 @end
 
 @interface RWPatternButton : UIView <UIGestureRecognizerDelegate>
 @property (readonly) NSInteger patternNumber;
 @property (readwrite) BOOL on;  // on will set the border to red
+@property (readwrite) BOOL isPreset; 
 @property (weak) id<RWPatternButtonDelegate>delegate;
 + (RWPatternButton *)patternButtonWithDictionary:(NSDictionary *)patternInfo;
 @end

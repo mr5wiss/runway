@@ -28,10 +28,12 @@
     NSString *title = [patternInfo valueForKey:@"name"];
     NSInteger number = [[patternInfo valueForKey:@"number"] integerValue];
     BOOL hasFire = [[patternInfo valueForKey:@"hasFlame"] boolValue];
+    BOOL isPreset = [[patternInfo valueForKey:@"isPreset"] boolValue];
 //    NSDictionary *parameters = [patternInfo valueForKey:@"parameters"];
     
     RWPatternButton *aButton = [[RWPatternButton alloc] initWithFrame:CGRectMake(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT)];
     aButton.titleLabel.text = title ? title : [NSString stringWithFormat:@"Pattern %d", 1];
+    aButton.isPreset = isPreset;
     aButton.patternNumber = number;
     aButton.preservedBackgroundColor = color ? color : [UIColor whiteColor];
     aButton.selectedBackgroundColor = [UIColor yellowColor];
@@ -114,7 +116,11 @@
 - (void)tapped:(UITapGestureRecognizer *)gr {
     if (gr.state == UIGestureRecognizerStateEnded) {
         NSLog(@"TAPPED! %d", self.patternNumber);
-        [self.delegate patternTapped:self.patternNumber];
+        if (self.isPreset) {
+            [self.delegate presetTapped:self.patternNumber];
+        } else {
+            [self.delegate patternTapped:self.patternNumber];
+        }
         self.on = YES;
         self.layer.backgroundColor = self.preservedBackgroundColor.CGColor;
     } else if (gr.state == UIGestureRecognizerStateCancelled) {

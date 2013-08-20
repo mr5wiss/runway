@@ -11,12 +11,15 @@
 #import "RWColorSegmentedControl.h"
 #import "FPNumberPadView.h"
 #import "UIView+UIView_Background.h"
+#import "RWSliderPopoverViewController.h"
 
 // change as we hook up lights
 #define LIGHTS_FOR_TEST 42
 #define MAX_PATTERN_NUMBER 100
 
 @interface RWFirstViewController ()
+@property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, strong) RWSliderPopoverViewController *sliderViewController;
 @property (nonatomic, strong) SRWebSocket *wSocket;
 @end
 
@@ -36,9 +39,7 @@
     NSMutableArray *_recordHistory;
     RWNodeManager *_nodeManager;
     RWFirstViewController *_s_sharedInstance;
-    
-    AVAudioRecorder *_avAudioRecorder;
-    NSTimer *_avTimer;
+    UIPopoverController *_popoverController;
 }
 
 static RWFirstViewController *s_sharedInstance;
@@ -205,53 +206,90 @@ static RWFirstViewController *s_sharedInstance;
     [alert show];
 }
 
-- (void)recordButtonTapped {
-    // configure and start the AVAudioRecorder
-    NSError *err = nil;
-    NSURL *url = [NSURL URLWithString:@"/dev/null"]; // don't save the recording
-    NSDictionary *dict = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:kAudioFormatLinearPCM], [NSNumber numberWithFloat:44100.0f], [NSNumber numberWithInt:2], nil]
-        forKeys:[NSArray arrayWithObjects:AVFormatIDKey, AVSampleRateKey, AVNumberOfChannelsKey, nil]];
-    _avAudioRecorder = [[AVAudioRecorder alloc] initWithURL:url settings:dict error:&err];
-    _avAudioRecorder.meteringEnabled = YES;
-    [_avAudioRecorder record];
+- (IBAction)showPopover:(id)sender {
+    if (!self.popoverController) {
+        self.sliderViewController = [[RWSliderPopoverViewController alloc] initWithNibName:@"RWSliderPopoverViewController" bundle:nil];
+        self.sliderViewController.delegate = self;
+        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:self.sliderViewController];
+        [self.popoverController setPopoverContentSize:self.sliderViewController.view.frame.size];
+    }
 
-    // start timer to update the level meter
-    _avTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateMicrophoneLevels) userInfo:nil repeats:YES];
+    CGRect frame = [sender frame];
+    CGPoint pointInMainView = [self.view convertPoint:[sender frame].origin fromView:sender];
+    frame.origin = pointInMainView;
+    frame.origin.x = [sender center].x - 60; // don't have time to debug the math, just doing this instead
+
     
+    [self.popoverController presentPopoverFromRect:frame inView:[self.sharedControlsView superview] permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+    
+    static NSArray *fireTimes = nil;
+    static NSArray *lightTimes = nil;
+    static NSArray *tempoTimes = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fireTimes = @[@(0.02), @(0.03), @(0.04), @(0.05), @(0.06), @(0.07), @(0.08), @(0.09), @(0.10), @(0.125), @(0.15), @(0.175), @(0.2), @(0.3), @(0.4), @(0.5), @(0.75), @(1.0), @(1.5), @(2.0), @(2.5), @(3.0)];
+        lightTimes = @[@(0.0), @(0.1),@(0.2),@(0.3),@(0.4),@(0.5),@(0.6),@(0.7),@(0.8),@(0.9),@(1.0),@(1.25),@(1.5),@(1.75),@(2.0),@(3.0),@(4.0),@(5.0),@(7.5),@(10)];
+        tempoTimes = @[@(5), @(4.5), @(4.0), @(3.5), @(3), @(2.5), @(2.0), @(1.5), @(1), @(0.75), @(0.5), @(0.25), @(0.175), @(0.10), @(0.09), @(0.08), @(0.07), @(0.06), @(0.05), @(0.04), @(0.03), @(0.02)];
+    });
+    
+    self.sliderViewController.reversed = NO;
+    if (sender == self.lightDurationButton) {
+        self.sliderViewController.tandemValueLabel = self.lightDurationsLabel;
+        self.sliderViewController.tandemSlider = self.lightDurationSlider;
+        self.sliderViewController.descreteValues = lightTimes;
+        ;
+    } else if (sender == self.fireDurationButton) {
+        self.sliderViewController.descreteValues = fireTimes;
+
+        self.sliderViewController.tandemValueLabel = self.fireDurationLabel;
+        self.sliderViewController.tandemSlider = self.fireDurationSlider;
+    } else if (sender == self.fadeInButton) {
+        self.sliderViewController.tandemValueLabel = self.fadeInLabel;
+        self.sliderViewController.tandemSlider = self.fadeInSlider;
+        self.sliderViewController.descreteValues = lightTimes;
+    } else if (sender == self.fadeOutButton) {
+        self.sliderViewController.tandemValueLabel = self.fadeOutLabel;
+        self.sliderViewController.tandemSlider = self.fadeOutSlider;
+        self.sliderViewController.descreteValues = lightTimes;
+    } else if (sender == self.tempoButton) {
+        self.sliderViewController.tandemValueLabel = self.tickLabel;
+        self.sliderViewController.tandemSlider = self.tempoSlider;
+        self.sliderViewController.descreteValues = tempoTimes;
+        self.sliderViewController.reversed = YES;
+    } else {
+        //WTF?
+        self.sliderViewController.tandemValueLabel = nil;
+        self.sliderViewController.tandemSlider = nil;
+    }
+    
+}
+
+
+#pragma mark RWSliderPopoverViewControllerDelegate
+- (void)sliderValueChanged:(RWSliderPopoverViewController *)sender {
+    if (self.sliderViewController.tandemSlider == self.fadeOutSlider) {
+        [self fadeChanged:self.fadeOutSlider];
+    } else if (self.sliderViewController.tandemSlider == self.fadeInSlider) {
+        [self fadeChanged:self.fadeInSlider];
+    } else if (self.sliderViewController.tandemSlider == self.fireDurationSlider) {
+        [self durationChanged:self.fireDurationSlider];
+    } else if (self.sliderViewController.tandemSlider == self.lightDurationSlider) {
+        [self durationChanged:self.lightDurationSlider];
+    } else if (self.sliderViewController.tandemSlider == self.tempoSlider) {
+        [self tempoChanged:self.tempoSlider];
+    }
+
+}
+
+- (void)recordButtonTapped {
     _recordOn = YES;
     _recordBarButton.tintColor = [UIColor blueColor];
     // clear out any current recording
     [_recordHistory removeAllObjects];
 }
 
-- (void)updateMicrophoneLevels {
-    [_avAudioRecorder updateMeters];
-    float leftAvgPower = [_avAudioRecorder averagePowerForChannel:0];
-    float leftPeakPower = [_avAudioRecorder peakPowerForChannel:0];
-    
-    float rightAvgPower = [_avAudioRecorder averagePowerForChannel:1];
-    float rightPeakPower = [_avAudioRecorder peakPowerForChannel:1];
-    
-    // normalise meter levels to between 0 and 40
-    int normalisedAvgLeft = (int) ((leftAvgPower + 160.0f)/40.0f);
-    int normalisedAvgRight = (int) ((rightAvgPower + 160.0f)/40.0f);
-    int normalisedPeakLeft = (int) ((leftPeakPower + 160.0f)/40.0f);
-    int normalisedPeakRight = (int) ((rightPeakPower + 160.0f)/40.0f);
-    
-    // send the levels to the websocket
-    [self send:[NSString stringWithFormat:@"eql=%i,eqr=%i,eqpl=%i,eqpr=%i",
-            normalisedAvgLeft, normalisedAvgRight, normalisedPeakLeft, normalisedPeakRight]];
-}
-
 - (void)recordOffTapped {
-    // stop the timer which updates the microphone levels
-    [_avTimer invalidate];
-    _avTimer = nil;
-    
-    // stop recording the microphone
-    [_avAudioRecorder stop];
-    _avAudioRecorder = nil;
-    
     // record final state
     [self record:nil];
     _recordOn = NO;
@@ -407,7 +445,7 @@ static RWFirstViewController *s_sharedInstance;
     CGFloat total = slider.maximumValue + slider.minimumValue;
     // send time between pattern updates
     [self send:[NSString stringWithFormat:@"tick=%f", total - value]];
-    self.tickLabel.text = [NSString stringWithFormat:@"Tick: %.1fs", total - value];
+    self.tickLabel.text = [NSString stringWithFormat:@"%.2fs", total - value];
 }
 
 // duration
@@ -417,12 +455,12 @@ static RWFirstViewController *s_sharedInstance;
     if (slider == _lightDurationSlider) {
         // send light duration updarte
         [self send:[NSString stringWithFormat:@"lightduration=%f", value]];
-        _lightDurationsLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+        _lightDurationsLabel.text = [NSString stringWithFormat:@"%0.2fs", value];
     }
     else {
         // send fire duration updarte
         [self send:[NSString stringWithFormat:@"fireduration=%f", value]];
-        _fireDurationLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+        _fireDurationLabel.text = [NSString stringWithFormat:@"%0.2fs", value];
     }
 }
 
@@ -432,11 +470,11 @@ static RWFirstViewController *s_sharedInstance;
     CGFloat value = slider.value;
     if (sender == _fadeInSlider) {
         [self send:[NSString stringWithFormat:@"fadein=%f", value]];
-        _fadeInLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+        _fadeInLabel.text = [NSString stringWithFormat:@"%0.2fs", value];
     }
     else {
         [self send:[NSString stringWithFormat:@"fadetime=%.1f", value]];
-        _fadeOutLabel.text = [NSString stringWithFormat:@"%.1fs", value];
+        _fadeOutLabel.text = [NSString stringWithFormat:@"%0.2fs", value];
     }
 }
 
@@ -555,11 +593,36 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+#pragma mark -
+
+- (void)sendString:(NSString *)text {
+    [self send:text];
+}
+
 // sends number user typed in - TO DO: better interface
 
 - (void)sendPatternNumber:(NSInteger)patternNumber {
     [self send:[NSString stringWithFormat:@"pattern=%d", patternNumber]];
     self.patternField.placeholder = [NSString stringWithFormat:@"%d", patternNumber];
+}
+
+- (void)sendPresetNumber:(NSInteger)patternNumber {
+    [self send:[NSString stringWithFormat:@"preset=%d", patternNumber]];
+    self.patternField.placeholder = [NSString stringWithFormat:@"%d", patternNumber];
+}
+
+- (IBAction)resetTapped:(id)sender {
+    self.fadeInSlider.value = 0.0;
+    self.fadeOutSlider.value = 0.0;
+    self.lightDurationSlider.value = 0.0;
+    self.fireDurationSlider.value = 0.02;
+    self.tempoSlider.value = self.tempoSlider.maximumValue + self.tempoSlider.minimumValue - 0.5;
+    
+    [self fadeChanged:self.fadeOutSlider];
+    [self fadeChanged:self.fadeInSlider];
+    [self durationChanged:self.fireDurationSlider];
+    [self durationChanged:self.lightDurationSlider];
+    [self tempoChanged:self.tempoSlider];
 }
 
 
@@ -629,17 +692,20 @@ static RWFirstViewController *s_sharedInstance;
     NSString *type = [node valueForKey:@"type"];
     NSInteger num = [[node valueForKey:@"number"] intValue];
     // set protocol letter and convert node number
-    NSString *letter;
+    NSString *letter = @"l";
     if ([type isEqualToString:@"fire"]) {
         letter = @"f";
         num = num < LIGHTS_PER_SIDE ? num/2 : (num-1)/2;
     }
-    //NSString *letter = [type isEqualToString:@"fire"] ? @"f" : @"l";
+    else {
+        num++;
+    }
     if ([command isEqualToString:@"off"]) {
         return [NSString stringWithFormat:@"%@x=%d", letter, num];
     }
     else {
-        return [NSString stringWithFormat:@"%@%@=%d", letter, self.permanence ? @"r" : @"", num];
+//        return [NSString stringWithFormat:@"%@%@=%d", letter, self.permanence ? @"r" : @"", num];
+        return [NSString stringWithFormat:@"%@=%d", letter, num];
     }
 }
 
@@ -672,6 +738,13 @@ static RWFirstViewController *s_sharedInstance;
     [self setFireTogglesContainerView:nil];
     [self setPatternContainerView:nil];
     [self setTempoContainerView:nil];
+    [self setLightDurationButton:nil];
+    [self setFireDurationButton:nil];
+    [self setFadeOutButton:nil];
+    [self setFadeInButton:nil];
+    [self setPatternPresetSwitch:nil];
+    [self setPatternPresetLabel:nil];
+    [self setTempoButton:nil];
     [super viewDidUnload];
 }
 
@@ -680,8 +753,9 @@ static RWFirstViewController *s_sharedInstance;
     [self addDigitAndSendPatternIfEnoughTimeElapses:digit];
 }
 
-- (void)decimalTapped {
-    self.patternField.text = nil;
+- (void)enterTapped {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self submitPatternOrPresetNumber];
 }
 
 - (void)clearTapped {
@@ -689,10 +763,15 @@ static RWFirstViewController *s_sharedInstance;
     self.patternField.text = nil;
 }
 
-- (void)submitPatternNumber {
+- (void)submitPatternOrPresetNumber {
     if (self.patternField.text.length > 0) {
         NSInteger patternNumber = [self.patternField.text integerValue];
-        [self sendPatternNumber:patternNumber];
+        
+        if (self.patternPresetSwitch.isOn) {
+            [self sendPresetNumber:patternNumber];
+        } else {
+            [self sendPatternNumber:patternNumber];
+        }
         self.patternField.text = nil;
     }
 }
@@ -701,7 +780,7 @@ static RWFirstViewController *s_sharedInstance;
     
     //if user types only one digit, auto-submit that after one second
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(submitPatternNumber) withObject:nil afterDelay:1.5];
+    [self performSelector:@selector(submitPatternOrPresetNumber) withObject:nil afterDelay:1.5];
     
     if (self.patternField.text.length == 1) {
         NSString *candidateText = [self.patternField.text stringByAppendingFormat:@"%d", digit];
@@ -714,4 +793,11 @@ static RWFirstViewController *s_sharedInstance;
     }
 }
 
+- (IBAction)togglePatternPreset:(id)sender {
+    if ([sender isOn]) {
+        self.patternPresetLabel.text = @"Preset";
+    } else {
+        self.patternPresetLabel.text = @"Pattern";
+    }
+}
 @end

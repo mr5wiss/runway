@@ -1,0 +1,3 @@
+[submodule "larsbar"]
+	path = larsbar
+	url = git@github.com:larsacus/LARSBar.git
