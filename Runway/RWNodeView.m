@@ -58,14 +58,15 @@
     if (!_nodeManager) {
         return NO;
     }
-    // numbers ascend right to left
+    // numbers go right to left on bottom (0-41) and right to left on top (42-83)
     for (NSInteger i=0; i<LIGHTS_PER_SIDE; i++) {
         CGRect buttonFrame = CGRectMake(i*NODE_WIDTH, 0, NODE_WIDTH, self.frame.size.height);
         // light node or both (pure fire nodes don't exist on initialization)
         nodeType type = i >= FIRST_FIRE && (i-FIRST_FIRE) / FIRE_GAP < FIRE_PER_SIDE && (i-FIRST_FIRE) % FIRE_GAP == 0 ? kRWnodeTypeBoth : kRWnodeTypeLight;
-        RWNodeButton *node = [[RWNodeButton alloc] initWithNum:_startNum+LIGHTS_PER_SIDE-i-1 type:type frame:buttonFrame];
+        NSInteger num = _startNum > 0 ? _startNum+i : _startNum+LIGHTS_PER_SIDE-i-1;
+        RWNodeButton *node = [[RWNodeButton alloc] initWithNum:num type:type frame:buttonFrame];
         [self addSubview:node];
-        [_nodeManager addNode:node number:_startNum+LIGHTS_PER_SIDE-i-1];
+        [_nodeManager addNode:node number:num];
         node.delegate = _nodeManager;
     }
     return YES;
