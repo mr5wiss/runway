@@ -547,7 +547,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Add Constant" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ss4-b4-frU">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sensitivity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ss4-b4-frU">
                                         <rect key="frame" x="34" y="516" width="132" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -596,7 +596,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="30" id="Vh2-Xi-U7x">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="-40" maxValue="40" id="Vh2-Xi-U7x">
                                         <rect key="frame" x="41" y="486" width="118" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
@@ -666,6 +666,112 @@
         <image name="smallRedCircle.png" width="8" height="8"/>
         <image name="smallYellowCircle.png" width="8" height="8"/>
     </resources>
+    <classes>
+        <class className="LARSBar" superclassName="UISlider">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LARSBar.h"/>
+        </class>
+        <class className="RWColorSegmentedControl" superclassName="UISegmentedControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWColorSegmentedControl.h"/>
+        </class>
+        <class className="RWFirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWFirstViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="allReleased:"/>
+                <relationship kind="action" name="allTapped:"/>
+                <relationship kind="action" name="clearButtonTapped:"/>
+                <relationship kind="action" name="colorChosen:"/>
+                <relationship kind="action" name="durationChanged:"/>
+                <relationship kind="action" name="fadeChanged:"/>
+                <relationship kind="action" name="lockSidesTapped:"/>
+                <relationship kind="action" name="nodesChosen:"/>
+                <relationship kind="action" name="panic:"/>
+                <relationship kind="action" name="patternButtonTapped:"/>
+                <relationship kind="action" name="permanenceChosen:"/>
+                <relationship kind="action" name="resetTapped:"/>
+                <relationship kind="action" name="showPopover:"/>
+                <relationship kind="action" name="tempoChanged:"/>
+                <relationship kind="action" name="timeChosen:"/>
+                <relationship kind="action" name="togglePatternPreset:"/>
+                <relationship kind="outlet" name="allBottomButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="allTopButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bottomNodes" candidateClass="RWNodeView"/>
+                <relationship kind="outlet" name="clearButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="colorControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="connectButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="fadeInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fadeInLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fadeInSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="fadeOutButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fadeOutLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fadeOutSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="fireDurationButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fireDurationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fireDurationSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="fireTogglesContainerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="lightDurationButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="lightDurationSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="lightDurationsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lockSidesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loopBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="nodeControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="offBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="onBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="panicBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="panicButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="pattern1BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern2BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern3BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern4BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pattern5BarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="patternChooseButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="patternContainerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="patternField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="patternKeyPadContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="patternLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patternPresetLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="patternPresetSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="permanenceControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="recordBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="sharedControlsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="stopRecordBarButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tapLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tapSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tempoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="tempoContainerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="tempoSlider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="tickLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topNodes" candidateClass="RWNodeView"/>
+                <relationship kind="outlet" name="topToolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="RWGlossyButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWGlossyButton.h"/>
+        </class>
+        <class className="RWNodeView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWNodeView.h"/>
+        </class>
+        <class className="RWSecondViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWSecondViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="sensitivityChanged:"/>
+                <relationship kind="outlet" name="leftAvgLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="leftLevelLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="leftPeakLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="levelSliderLeft" candidateClass="LARSBar"/>
+                <relationship kind="outlet" name="levelSliderRight" candidateClass="LARSBar"/>
+                <relationship kind="outlet" name="parametersContainerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="patternButtonsContainerView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="rightAvgLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rightLevelLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="rightPeakLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sensitivityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="sensitivitySlider" candidateClass="UISlider"/>
+            </relationships>
+        </class>
+        <class className="RWTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RWTabBarController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
