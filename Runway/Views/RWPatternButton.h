@@ -20,6 +20,7 @@
 @end
 
 @interface RWPatternButton : UIView <UIGestureRecognizerDelegate>
+@property (readonly) NSString *identifier;
 @property (readonly) NSInteger patternNumber;
 @property (readwrite) BOOL on;  // on will set the border to red
 @property (readwrite) BOOL isPreset; 

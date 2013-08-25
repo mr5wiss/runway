@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIColor *preservedBackgroundColor;
 @property (strong) UIColor *selectedBackgroundColor;
 @property (strong) UIColor *tappedBackgroundColor;
+@property (strong) NSString *identifier;
 @end
 
 @implementation RWPatternButton
@@ -41,6 +42,7 @@
     aButton.frame = CGRectMake(0,0,BUTTON_WIDTH, BUTTON_HEIGHT);
     aButton.numberLabel.text = [NSString stringWithFormat:@"%d", number];
     aButton.fireIndicator.hidden = !hasFire;
+    aButton.identifier = [patternInfo valueForKey:@"identifier"];
     return aButton;
 }
 

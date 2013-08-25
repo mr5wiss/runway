@@ -28,8 +28,13 @@
 //definitions of the states
 
 //convenience define that makes a row with the state description
+#define PATTERN_IDENTIFIER_FOR_NUMBER(n) [NSString stringWithFormat:@"pattern-%d", n]
+#define PRESET_IDENTIFIER_FOR_NUMBER(n) [NSString stringWithFormat:@"preset-%d", n]
+
+
 #define PATTERNDICT_FULL(number, name, displayColor, hasFlame) @{\
 @"number" : @(number),\
+@"identifier" : PATTERN_IDENTIFIER_FOR_NUMBER(number),\
 @"name" : (name), \
 @"displayColor" : (displayColor), \
 @"hasFlame": @(hasFlame), \
@@ -37,6 +42,7 @@
 
 #define PRESETDICT_FULL(number, name, displayColor, hasFlame) @{\
 @"number" : @(number),\
+@"identifier" : PRESET_IDENTIFIER_FOR_NUMBER(number),\
 @"name" : (name), \
 @"displayColor" : (displayColor), \
 @"hasFlame": @(hasFlame), \
@@ -48,7 +54,7 @@
 #define PATTERNDICT_FLAME(number, name, displayColor) PATTERNDICT_FULL(number, name, displayColor, YES)
 
 #define PRESETDICT(number, name) PRESETDICT_FULL(number, name, [UIColor orangeColor], NO)
-#define PRESETDICT_FLAME(number, name) PATTERNDICT_FULL(number, name, [UIColor orangeColor], YES)
+#define PRESETDICT_FLAME(number, name) PRESETDICT_FULL(number, name, [UIColor orangeColor], YES)
 
 
 @implementation RWSecondViewController {
@@ -217,7 +223,8 @@
             xPos = HORIZONTAL_START_POS;
             yPos += button.frame.size.height + VERTICAL_PADDING_BETWEEN_BUTTONS;
         }
-        [buttonDict setObject:button forKey:[patternDict valueForKey:@"number"]];
+        
+        [buttonDict setObject:button forKey:[patternDict valueForKey:@"identifier"]];
     }
 
     self.patternButtonDictionary = buttonDict;
@@ -258,7 +265,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self layoutPatterns];
     [self addMicrophoneControlButton];
-    [self addMicTestSlider];
+//    [self addMicTestSlider];
     
     self.view.backgroundColor = [UIColor blackColor];
     [self.parametersContainerView addDarkRoundyShadowBackground];
@@ -306,9 +313,15 @@
 }
 
 #pragma mark updating UI
-- (void)patternOrPresetSent:(NSInteger)patternNumber {
+- (void)patternOrPresetSent:(NSString *)patternOrPresetKey {
+    
+    
     for (RWPatternButton *button in [self.patternButtonDictionary allValues]) {
-        button.on = (button.patternNumber == patternNumber);
+        if ([patternOrPresetKey isEqualToString:[button identifier]]) {
+            [button setOn:YES];
+        } else {
+            [button setOn:NO];
+        }
     }
 }
 
@@ -329,11 +342,14 @@
     NSDictionary *commandInfo = [note object];
 //    NSLog(@"+++ Observed command sent: %@", commandInfo);
     
+    NSString *key = nil;
+    
     if ([[commandInfo allKeys] containsObject:@"pattern"]) {
-        [self patternOrPresetSent:[[commandInfo valueForKey:@"pattern"] integerValue]];
+        key = PATTERN_IDENTIFIER_FOR_NUMBER([[commandInfo valueForKey:@"pattern"] integerValue]);
     } else if ([[commandInfo allKeys] containsObject:@"preset"]) {
-        [self patternOrPresetSent:[[commandInfo valueForKey:@"preset"] integerValue]];
+        key = PRESET_IDENTIFIER_FOR_NUMBER([[commandInfo valueForKey:@"preset"] integerValue]);
     }
+    [self patternOrPresetSent:key];
 
     
 }

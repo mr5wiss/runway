@@ -215,7 +215,7 @@ static RWFirstViewController *s_sharedInstance;
     }
 
     CGRect frame = [sender frame];
-    CGPoint pointInMainView = [self.view convertPoint:[sender frame].origin fromView:sender];
+    CGPoint pointInMainView = [[self.sharedControlsView superview] convertPoint:[sender frame].origin fromView:sender];
     frame.origin = pointInMainView;
     frame.origin.x = [sender center].x - 60; // don't have time to debug the math, just doing this instead
 
