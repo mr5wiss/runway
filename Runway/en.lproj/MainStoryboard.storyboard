@@ -515,96 +515,96 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="baE-vo-JzS" userLabel="Parameters Container View">
-                                <rect key="frame" x="804" y="13" width="200" height="540"/>
+                                <rect key="frame" x="804" y="20" width="200" height="533"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="40" id="pQa-vi-eWc" customClass="LARSBar">
-                                        <rect key="frame" x="-64" y="224" width="280" height="23"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minValue="0.0" maxValue="40" id="pQa-vi-eWc" customClass="LARSBar">
+                                        <rect key="frame" x="-64" y="217" width="280" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </slider>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="40" id="hDJ-4c-M29" customClass="LARSBar">
-                                        <rect key="frame" x="-12" y="224" width="280" height="23"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minValue="0.0" maxValue="40" id="hDJ-4c-M29" customClass="LARSBar">
+                                        <rect key="frame" x="-12" y="217" width="280" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0QW-eB-hHb">
-                                        <rect key="frame" x="20" y="390" width="68" height="21"/>
+                                        <rect key="frame" x="20" y="383" width="68" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rbB-2r-4FK">
-                                        <rect key="frame" x="80" y="390" width="48" height="21"/>
+                                        <rect key="frame" x="80" y="383" width="48" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Avg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x1F-lo-kzP">
-                                        <rect key="frame" x="20" y="419" width="76" height="21"/>
+                                        <rect key="frame" x="20" y="412" width="76" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Peak" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Oy-oN-61V">
-                                        <rect key="frame" x="20" y="448" width="76" height="21"/>
+                                        <rect key="frame" x="20" y="441" width="76" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sensitivity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ss4-b4-frU">
-                                        <rect key="frame" x="34" y="516" width="132" height="21"/>
+                                        <rect key="frame" x="34" y="509" width="132" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mLt-rm-hAC">
-                                        <rect key="frame" x="94" y="419" width="33" height="21"/>
+                                        <rect key="frame" x="94" y="412" width="33" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3IT-hi-hob">
-                                        <rect key="frame" x="94" y="448" width="33" height="21"/>
+                                        <rect key="frame" x="94" y="441" width="33" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yoh-QF-fWT">
-                                        <rect key="frame" x="124" y="516" width="33" height="21"/>
+                                        <rect key="frame" x="124" y="509" width="33" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kcs-yu-7OB">
-                                        <rect key="frame" x="136" y="390" width="47" height="21"/>
+                                        <rect key="frame" x="136" y="383" width="47" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RpJ-ys-3GP">
-                                        <rect key="frame" x="150" y="419" width="33" height="21"/>
+                                        <rect key="frame" x="150" y="412" width="33" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RhK-xF-Q4N">
-                                        <rect key="frame" x="150" y="448" width="33" height="21"/>
+                                        <rect key="frame" x="150" y="441" width="33" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="-40" maxValue="40" id="Vh2-Xi-U7x">
-                                        <rect key="frame" x="41" y="486" width="118" height="23"/>
+                                        <rect key="frame" x="41" y="479" width="118" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="sensitivityChanged:" destination="3" eventType="valueChanged" id="Psf-Re-jft"/>
@@ -614,7 +614,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ljt-KB-xkk">
-                                <rect key="frame" x="14" y="20" width="754" height="533"/>
+                                <rect key="frame" x="20" y="20" width="754" height="533"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
@@ -664,8 +664,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="control.png" width="38" height="38"/>
-        <image name="pattern.png" width="36" height="36"/>
+        <image name="control.png" width="30" height="30"/>
+        <image name="pattern.png" width="30" height="30"/>
         <image name="smallBlueCircle.png" width="8" height="8"/>
         <image name="smallEQCircle.png" width="8" height="8"/>
         <image name="smallGreenCircle.png" width="8" height="8"/>
