@@ -11,4 +11,12 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+#define RW_FONT               [UIFont fontWithName:@"FuturaStd-Medium" size:13]
+#define RW_BOLDFONT               [UIFont fontWithName:@"FuturaStd-Medium" size:13]
+#define RW_SMALLFONT               [UIFont fontWithName:@"FuturaStd-Medium" size:11]
+#define RW_BOLDSMALLFONT               [UIFont fontWithName:@"FuturaStd-Medium" size:11]
+#define RW_LARGEFONT               [UIFont fontWithName:@"FuturaStd-Medium" size:15]
+#define RW_BOLDLARGEFONT               [UIFont fontWithName:@"FuturaStd-Medium" size:15]
+
 #endif

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RWGlossyButton : UIButton
+- (id)initWithFrame:(CGRect)frame backgroundColor:(UIColor *)backgroundColor;
 
 @end

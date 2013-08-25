@@ -11,7 +11,7 @@
 #import "RWFirstViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIView+UIView_Background.h"
-
+#import "RWGlossyButton.h"
 
 #define HORIZONTAL_PADDING_BETWEEN_BUTTONS 40
 #define VERTICAL_PADDING_BETWEEN_BUTTONS 40
@@ -247,12 +247,15 @@
 }
 
 - (void)addMicrophoneControlButton {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    RWGlossyButton *button = [[RWGlossyButton alloc] initWithFrame:CGRectMake(50.0, 10.0, 100.0, 40.0) backgroundColor:[[RWFirstViewController sharedInstance] tempoButton].titleLabel.shadowColor];
+    
+    button.titleLabel.font = [[RWFirstViewController sharedInstance] tempoButton].titleLabel.font;
+    button.titleLabel.textColor = [UIColor whiteColor];
+    
     [button addTarget:self
                action:@selector(micButtonTapped:)
      forControlEvents:UIControlEventTouchDown];
     [button setTitle:@"Start Mic" forState:UIControlStateNormal];
-    button.frame = CGRectMake(50.0, 10.0, 100.0, 40.0);
     [_parametersContainerView addSubview:button];
     
     

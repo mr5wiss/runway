@@ -9,6 +9,7 @@
 //
 
 #import "RWPatternButton.h"
+#import "RWFirstViewController.h"
 #import <QuartzCore/QuartzCore.h>
 @interface RWPatternButton ()
 @property (readwrite) NSInteger patternNumber;
@@ -64,7 +65,7 @@
         [self addSubview:self.fireIndicator];
         
         self.numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(4, BUTTON_HEIGHT-15, 25, 10)];
-        self.numberLabel.font = [UIFont boldSystemFontOfSize:14];
+        self.numberLabel.font = [RWFirstViewController sharedInstance].tinyLabel.font; //[UIFont boldSystemFontOfSize:14];
         self.numberLabel.textColor = [UIColor colorWithWhite:.3 alpha:1.0];
         self.numberLabel.backgroundColor = [UIColor clearColor];
         self.numberLabel.textAlignment = UITextAlignmentLeft;
@@ -72,7 +73,7 @@
         
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectInset(frame, 4, 4)];
         self.titleLabel.center = self.center;
-        self.titleLabel.font = [UIFont systemFontOfSize:13];
+        self.titleLabel.font = [RWFirstViewController sharedInstance].tinyLabel.font; //[UIFont systemFontOfSize:13];
         self.titleLabel.textAlignment = UITextAlignmentCenter;
         self.titleLabel.numberOfLines = 3;
         self.titleLabel.backgroundColor = [UIColor clearColor];

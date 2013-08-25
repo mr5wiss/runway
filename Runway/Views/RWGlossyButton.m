@@ -19,6 +19,14 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame backgroundColor:(UIColor *)backgroundColor {
+    if (self = [super initWithFrame:frame]) {
+        self.titleLabel.textColor = [UIColor whiteColor];
+        [self setBackgroundToGlossyRectOfColor:backgroundColor withBorder:YES forState:UIControlStateNormal];
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundToGlossyRectOfColor:self.currentTitleShadowColor withBorder:YES forState:UIControlStateNormal];

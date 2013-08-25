@@ -167,6 +167,7 @@ static RWFirstViewController *s_sharedInstance;
     [self.patternKeyPadContainer addSubview:keyPad];
     
     [self.patternContainerView addDarkRoundyShadowBackground];
+    [self.patternKeyPadContainer addDarkRoundyShadowBackground];
     [self.fireTogglesContainerView addDarkRoundyShadowBackground];
     [self.tempoContainerView addDarkRoundyShadowBackground];
     [self.sharedControlsView addDarkRoundyShadowBackground];
@@ -257,6 +258,11 @@ static RWFirstViewController *s_sharedInstance;
         self.sliderViewController.tandemSlider = self.tempoSlider;
         self.sliderViewController.descreteValues = tempoTimes;
         self.sliderViewController.reversed = YES;
+    } else if (sender == self.sharedTempoButton) {
+        self.sliderViewController.tandemValueLabel = self.sharedTickLabel;
+        self.sliderViewController.tandemSlider = self.sharedTempoSlider;
+        self.sliderViewController.descreteValues = tempoTimes;
+        self.sliderViewController.reversed = YES;
     } else {
         //WTF?
         self.sliderViewController.tandemValueLabel = nil;
@@ -278,6 +284,8 @@ static RWFirstViewController *s_sharedInstance;
         [self durationChanged:self.lightDurationSlider];
     } else if (self.sliderViewController.tandemSlider == self.tempoSlider) {
         [self tempoChanged:self.tempoSlider];
+    } else if (self.sliderViewController.tandemSlider == self.sharedTempoSlider) {
+        [self tempoChanged:self.sharedTempoSlider];
     }
 
 }
@@ -446,6 +454,13 @@ static RWFirstViewController *s_sharedInstance;
     // send time between pattern updates
     [self send:[NSString stringWithFormat:@"tick=%f", total - value]];
     self.tickLabel.text = [NSString stringWithFormat:@"%.2fs", total - value];
+    self.sharedTickLabel.text = self.tickLabel.text;
+    
+    if (slider == self.tempoSlider) {
+        self.sharedTempoSlider.value = self.tempoSlider.value;
+    } else if (slider == self.sharedTempoSlider) {
+        self.tempoSlider.value = self.sharedTempoSlider.value;
+    }
 }
 
 // duration
@@ -617,6 +632,7 @@ static RWFirstViewController *s_sharedInstance;
     self.lightDurationSlider.value = 0.0;
     self.fireDurationSlider.value = 0.02;
     self.tempoSlider.value = self.tempoSlider.maximumValue + self.tempoSlider.minimumValue - 0.5;
+    self.sharedTempoSlider.value = self.tempoSlider.value;
     
     [self fadeChanged:self.fadeOutSlider];
     [self fadeChanged:self.fadeInSlider];
@@ -745,6 +761,7 @@ static RWFirstViewController *s_sharedInstance;
     [self setPatternPresetSwitch:nil];
     [self setPatternPresetLabel:nil];
     [self setTempoButton:nil];
+    [self setTinyLabel:nil];
     [super viewDidUnload];
 }
 

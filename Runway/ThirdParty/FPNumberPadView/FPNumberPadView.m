@@ -29,6 +29,7 @@
 
 
 #import "FPNumberPadView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface FPNumberPadView () <UIInputViewAudioFeedback> {
     UITextField *_textField;
@@ -49,6 +50,7 @@
 - (UIView *)loadWithNIB {
     NSArray *aNib = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:self options:nil];
     UIView *view = [aNib objectAtIndex:0];
+    view.layer.cornerRadius = 4.0;
     [self addSubview:view];
     return view;
 }

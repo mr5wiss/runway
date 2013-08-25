@@ -31,6 +31,7 @@
 
 // sliders
 @property (nonatomic, strong) IBOutlet UISlider *tempoSlider;
+@property (nonatomic, strong) IBOutlet UISlider *sharedTempoSlider;
 @property (nonatomic, strong) IBOutlet UISlider *lightDurationSlider;
 @property (nonatomic, strong) IBOutlet UISlider *fireDurationSlider;
 @property (nonatomic, strong) IBOutlet UISlider *fadeInSlider;
@@ -41,6 +42,7 @@
 // labels
 @property (nonatomic, strong) IBOutlet UILabel *tapLabel;
 @property (nonatomic, strong) IBOutlet UILabel *tickLabel;
+@property (nonatomic, strong) IBOutlet UILabel *sharedTickLabel;
 @property (nonatomic, strong) IBOutlet UILabel *patternLabel;
 @property (nonatomic, strong) IBOutlet UILabel *fireDurationLabel;
 @property (nonatomic, strong) IBOutlet UILabel *lightDurationsLabel;
@@ -66,6 +68,7 @@
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *stopRecordBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *loopBarButton;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *connectButton;
+@property (weak, nonatomic) IBOutlet UILabel *tinyLabel;
 
 // other
 @property (nonatomic, strong) IBOutlet UISwitch *tapSwitch;
@@ -112,6 +115,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *fadeOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *fadeInButton;
 @property (weak, nonatomic) IBOutlet UIButton *tempoButton;
+@property (weak, nonatomic) IBOutlet UIButton *sharedTempoButton;
 
 @property (weak, nonatomic) IBOutlet UIView *sharedControlsView;
 
