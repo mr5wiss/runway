@@ -125,6 +125,9 @@ static RWFirstViewController *s_sharedInstance;
         NSLog(@"couldn't add nodes to top node view");
     }
     
+    [self.topNodes addDarkRoundyShadowBackground];
+    [self.bottomNodes addDarkRoundyShadowBackground];
+    
     // label tap recognizer to enable tapping for tempo
     _tapLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *tempoTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tempoTapped:)];

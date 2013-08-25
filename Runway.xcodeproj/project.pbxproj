@@ -80,6 +80,8 @@
 		EFB9CA4D17C1E02D000853BA /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB9CA4917C1E02D000853BA /* button@2x.png */; };
 		EFB9CA5017C1EA01000853BA /* UIView+UIView_Background.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA4F17C1EA01000853BA /* UIView+UIView_Background.m */; };
 		EFB9CA7C17C1EB6F000853BA /* RWGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EFB9CA7B17C1EB6E000853BA /* RWGlossyButton.m */; };
+		EFDAF8F517C9D85E00338C84 /* control.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDAF8F117C9D85E00338C84 /* control.png */; };
+		EFDAF8F717C9D85E00338C84 /* pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDAF8F317C9D85E00338C84 /* pattern.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,6 +188,8 @@
 		EFB9CA4F17C1EA01000853BA /* UIView+UIView_Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+UIView_Background.m"; sourceTree = "<group>"; };
 		EFB9CA7A17C1EB6E000853BA /* RWGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RWGlossyButton.h; path = Views/RWGlossyButton.h; sourceTree = "<group>"; };
 		EFB9CA7B17C1EB6E000853BA /* RWGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RWGlossyButton.m; path = Views/RWGlossyButton.m; sourceTree = "<group>"; };
+		EFDAF8F117C9D85E00338C84 /* control.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = control.png; path = images/control.png; sourceTree = "<group>"; };
+		EFDAF8F317C9D85E00338C84 /* pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pattern.png; path = images/pattern.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +353,8 @@
 		EFB9CA1917C1B2EC000853BA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EFDAF8F117C9D85E00338C84 /* control.png */,
+				EFDAF8F317C9D85E00338C84 /* pattern.png */,
 				EF32D50E17C335000019CB45 /* icon.png */,
 				EF32D50F17C335000019CB45 /* icon@2x.png */,
 				EFB9CA4017C1DD44000853BA /* dots.png */,
@@ -499,6 +505,8 @@
 				EF32D51A17C3386D0019CB45 /* RWSliderPopoverViewController.xib in Resources */,
 				EF32D52017C4117D0019CB45 /* eq-slider-border@2x.png in Resources */,
 				EF32D52217C4117D0019CB45 /* slider-knob@2x.png in Resources */,
+				EFDAF8F517C9D85E00338C84 /* control.png in Resources */,
+				EFDAF8F717C9D85E00338C84 /* pattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

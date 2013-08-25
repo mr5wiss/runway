@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--First View Controller - Play-->
+        <!--First View Controller - Control-->
         <scene sceneID="11">
             <objects>
                 <viewController id="2" customClass="RWFirstViewController" sceneMemberID="viewController">
@@ -32,13 +32,14 @@
                                     <barButtonItem width="67" style="plain" systemItem="fixedSpace" id="RHv-l9-whs"/>
                                     <barButtonItem title="PANIC" id="AsM-DX-ct6"/>
                                 </items>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <view contentMode="scaleToFill" id="ZWy-am-geR" customClass="RWNodeView">
-                                <rect key="frame" x="0.0" y="44" width="924" height="120"/>
+                                <rect key="frame" x="5" y="48" width="924" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                             <view contentMode="scaleToFill" id="yMf-Pj-OxS" customClass="RWNodeView">
-                                <rect key="frame" x="0.0" y="461" width="924" height="120"/>
+                                <rect key="frame" x="5" y="461" width="924" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l1M-DI-aeK" customClass="RWGlossyButton">
@@ -446,7 +447,7 @@
                         <gestureRecognizers/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Play" image="first" id="7"/>
+                    <tabBarItem key="tabBarItem" title="Control" image="control.png" id="7"/>
                     <connections>
                         <outlet property="allBottomButton" destination="OxK-OL-GAH" id="hkb-S8-Pxv"/>
                         <outlet property="allTopButton" destination="vcx-cF-KdC" id="EKT-ez-LAI"/>
@@ -621,7 +622,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Patterns" image="dots" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Patterns" image="pattern.png" id="6"/>
                     <connections>
                         <outlet property="leftAvgLabel" destination="mLt-rm-hAC" id="Y4S-g9-tnu"/>
                         <outlet property="leftLevelLabel" destination="rbB-2r-4FK" id="OAE-jc-icW"/>
@@ -663,8 +664,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dots" width="16" height="16"/>
-        <image name="first" width="16" height="16"/>
+        <image name="control.png" width="38" height="38"/>
+        <image name="pattern.png" width="36" height="36"/>
         <image name="smallBlueCircle.png" width="8" height="8"/>
         <image name="smallEQCircle.png" width="8" height="8"/>
         <image name="smallGreenCircle.png" width="8" height="8"/>
